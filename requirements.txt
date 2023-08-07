@@ -1,0 +1,10 @@
+bs4
+cfscrape
+cloudscraper
+lxml
+python-dotenv
+pyrogram
+requests
+tgcrypto
+urllib3==1.26
+uvloop
