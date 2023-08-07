@@ -19,7 +19,7 @@ class Config:
     BOT_TOKEN=getenv('BOT_TOKEN', '')
     API_HASH=getenv('API_HASH', '')
     API_ID=getenv('API_ID', '')
-    if BOT_TOKEN == '' or TG_API_HASH == '' or TG_API_ID == '':
+    if BOT_TOKEN == '' or API_HASH == '' or API_ID == '':
         LOGGER.critical('ENV Missing. Exiting Now...')
         exit(1)
     LARAVEL_SESSION=""
