@@ -1,7 +1,7 @@
 from os import getenv
 from dotenv import load_dotenv
 from pyrogram import Client
-from logging import getLogger, FileHandler, StreamHandler, INFO, basicConfig
+from logging import getLogger, FileHandler, StreamHandler, INFO, ERROR, basicConfig
 from uvloop import install
 
 install()
@@ -10,14 +10,15 @@ basicConfig(format="[%(asctime)s] [%(levelname)s] - %(message)s", #  [%(filename
             handlers=[FileHandler('log.txt'), StreamHandler()],
             level=INFO)
 
+getLogger("pyrogram").setLevel(ERROR)
 LOGGER = getLogger(__name__)
 
 load_dotenv('config.env', override=True)
 
 class Config:
     BOT_TOKEN=getenv('BOT_TOKEN', '')
-    TG_API_HASH=getenv('TG_API_HASH', '')
-    TG_API_ID=getenv('TG_API_ID', '')
+    API_HASH=getenv('API_HASH', '')
+    API_ID=getenv('API_ID', '')
     if BOT_TOKEN == '' or TG_API_HASH == '' or TG_API_ID == '':
         LOGGER.critical('ENV Missing. Exiting Now...')
         exit(1)
@@ -32,4 +33,4 @@ class Config:
     TERA_COOKIE=""
     CF_COOKIE=""
 
-Bypass = Client("FZ", api_id=Config.TG_API_ID, api_hash=Config.TG_API_HASH, bot_token=Config.BOT_TOKEN)
+Bypass = Client("FZ", api_id=Config.API_ID, api_hash=Config.API_HASH, bot_token=Config.BOT_TOKEN, plugins=dict(root="FZBypass/plugins"))
