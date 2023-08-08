@@ -1,6 +1,6 @@
 from FZBypass import Config, Bypass
 from pyrogram.filters import command, private, text
-from FZBypass.core.bypass_ddl import canBypass
+from FZBypass.core.bypass_checker import direct_link_checker
 from FZBypass.core.bot_utils import chat_and_topics
 from FZBypass.core.exceptions import DDLException
 
