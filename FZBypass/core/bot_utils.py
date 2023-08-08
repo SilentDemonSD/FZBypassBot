@@ -1,6 +1,6 @@
 from pyrogram.filters import create
 
-async def auth_topic(_, message):
+async def auth_topic(_, __, message):
     for chat in Config.AUTH_CHATS:
         if ':' in chat:
             chat_id, topic_id = chat.split(':')
