@@ -1,4 +1,5 @@
 from pyrogram.filters import create
+from FZBypass import Config
 
 async def auth_topic(_, __, message):
     for chat in Config.AUTH_CHATS:
