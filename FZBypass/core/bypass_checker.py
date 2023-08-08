@@ -1,7 +1,7 @@
 from re import match
 from urllib.parse import urlparse
 
-from ..bypass_dlinks import *
+from FZBypass.core.bypass_dlinks import *
 from FZBypass.core.exceptions import DDLException
 
 def is_share_link(url):
