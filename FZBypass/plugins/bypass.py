@@ -12,7 +12,7 @@ async def start_msg(client, message):
 async def bypass_check(client, message):
     uid = message.from_user.id
     arg = message.text.split('\n')[0].split()
-    if reply_to := message.reply_to_message and hasattr(reply_to, "text"):
+    if (reply_to := message.reply_to_message) and reply_to.text is not None:
         link = reply_to.text
     elif len(arg) > 1:
         link = arg[1]
