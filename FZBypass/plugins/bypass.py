@@ -4,7 +4,7 @@ from FZBypass.core.bypass_checker import direct_link_checker
 from FZBypass.core.bot_utils import chat_and_topics
 from FZBypass.core.exceptions import DDLException
 
-@Bypass.on_message(command(['start'] & ~private))
+@Bypass.on_message(command(['start']) & ~private)
 async def start_msg(client, message):
     await message.reply('<b>FZ Bypass Bot! Up & Running!</b>')
     
