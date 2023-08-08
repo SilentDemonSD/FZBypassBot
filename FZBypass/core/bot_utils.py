@@ -7,7 +7,7 @@ async def auth_topic(_, __, message):
             chat_id, topic_id = chat.split(':')
             if (int(chat_id) == message.chat.id 
                 and (is_forum := message.reply_to_message) 
-                and not hasattr(is_forum, 'text') 
+                and is_forum.text is None
                 and int(topic_id) == is_forum.id):
                 return True
         elif int(chat) == message.chat.id:
