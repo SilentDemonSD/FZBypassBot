@@ -16,21 +16,22 @@ LOGGER = getLogger(__name__)
 load_dotenv('config.env', override=True)
 
 class Config:
-    BOT_TOKEN=getenv('BOT_TOKEN', '')
-    API_HASH=getenv('API_HASH', '')
-    API_ID=getenv('API_ID', '')
+    BOT_TOKEN = getenv('BOT_TOKEN', '')
+    API_HASH  = getenv('API_HASH', '')
+    API_ID    = getenv('API_ID', '')
     if BOT_TOKEN == '' or API_HASH == '' or API_ID == '':
         LOGGER.critical('ENV Missing. Exiting Now...')
         exit(1)
-    LARAVEL_SESSION=""
-    XSRF_TOKEN=""
-    GDTOT_CRYPT=""
-    D_CRYPT=""
-    K_CRYPT=""
-    H_CRYPT=""
-    KAT_CRYPT=""
-    UPTOBOX_TOKEN=""
-    TERA_COOKIE=""
-    CF_COOKIE=""
+    AUTH_CHATS      = getenv('AUTH_CHATS', '').split()
+    LARAVEL_SESSION = getenv('LARAVEL_SESSION', '')
+    XSRF_TOKEN      = getenv('XSRF_TOKEN', '')
+    GDTOT_CRYPT     = getenv('GDTOT_CRYPT', '')
+    D_CRYPT         = getenv('API_ID', '')
+    K_CRYPT         = getenv('API_ID', '')
+    HUB_CRYPT       = getenv('HUB_CRYPT', '')
+    KAT_CRYPT       = getenv('KAT_CRYPT', '')
+    UPTOBOX_TOKEN   = getenv('UPTOBOX_TOKEN', '')
+    TERA_COOKIE     = getenv('TERA_COOKIE', '')
+    CF_COOKIE       = getenv('CF_COOKIE', '')
 
 Bypass = Client("FZ", api_id=Config.API_ID, api_hash=Config.API_HASH, bot_token=Config.BOT_TOKEN, plugins=dict(root="FZBypass/plugins"))
