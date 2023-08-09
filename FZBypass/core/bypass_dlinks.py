@@ -33,8 +33,7 @@ async def filepress(url: str):
                 d_id = await resp.json()
             if d_id.get('data', False):
                 dl_link = f"https://drive.google.com/uc?id={d_id['data']}&export=download"
-                parsed = BeautifulSoup(cget('GET', url).content, 'html.parser').find('span')
-                LOGGER.info(parsed)
+                parsed = BeautifulSoup(cget('GET', dl_link).content, 'html.parser').find('span')
                 combined = str(parsed).rsplit('(', maxsplit=1)
                 name, size = combined[0], combined[1].replace(')', '') + 'B'
             else:
@@ -52,11 +51,13 @@ async def filepress(url: str):
     except Exception as e:
         LOGGER.error(format_exc())
         raise DDLException(f'<b>ERROR:</b> {e.__class__.__name__}')
-    return f'''<b>Name :<b> <i>{name}</i>
+    return f'''<b>Name :</b> <i>{name}</i>
 <b>Size :</b> <i>{size}</i>
 
 <b>Drive Link :</b> {dl_link}
-<b>TG Link :</b> {tg_link}'''
+<b>Telegram Link :</b> {tg_link}
+
+<b>Filepress Link :</b> {url}'''
 
 
 def gdtot(url):
