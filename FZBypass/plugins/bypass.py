@@ -20,16 +20,17 @@ async def bypass_check(client, message):
     else:
         return await message.reply('<i>No Link Provided!</i>')
     
+    wait_msg = await message.reply("<i>Bypassing...</i>")
     start = time()
     try:
         parse_data = await direct_link_checker(link)
     except Exception as e:
-        return await message.reply(str(e))
+        return await wait_msg.edit(str(e))
     end = time()
 
     if parse_data:
-        await message.reply(parse_data + f"\n\n<b>Time Taken :</b> {convert_time(end - start)}", disable_web_page_preview=True)
+        await wait_msg.edit(parse_data + f"\n\n<b>Time Taken :</b> {convert_time(end - start)}", disable_web_page_preview=True)
 
 @Bypass.on_message(command('log') & user(Config.OWNER_ID))
 async def send_logs(client, message):
-    await message.reply_document('./log.txt')
+    await message.reply_document('log.txt', quote=True)

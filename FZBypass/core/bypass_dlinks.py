@@ -91,10 +91,8 @@ async def gdtot(url):
         soup = BeautifulSoup(cget('GET', url).content, "html.parser")
         title = soup.select('meta[property^="og:description"]')
         return f'''┎ <b>Name :</b> <i>{(title[0]['content']).replace('Download ' , '')}</i>
-┃
 ┠ <b>Drive Link :</b> {d_link}
-┖ <b>GDToT Link :</b> {url}
-'''
+┖ <b>GDToT Link :</b> {url}'''
     token_url = token_url[0]
     try:
         token_page = cget('GET', token_url)
