@@ -12,28 +12,49 @@ from cloudscraper import create_scraper
 from lk21 import Bypass
 from lxml import etree
 from requests import session
+from aiohttp import ClientSession 
 
 from FZBypass import LOGGER
 from FZBypass.core.exceptions import DDLException
 
 
-def filepress(url):
+async def filepress(url: str):
     cget = create_scraper().request
     try:
         url = cget('GET', url).url
         raw = urlparse(url)
-        json_data = {
-            'id': raw.path.split('/')[-1],
-            'method': 'publicDownlaod',
-        }
-        api = f'{raw.scheme}://{raw.hostname}/api/file/downlaod/'
-        res = cget('POST', api, headers={
-                   'Referer': f'{raw.scheme}://{raw.hostname}'}, json=json_data).json()
+        async with ClientSession() as sess:
+            json_data = {
+                'id': raw.path.split('/')[-1],
+                'method': 'publicDownlaod',
+            }
+            async with await sess.post(f'{raw.scheme}://{raw.hostname}/api/file/downlaod/', headers={'Referer': f'{raw.scheme}://{raw.hostname}'}, json=json_data) as resp:
+                d_id = await resp.json()
+            if 'data' not in d_id:
+                dl_link = f"https://drive.google.com/uc?id={d_id['data']}&export=download"
+                parsed = BeautifulSoup(cget('GET', url).text, 'html.parser').find('span')
+                combined = str(parsed).rsplit('(', maxsplit=1)
+                name = combined[0]
+                size = combined[1].replace(')', '') + 'B'
+            else:
+                dl_link = f'ERROR: {d_id["statusText"]}'
+                name, size = "N/A", "N/A"
+            del json_data['method']
+            async with await sess.post(f'{raw.scheme}://{raw.hostname}/api/file/telegram/downlaod/', headers={'Referer': f'{raw.scheme}://{raw.hostname}'}, json=json_data) as resp:
+                tg_id = await resp.json()
+            if "data" in tg_id:
+                url = f"https://tghub.xyz/?start={tg_id['data']}"
+                bot_name = findall("filepress_\d+_bot", cget('GET', url).text)
+                tg_link = f"https://t.me/{bot_name}/?start={tg_id['data']}"
+            else:
+                tg_link = f'ERROR: {tg_id["statusText"]}'
     except Exception as e:
         raise DDLException(f'ERROR: {e.__class__.__name__}')
-    if 'data' not in res:
-        raise DDLException(f'ERROR: {res["statusText"]}')
-    return f'https://drive.google.com/uc?id={res["data"]}&export=download'
+    return f'''<b>Name :<b> <i>{name}</i>
+<b>Size :</b> <i>{size}</i>
+
+<b>Drive Link :</b> {dl_link}
+<b>TG Link :</b> {tg_link}'''
 
 
 def gdtot(url):

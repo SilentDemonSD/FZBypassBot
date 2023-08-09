@@ -1,5 +1,5 @@
 from FZBypass import Config, Bypass
-from pyrogram.filters import command, private, text
+from pyrogram.filters import command, private, user, text
 from FZBypass.core.bypass_checker import direct_link_checker
 from FZBypass.core.bot_utils import chat_and_topics
 from FZBypass.core.exceptions import DDLException
@@ -17,16 +17,18 @@ async def bypass_check(client, message):
     elif len(arg) > 1:
         link = arg[1]
     else:
-        link = ''
-    if link == '':
         return await message.reply('<i>No Link Provided!</i>')
     try:
-        by_link = await direct_link_checker(link)
+        parse_data = await direct_link_checker(link)
     except DDLException as error:
-        return await message.reply(error)
+        return await message.reply(f"<b>{error}</b>")
     except Exception as e:
         return await message.reply(str(e))
 
-    if by_link:
-        await message.reply(f"<b>Bypassed Link :</b> <code>{by_link}</code>")
-    
+    if parse_data:
+        await message.reply(parse_data)
+        
+
+@Bypass.on_message(command(['log']) & user(Config.OWNER_ID))
+async def send_logs(client, message):
+    await message.reply_document('log.txt')

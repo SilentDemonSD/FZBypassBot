@@ -13,7 +13,7 @@ async def direct_link_checker(link):
         if 'gdtot' in domain:
             return gdtot(link)
         elif 'filepress' in domain:
-            return filepress(link)
+            return await filepress(link)
         else:
             return sharer_scraper(link)
     else:
