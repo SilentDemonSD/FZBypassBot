@@ -15,7 +15,7 @@ from lxml import etree
 from requests import session
 from aiohttp import ClientSession 
 
-from FZBypass import LOGGER
+from FZBypass import LOGGER, Config
 from FZBypass.core.exceptions import DDLException
 
 
@@ -37,30 +37,30 @@ async def filepress(url: str):
                 combined = str(parsed).rsplit('(', maxsplit=1)
                 name, size = combined[0], combined[1].replace(')', '') + 'B'
             else:
-                dl_link = f'{d_id["statusText"]}'
+                dl_link = "Link Not Found" if d_id["statusText"] == "Bad Request" else d_id["statusText"]
                 name, size = "N/A", "N/A"
             del json_data['method']
             async with await sess.post(f'{raw.scheme}://{raw.hostname}/api/file/telegram/downlaod/', headers={'Referer': f'{raw.scheme}://{raw.hostname}'}, json=json_data) as resp:
                 tg_id = await resp.json()
             if tg_id.get('data', False):
-                url = f"https://tghub.xyz/?start={tg_id['data']}"
-                bot_name = findall("filepress_\d+_bot", cget('GET', url).text)[0]
+                t_url = f"https://tghub.xyz/?start={tg_id['data']}"
+                bot_name = findall("filepress_\d+_bot", cget('GET', t_url).text)[0]
                 tg_link = f"https://t.me/{bot_name}/?start={tg_id['data']}"
             else:
-                tg_link = f'{tg_id["statusText"]}'
+                tg_link = 'Telegram Not Uploaded / Unavailable' if tg_id["statusText"] == "Ok" else tg_id["statusText"]
     except Exception as e:
         LOGGER.error(format_exc())
         raise DDLException(f'<b>ERROR:</b> {e.__class__.__name__}')
-    return f'''<b>Name :</b> <i>{name}</i>
-<b>Size :</b> <i>{size}</i>
+    return f'''┎ <b>Name :</b> <i>{name}</i>
+┠ <b>Size :</b> <i>{size}</i>
+┃ 
+┠ <b>Direct Download :</b> {dl_link}
+┠ <b>Telegram Link :</b> {tg_link}
+┃ 
+┖ <b>Filepress Link :</b> {url}'''
 
-<b>Drive Link :</b> {dl_link}
-<b>Telegram Link :</b> {tg_link}
 
-<b>Filepress Link :</b> {url}'''
-
-
-def gdtot(url):
+async def gdtot(url):
     cget = create_scraper().request
     try:
         res = cget('GET', f'https://gdtot.pro/file/{url.split("/")[-1]}')
@@ -75,7 +75,7 @@ def gdtot(url):
         except Exception as e:
             raise DDLException(f'ERROR: {e.__class__.__name__}')
         if (drive_link := findall(r"myDl\('(.*?)'\)", res.text)) and "drive.google.com" in drive_link[0]:
-            return drive_link[0]
+            d_link = drive_link[0]
         elif Config.GDTOT_CRYPT:
             cget('GET', url, cookies={'crypt': Config.GDTOT_CRYPT})
             p_url = urlparse(url)
@@ -85,9 +85,16 @@ def gdtot(url):
                 decoded_id = b64decode(str(g_id[0])).decode('utf-8')
             except:
                 raise DDLException("ERROR: Try in your browser, mostly file not found or user limit exceeded!")
-            return f'https://drive.google.com/open?id={decoded_id}'
+            d_link = f'https://drive.google.com/open?id={decoded_id}'
         else:
-            raise DDLException('ERROR: Drive Link not found, Try in your broswer! GDTOT_CRYPT not Provided, it increases efficiency!')
+            raise DDLException('ERROR: Drive Link not found, Try in your broswer! GDTOT_CRYPT not Provided!')
+        soup = BeautifulSoup(cget('GET', url).content, "html.parser")
+        title = soup.select('meta[property^="og:description"]')
+        return f'''┎ <b>Name :</b> <i>{(title[0]['content']).replace('Download ' , '')}</i>
+┃
+┠ <b>Drive Link :</b> {d_link}
+┖ <b>GDToT Link :</b> {url}
+'''
     token_url = token_url[0]
     try:
         token_page = cget('GET', token_url)
@@ -99,10 +106,10 @@ def gdtot(url):
     path = path[0]
     raw = urlparse(token_url)
     final_url = f'{raw.scheme}://{raw.hostname}{path}'
-    return sharer_scraper(final_url)
+    return await sharer_scraper(final_url)
 
 
-def sharer_scraper(url):
+async def sharer_scraper(url):
     cget = create_scraper().request
     try:
         url = cget('GET', url).url
@@ -113,7 +120,7 @@ def sharer_scraper(url):
         raise DDLException(f'ERROR: {e.__class__.__name__}')
     key = findall('"key",\s+"(.*?)"', res.text)
     if not key:
-        raise DDLException("ERROR: Key not found!")
+        raise DDLException("ERROR: Download Link Key not found!")
     key = key[0]
     if not etree.HTML(res.content).xpath("//button[@id='drc']"):
         raise DDLException("ERROR: This link don't have direct download button")
@@ -125,9 +132,9 @@ def sharer_scraper(url):
     }
 
     data = f'------WebKitFormBoundary{boundary}\r\nContent-Disposition: form-data; name="action"\r\n\r\ndirect\r\n' \
-        f'------WebKitFormBoundary{boundary}\r\nContent-Disposition: form-data; name="key"\r\n\r\n{key}\r\n' \
-        f'------WebKitFormBoundary{boundary}\r\nContent-Disposition: form-data; name="action_token"\r\n\r\n\r\n' \
-        f'------WebKitFormBoundary{boundary}--\r\n'
+           f'------WebKitFormBoundary{boundary}\r\nContent-Disposition: form-data; name="key"\r\n\r\n{key}\r\n' \
+           f'------WebKitFormBoundary{boundary}\r\nContent-Disposition: form-data; name="action_token"\r\n\r\n\r\n' \
+           f'------WebKitFormBoundary{boundary}--\r\n'
     try:
         res = cget("POST", url, cookies=res.cookies,
                    headers=headers, data=data).json()

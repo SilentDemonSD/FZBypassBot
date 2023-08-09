@@ -11,10 +11,10 @@ async def direct_link_checker(link):
     domain = urlparse(link).hostname
     if is_share_link(link):
         if 'gdtot' in domain:
-            return gdtot(link)
+            return await gdtot(link)
         elif 'filepress' in domain:
             return await filepress(link)
         else:
-            return sharer_scraper(link)
+            return await sharer_scraper(link)
     else:
         raise DDLException(f'<i>No Bypass Function Found for your Link :</i> <code>{link}</code>')
