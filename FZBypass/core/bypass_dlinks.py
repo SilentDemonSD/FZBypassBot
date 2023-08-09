@@ -1,4 +1,5 @@
 from base64 import b64decode
+from traceback import format_exc
 from http.cookiejar import MozillaCookieJar
 from json import loads
 from os import path
@@ -32,10 +33,10 @@ async def filepress(url: str):
                 d_id = await resp.json()
             if d_id.get('data', False):
                 dl_link = f"https://drive.google.com/uc?id={d_id['data']}&export=download"
-                parsed = BeautifulSoup(cget('GET', url).text, 'html.parser').find('span')
+                parsed = BeautifulSoup(cget('GET', url).content, 'html.parser').find('span')
+                LOGGER.info(parsed)
                 combined = str(parsed).rsplit('(', maxsplit=1)
-                name = combined[0]
-                size = combined[1].replace(')', '') + 'B'
+                name, size = combined[0], combined[1].replace(')', '') + 'B'
             else:
                 dl_link = f'{d_id["statusText"]}'
                 name, size = "N/A", "N/A"
@@ -49,6 +50,7 @@ async def filepress(url: str):
             else:
                 tg_link = f'{tg_id["statusText"]}'
     except Exception as e:
+        LOGGER.error(format_exc())
         raise DDLException(f'<b>ERROR:</b> {e.__class__.__name__}')
     return f'''<b>Name :<b> <i>{name}</i>
 <b>Size :</b> <i>{size}</i>
