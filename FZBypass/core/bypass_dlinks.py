@@ -30,26 +30,26 @@ async def filepress(url: str):
             }
             async with await sess.post(f'{raw.scheme}://{raw.hostname}/api/file/downlaod/', headers={'Referer': f'{raw.scheme}://{raw.hostname}'}, json=json_data) as resp:
                 d_id = await resp.json()
-            if 'data' not in d_id:
+            if d_id.get('data', False):
                 dl_link = f"https://drive.google.com/uc?id={d_id['data']}&export=download"
                 parsed = BeautifulSoup(cget('GET', url).text, 'html.parser').find('span')
                 combined = str(parsed).rsplit('(', maxsplit=1)
                 name = combined[0]
                 size = combined[1].replace(')', '') + 'B'
             else:
-                dl_link = f'ERROR: {d_id["statusText"]}'
+                dl_link = f'{d_id["statusText"]}'
                 name, size = "N/A", "N/A"
             del json_data['method']
             async with await sess.post(f'{raw.scheme}://{raw.hostname}/api/file/telegram/downlaod/', headers={'Referer': f'{raw.scheme}://{raw.hostname}'}, json=json_data) as resp:
                 tg_id = await resp.json()
-            if "data" in tg_id:
+            if tg_id.get('data', False):
                 url = f"https://tghub.xyz/?start={tg_id['data']}"
-                bot_name = findall("filepress_\d+_bot", cget('GET', url).text)
+                bot_name = findall("filepress_\d+_bot", cget('GET', url).text)[0]
                 tg_link = f"https://t.me/{bot_name}/?start={tg_id['data']}"
             else:
-                tg_link = f'ERROR: {tg_id["statusText"]}'
+                tg_link = f'{tg_id["statusText"]}'
     except Exception as e:
-        raise DDLException(f'ERROR: {e.__class__.__name__}')
+        raise DDLException(f'<b>ERROR:</b> {e.__class__.__name__}')
     return f'''<b>Name :<b> <i>{name}</i>
 <b>Size :</b> <i>{size}</i>
 
