@@ -9,7 +9,9 @@ def is_share_link(url):
 
 async def direct_link_checker(link):
     domain = urlparse(link).hostname
-    if is_share_link(link):
+    if bool(match(r"https?:\/\/(gyanilinks|gtlinks)\.\S+", link)):
+        return await gyanilinks(link)
+    elif is_share_link(link):
         if 'gdtot' in domain:
             return await gdtot(link)
         elif 'filepress' in domain:
