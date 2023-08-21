@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 from cloudscraper import create_scraper
 from lk21 import Bypass
 from lxml import etree
-from requests import session
+from requests import Session
 
 from FZBypass.core.exceptions import DDLException
 
@@ -31,4 +31,21 @@ async def gyanilinks(url: str) -> str:
     try: 
         return resp.json()['url']
     except:
+        raise DDLException("Link Extraction Failed")
+
+
+async def tnlink(url: str) -> str:
+    DOMAIN = "https://page.tnlink.in/"
+    code = url.rstrip("/").split("/")[-1]
+    cget = create_scraper().request
+    while len(cget.cookies) == 0:
+        resp = cget("GET", f"{DOMAIN}/{code}", headers={"referer": "https://usanewstoday.club/"})
+        await asleep(2)
+    soup = BeautifulSoup(resp.content, "html.parser")
+    data = { input.get('name'): input.get('value') for input in soup.find_all("input") }
+    await asleep(8)
+    r = cget("POST", f"{DOMAIN}/links/go", data=data, headers={ "x-requested-with": "XMLHttpRequest" })
+    try: 
+        return r.json()['url']
+    except: 
         raise DDLException("Link Extraction Failed")

@@ -107,6 +107,11 @@ async def gdtot(url):
     return await sharer_scraper(final_url)
 
 
+async def appdrive(url):
+    # TODO : Add Packs and Name
+    return await sharer_scraper(url)
+
+
 async def sharer_scraper(url):
     cget = create_scraper().request
     try:

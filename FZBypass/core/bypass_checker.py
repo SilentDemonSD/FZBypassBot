@@ -12,11 +12,15 @@ async def direct_link_checker(link):
     domain = urlparse(link).hostname
     if bool(match(r"https?:\/\/(gyanilinks|gtlinks)\.\S+", link)):
         return await gyanilinks(link)
+    elif bool(match(r"https?:\/\/.*\.tnlink\.\S+", link)):
+        return await tnlink(link)
     elif is_share_link(link):
         if 'gdtot' in domain:
             return await gdtot(link)
         elif 'filepress' in domain:
             return await filepress(link)
+        elif 'appdrive' in domain:
+            return await appdrive(link)
         else:
             return await sharer_scraper(link)
     else:
