@@ -1,5 +1,6 @@
 from time import time
 from pyrogram.filters import command, private, user
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram.enums import MessageEntityType
 
 from FZBypass import Config, Bypass, BOT_START
@@ -27,11 +28,10 @@ async def start_msg(client, message):
 @Bypass.on_message(command(['bypass', 'bp']) & chat_and_topics)
 async def bypass_check(client, message):
     uid = message.from_user.id
-    arg = message.text.split()
     if (reply_to := message.reply_to_message) and reply_to.text is not None:
         txt = reply_to.text
         entities = reply_to.entities
-    elif len(arg) > 1:
+    elif len(message.command) > 1:
         txt = message.text
         entities = message.entities
     else:
@@ -41,6 +41,7 @@ async def bypass_check(client, message):
     start = time()
 
     parse_data = []
+    link = ''
     for enty in entities:
         if enty.type == MessageEntityType.URL:
             link = txt[enty.offset:(enty.offset+enty.length)]
