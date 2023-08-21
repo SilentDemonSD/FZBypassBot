@@ -12,7 +12,7 @@ async def direct_link_checker(link):
     domain = urlparse(link).hostname
     if bool(match(r"https?:\/\/(gyanilinks|gtlinks)\.\S+", link)):
         return await gyanilinks(link)
-    elif bool(match(r"https?:\/\/.*\.tnlink\.\S+", link)):
+    elif bool(match(r"https?:\/\/.+\.(tnlink|tnshort)\.\S+", link)):
         return await tnlink(link)
     elif is_share_link(link):
         if 'gdtot' in domain:
