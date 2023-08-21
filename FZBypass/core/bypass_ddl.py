@@ -37,8 +37,9 @@ async def gyanilinks(url: str) -> str:
 async def tnlink(url: str) -> str:
     DOMAIN = "https://page.tnlink.in/"
     code = url.rstrip("/").split("/")[-1]
-    cget = create_scraper().request
-    while len(cget.cookies) == 0:
+    cs = create_scraper()
+    cget = cs.request
+    while len(cs.cookies) == 0:
         resp = cget("GET", f"{DOMAIN}/{code}", headers={"referer": "https://usanewstoday.club/"})
         await asleep(2)
     soup = BeautifulSoup(resp.content, "html.parser")
