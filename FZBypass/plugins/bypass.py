@@ -1,17 +1,29 @@
 from time import time
-from FZBypass import Config, Bypass
 from pyrogram.filters import command, private, user
 from pyrogram.enums import MessageEntityType
 
+from FZBypass import Config, Bypass, BOT_START
 from FZBypass.core.bypass_checker import direct_link_checker, is_share_link
 from FZBypass.core.bot_utils import chat_and_topics, convert_time
 from FZBypass.core.exceptions import DDLException
 
 
-@Bypass.on_message(command('start') & ~private)
+@Bypass.on_message(command('start'))
 async def start_msg(client, message):
-    await message.reply('<b>FZ Bypass Bot! Up & Running!</b>')
+    await message.reply(f'''<b><i>FZ Bypass Bot!</i></b>
     
+    <i>A Powerful Elegant Multi Threaded Bot written in Python... which can Bypass Various Shortener Links, Scrape links, and More ... </i>
+    
+<b>Bot Started {convert_time(time() - BOT_START)} ago...</b>
+
+<b>Use Me Here :</b> @CyberPunkGrp <i>(Bypass Topic)</i>''',
+        quote=True,
+        reply_markup=InlineKeyboardMarkup([
+            [InlineKeyboardButton('🎓 Dev', url='https://t.me/SilentDemonSD'), InlineKeyboardButton('🔍 Deploy Own', url="https://github.com/SilentDemonSD/FZBypassBot")]
+            ])
+    )
+
+
 @Bypass.on_message(command(['bypass', 'bp']) & chat_and_topics)
 async def bypass_check(client, message):
     uid = message.from_user.id
@@ -48,15 +60,17 @@ async def bypass_check(client, message):
             
     end = time()
 
+    parse_data[-1] = parse_data[-1] + f"\n\n<b>Time Taken :</b> {convert_time(end - start)}"
     tg_txt = ""
     for tg_data in parse_data:
         tg_txt += tg_data
         if len(tg_txt) > 4000:
-            await wait_msg.edit(parse_data, disable_web_page_preview=True)
+            await wait_msg.edit(tg_txt, disable_web_page_preview=True)
             wait_msg = await message.reply("<i>Fetching...</i>", reply_to_message_id=wait_msg.id)
     
     if tg_txt != "":
-        await wait_msg.edit(parse_data + f"\n\n<b>Time Taken :</b> {convert_time(end - start)}", disable_web_page_preview=True)
+        await wait_msg.edit(tg_txt, disable_web_page_preview=True)
+
 
 @Bypass.on_message(command('log') & user(Config.OWNER_ID))
 async def send_logs(client, message):

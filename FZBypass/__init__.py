@@ -1,4 +1,5 @@
 from os import getenv
+from time import time
 from dotenv import load_dotenv
 from pyrogram import Client
 from pyrogram.enums import ParseMode
@@ -15,6 +16,7 @@ getLogger("pyrogram").setLevel(ERROR)
 LOGGER = getLogger(__name__)
 
 load_dotenv('config.env', override=True)
+BOT_START = time()
 
 class Config:
     BOT_TOKEN = getenv('BOT_TOKEN', '')
