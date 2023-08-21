@@ -13,7 +13,9 @@ async def direct_link_checker(link):
     if bool(match(r"https?:\/\/(gyanilinks|gtlinks)\.\S+", link)):
         return await gyanilinks(link)
     elif bool(match(r"https?:\/\/.+\.(tnlink|tnshort)\.\S+", link)):
-        return await tnlink(link)
+        return await tnshort(link)
+    elif bool(match(r"https?:\/\/xpshort\.\S+", link)):
+        return await xpshort(link)
     elif is_share_link(link):
         if 'gdtot' in domain:
             return await gdtot(link)

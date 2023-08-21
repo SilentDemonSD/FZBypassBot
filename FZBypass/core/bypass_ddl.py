@@ -34,17 +34,30 @@ async def gyanilinks(url: str) -> str:
         raise DDLException("Link Extraction Failed")
 
 
-async def tnlink(url: str) -> str:
-    DOMAIN = "https://page.tnlink.in/"
+async def tnshort(url: str) -> str:
+    DOMAIN = "https://news.speedynews.xyz/"
     code = url.rstrip("/").split("/")[-1]
-    rget = Session()
-    while len(rget.cookies) == 0:
-        resp = rget.get(f"{DOMAIN}/{code}", headers={"referer": "https://usanewstoday.club/"})
-        await asleep(2)
+    cget = create_scraper(allow_brotli=False).request
+    resp = cget("GET", f"{DOMAIN}/{code}", headers={"referer": "https://market.finclub.in/"})
     soup = BeautifulSoup(resp.content, "html.parser")
     data = { inp.get('name'): inp.get('value') for inp in soup.find_all("input") }
     await asleep(8)
-    resp = rget.post(f"{DOMAIN}/links/go", data=data, headers={ "x-requested-with": "XMLHttpRequest" })
+    resp = cget("POST", f"{DOMAIN}/links/go", data=data, headers={ "x-requested-with": "XMLHttpRequest" })
+    try: 
+        return resp.json()['url']
+    except: 
+        raise DDLException("Link Extraction Failed")
+
+
+async def xpshort(url: str) -> str:
+    DOMAIN = "https://xpshort.com"
+    code = url.rstrip("/").split("/")[-1]
+    cget = create_scraper(allow_brotli=False).request
+    resp = cget("GET", f"{DOMAIN}/{code}", headers={"referer": "https://www.twinthrottlers.xyz/"})
+    soup = BeautifulSoup(resp.content, "html.parser")
+    data = { inp.get('name'): inp.get('value') for inp in soup.find_all("input") }
+    await asleep(8)
+    resp = cget("POST", f"{DOMAIN}/links/go", data=data, headers={ "x-requested-with": "XMLHttpRequest" })
     try: 
         return resp.json()['url']
     except: 
