@@ -48,7 +48,6 @@ async def bypass_check(client, message):
             
     end = time()
 
-    parse_data[-1] = parse_data[-1] + f"\n\n<b>Time Taken :</b> {convert_time(end - start)}"
     tg_txt = ""
     for tg_data in parse_data:
         tg_txt += tg_data
@@ -57,7 +56,7 @@ async def bypass_check(client, message):
             wait_msg = await message.reply("<i>Fetching...</i>", reply_to_message_id=wait_msg.id)
     
     if tg_txt != "":
-        await wait_msg.edit(parse_data, disable_web_page_preview=True)
+        await wait_msg.edit(parse_data + f"\n\n<b>Time Taken :</b> {convert_time(end - start)}", disable_web_page_preview=True)
 
 @Bypass.on_message(command('log') & user(Config.OWNER_ID))
 async def send_logs(client, message):

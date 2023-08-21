@@ -1,6 +1,7 @@
 from os import getenv
 from dotenv import load_dotenv
 from pyrogram import Client
+from pyrogram.enums import ParseMode
 from logging import getLogger, FileHandler, StreamHandler, INFO, ERROR, basicConfig
 from uvloop import install
 
@@ -35,4 +36,4 @@ class Config:
     TERA_COOKIE     = getenv('TERA_COOKIE', '')
     CF_COOKIE       = getenv('CF_COOKIE', '')
 
-Bypass = Client("FZ", api_id=Config.API_ID, api_hash=Config.API_HASH, bot_token=Config.BOT_TOKEN, plugins=dict(root="FZBypass/plugins"))
+Bypass = Client("FZ", api_id=Config.API_ID, api_hash=Config.API_HASH, bot_token=Config.BOT_TOKEN, plugins=dict(root="FZBypass/plugins"), parse_mode=ParseMode.HTML)
