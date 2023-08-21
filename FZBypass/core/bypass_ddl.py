@@ -34,13 +34,13 @@ async def gyanilinks(url: str) -> str:
         raise DDLException("Link Extraction Failed")
 
 
-async def transcript(url: str, DOMAIN: str, ref: str) -> str:
+async def transcript(url: str, DOMAIN: str, ref: str, sltime) -> str:
     code = url.rstrip("/").split("/")[-1]
     cget = create_scraper(allow_brotli=False).request
     resp = cget("GET", f"{DOMAIN}/{code}", headers={"referer": ref})
     soup = BeautifulSoup(resp.content, "html.parser")
     data = { inp.get('name'): inp.get('value') for inp in soup.find_all("input") }
-    await asleep(8)
+    await asleep(sltime)
     resp = cget("POST", f"{DOMAIN}/links/go", data=data, headers={ "x-requested-with": "XMLHttpRequest" })
     try: 
         return resp.json()['url']
