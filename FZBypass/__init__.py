@@ -26,7 +26,7 @@ class Config:
         LOGGER.critical('ENV Missing. Exiting Now...')
         exit(1)
     AUTH_CHATS      = getenv('AUTH_CHATS', '').split()
-    OWNER_ID        = getenv('OWNER_ID', '')
+    OWNER_ID        = int(getenv('OWNER_ID', 0))
     LARAVEL_SESSION = getenv('LARAVEL_SESSION', '')
     XSRF_TOKEN      = getenv('XSRF_TOKEN', '')
     GDTOT_CRYPT     = getenv('GDTOT_CRYPT', '')
