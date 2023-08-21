@@ -15,9 +15,9 @@ async def start_msg(client, message):
     
     <i>A Powerful Elegant Multi Threaded Bot written in Python... which can Bypass Various Shortener Links, Scrape links, and More ... </i>
     
-<b>Bot Started {convert_time(time() - BOT_START)} ago...</b>
+    <i><b>Bot Started {convert_time(time() - BOT_START)} ago...</b></i>
 
-<b>Use Me Here :</b> @CyberPunkGrp <i>(Bypass Topic)</i>''',
+🛃 <b>Use Me Here :</b> @CyberPunkGrp <i>(Bypass Topic)</i>''',
         quote=True,
         reply_markup=InlineKeyboardMarkup([
             [InlineKeyboardButton('🎓 Dev', url='https://t.me/SilentDemonSD'), InlineKeyboardButton('🔍 Deploy Own', url="https://github.com/SilentDemonSD/FZBypassBot")]
@@ -41,7 +41,7 @@ async def bypass_check(client, message):
     start = time()
 
     parse_data = []
-    link = ''
+    link, no = '', 0
     for enty in entities:
         if enty.type == MessageEntityType.URL:
             link = txt[enty.offset:(enty.offset+enty.length)]
@@ -49,6 +49,7 @@ async def bypass_check(client, message):
             link = enty.url
             
         if link:
+            no += 1
             try:
                 bp_link = await direct_link_checker(link)
             except Exception as e:
@@ -56,12 +57,12 @@ async def bypass_check(client, message):
             if is_share_link(link):
                 parse_data.append(bp_link)
             else:
-                parse_data.append(f'┎ <b>Link:</b> {link}\n┃\n┖ <b>Bypassed Link:</b> {bp_link}')
+                parse_data.append(f'┎ <b>Link:</b> {link}\n┃\n┖ <b>Bypassed Link:</b> {bp_link}\n\n✎﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏\n\n')
             link = ''
             
     end = time()
 
-    parse_data[-1] = parse_data[-1] + f"\n\n<b>Time Taken :</b> {convert_time(end - start)}"
+    parse_data[-1] = parse_data[-1] + f"🔗 <b>Total Links:</b> <i>{no}</i> & <b>Took Only </b> <i>{convert_time(end - start)}</i>!"
     tg_txt = ""
     for tg_data in parse_data:
         tg_txt += tg_data
