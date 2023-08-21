@@ -44,7 +44,7 @@ async def filepress(url: str):
                 tg_id = await resp.json()
             if tg_id.get('data', False):
                 t_url = f"https://tghub.xyz/?start={tg_id['data']}"
-                bot_name = findall("filepress_[a-zA-Z0-9]+_bot", cget('GET', t_url).text)
+                bot_name = findall("filepress_[a-zA-Z0-9]+_bot", cget('GET', t_url).text)[0]
                 tg_link = f"https://t.me/{bot_name}/?start={tg_id['data']}"
             else:
                 tg_link = 'Telegram Not Uploaded / Unavailable' if tg_id["statusText"] == "Ok" else tg_id["statusText"]
