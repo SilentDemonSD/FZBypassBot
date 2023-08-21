@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 from cloudscraper import create_scraper
 from lk21 import Bypass
 from lxml import etree
-from requests import Session
+from requests import Session, get as rget
 
 from FZBypass.core.exceptions import DDLException
 
@@ -34,11 +34,10 @@ async def gyanilinks(url: str) -> str:
         raise DDLException("Link Extraction Failed")
 
 
-async def tnshort(url: str) -> str:
-    DOMAIN = "https://news.speedynews.xyz/"
+async def transcript(url: str, DOMAIN: str, ref: str) -> str:
     code = url.rstrip("/").split("/")[-1]
     cget = create_scraper(allow_brotli=False).request
-    resp = cget("GET", f"{DOMAIN}/{code}", headers={"referer": "https://market.finclub.in/"})
+    resp = cget("GET", f"{DOMAIN}/{code}", headers={"referer": ref})
     soup = BeautifulSoup(resp.content, "html.parser")
     data = { inp.get('name'): inp.get('value') for inp in soup.find_all("input") }
     await asleep(8)
@@ -49,16 +48,15 @@ async def tnshort(url: str) -> str:
         raise DDLException("Link Extraction Failed")
 
 
-async def xpshort(url: str) -> str:
-    DOMAIN = "https://xpshort.com"
-    code = url.rstrip("/").split("/")[-1]
-    cget = create_scraper(allow_brotli=False).request
-    resp = cget("GET", f"{DOMAIN}/{code}", headers={"referer": "https://www.twinthrottlers.xyz/"})
-    soup = BeautifulSoup(resp.content, "html.parser")
-    data = { inp.get('name'): inp.get('value') for inp in soup.find_all("input") }
-    await asleep(8)
-    resp = cget("POST", f"{DOMAIN}/links/go", data=data, headers={ "x-requested-with": "XMLHttpRequest" })
-    try: 
-        return resp.json()['url']
-    except: 
-        raise DDLException("Link Extraction Failed")
+async def bitly_tinyurl(url: str) -> str:
+	try: 
+	    return rget(url).url
+	except: 
+	    raise DDLException("Link Extraction Failed")
+
+
+async def thinfi(url: str) -> str:
+	try: 
+	    return BeautifulSoup(rget(url).content,  "html.parser").p.a.get("href")
+	except: 
+	    raise DDLException("Link Extraction Failed")
