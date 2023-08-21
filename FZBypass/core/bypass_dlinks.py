@@ -131,8 +131,11 @@ async def appdrive(url):
         cget = create_scraper().request
         soup = BeautifulSoup(cget("GET", url).content, "html.parser")
         p_url = urlparse(url)
-        body = "\n\n".join((await appdrive_single(f"{p_url.scheme}://{p_url.hostname}" + ss['href'])) for ss in soup.select("a[href^='/file/']"))
-        return f'''┎ <b>Name :</b> <i>{soup.title}</i>
+        body = ""
+        for ss in soup.select("a[href^='/file/']"):
+            body += await appdrive_single(f"{p_url.scheme}://{p_url.hostname}" + ss['href'], True)
+            body += "\n\n"
+        return f'''┎ <b>Name :</b> <i>{soup.title.string}</i>
 ┃ 
 ┖ <b>AppDrive Pack Link :</b> {url}
 
