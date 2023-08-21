@@ -42,7 +42,7 @@ async def tnlink(url: str) -> str:
         resp = rget.get(f"{DOMAIN}/{code}", headers={"referer": "https://usanewstoday.club/"})
         await asleep(2)
     soup = BeautifulSoup(resp.content, "html.parser")
-    data = { input.get('name'): (input.get('value') for input in soup.find_all("input")) }
+    data = { inp.get('name'): inp.get('value') for inp in soup.find_all("input") }
     await asleep(8)
     resp = rget.post(f"{DOMAIN}/links/go", data=data, headers={ "x-requested-with": "XMLHttpRequest" })
     try: 
