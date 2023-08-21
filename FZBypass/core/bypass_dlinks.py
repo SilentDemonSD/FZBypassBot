@@ -111,15 +111,33 @@ async def gdtot(url):
 
 
 async def appdrive(url):
-    d_link = await sharer_scraper(url)
-    soup = BeautifulSoup(cget('GET', url).content, "html.parser")
-    ss = soup.select("li[class^='list-group-item']")
-    return f'''┎ <b>Name :</b> <i>{ss[0].string.split(":")[1]}</i>
+    async def appdrive_single(url, ispack=False):
+        d_link = await sharer_scraper(url)
+        cget = create_scraper().request
+        soup = BeautifulSoup(cget('GET', url).content, "html.parser")
+        ss = soup.select("li[class^='list-group-item']")
+        if not ispack:
+            return f'''┎ <b>Name :</b> <i>{ss[0].string.split(":")[1]}</i>
 ┠ <b>Size :</b> <i>{ss[2].string.split(":")[1]}</i>
 ┃ 
 ┠ <b>Drive Link :</b> {d_link}
 ┃ 
 ┖ <b>AppDrive Link :</b> {url}'''
+        return f'''┎ <b>Name :</b> <i>{ss[0].string.split(":")[1]}</i>
+┠ <b>Size :</b> <i>{ss[2].string.split(":")[1]}</i>
+┃ 
+┖<b>Drive Link :</b> {d_link}'''
+    if "pack" in url:
+        cget = create_scraper().request
+        soup = BeautifulSoup(cget("GET", url).content, "html.parser")
+        p_url = urlparse(url)
+        body = "\n\n".join(await appdrive_single(f"{p_url.scheme}://{p_url.hostname}" + ss['href']) for ss in soup.select("a[href^='/file/']"))
+        return f'''┎ <b>Name :</b> <i>{soup.title}</i>
+┃ 
+┖ <b>AppDrive Pack Link :</b> {url}
+
+{body}'''
+    return await appdrive_single(url)
 
 
 async def sharer_scraper(url):
