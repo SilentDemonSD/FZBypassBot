@@ -88,28 +88,38 @@ async def gdtot(url):
             d_link = f'https://drive.google.com/open?id={decoded_id}'
         else:
             raise DDLException('ERROR: Drive Link not found, Try in your broswer! GDTOT_CRYPT not Provided!')
-        soup = BeautifulSoup(cget('GET', url).content, "html.parser")
-        title = soup.select('meta[property^="og:description"]')
-        return f'''┎ <b>Name :</b> <i>{(title[0]['content']).replace('Download ' , '')}</i>
+    else:
+        token_url = token_url[0]
+        try:
+            token_page = cget('GET', token_url)
+        except Exception as e:
+            raise DDLException(f'ERROR: {e.__class__.__name__} with {token_url}')
+        path = findall('\("(.*?)"\)', token_page.text)
+        if not path:
+            raise DDLException('ERROR: Cannot bypass this')
+        path = path[0]
+        raw = urlparse(token_url)
+        final_url = f'{raw.scheme}://{raw.hostname}{path}'
+        d_link = await sharer_scraper(final_url)
+    soup = BeautifulSoup(cget('GET', url).content, "html.parser")
+    title = soup.select('meta[property^="og:description"]')
+    return f'''┎ <b>Name :</b> <i>{(title[0]['content']).replace('Download ' , '')}</i>
+┃ 
 ┠ <b>Drive Link :</b> {d_link}
+┃ 
 ┖ <b>GDToT Link :</b> {url}'''
-    token_url = token_url[0]
-    try:
-        token_page = cget('GET', token_url)
-    except Exception as e:
-        raise DDLException(f'ERROR: {e.__class__.__name__} with {token_url}')
-    path = findall('\("(.*?)"\)', token_page.text)
-    if not path:
-        raise DDLException('ERROR: Cannot bypass this')
-    path = path[0]
-    raw = urlparse(token_url)
-    final_url = f'{raw.scheme}://{raw.hostname}{path}'
-    return await sharer_scraper(final_url)
 
 
 async def appdrive(url):
-    # TODO : Add Packs and Name
-    return await sharer_scraper(url)
+    d_link = await sharer_scraper(url)
+    soup = BeautifulSoup(cget('GET', url).content, "html.parser")
+    ss = soup.select("li[class^='list-group-item']")
+    return f'''┎ <b>Name :</b> <i>{ss[0].string.split(":")[1]}</i>
+┠ <b>Size :</b> <i>{ss[2].string.split(":")[1]}</i>
+┃ 
+┠ <b>Drive Link :</b> {d_link}
+┃ 
+┖ <b>AppDrive Link :</b> {url}'''
 
 
 async def sharer_scraper(url):
