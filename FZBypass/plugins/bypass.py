@@ -55,9 +55,9 @@ async def bypass_check(client, message):
             except Exception as e:
                 bp_link = str(e)
             if is_share_link(link):
-                parse_data.append(bp_link)
+                parse_data.append(bp_link + "\n\n✎﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏ \n\n")
             else:
-                parse_data.append(f'┎ <b>Link:</b> {link}\n┃\n┖ <b>Bypassed Link:</b> {bp_link}\n\n✎﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏\n\n')
+                parse_data.append(f'┎ <b>Link:</b> {link}\n┃\n┖ <b>Bypassed Link:</b> {bp_link}\n\n✎﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏ \n\n')
             link = ''
             
     end = time()
