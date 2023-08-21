@@ -37,16 +37,15 @@ async def gyanilinks(url: str) -> str:
 async def tnlink(url: str) -> str:
     DOMAIN = "https://page.tnlink.in/"
     code = url.rstrip("/").split("/")[-1]
-    cs = create_scraper()
-    cget = cs.request
-    while len(cs.cookies) == 0:
-        resp = cget("GET", f"{DOMAIN}/{code}", headers={"referer": "https://usanewstoday.club/"})
+    rget = Session()
+    while len(rget.cookies) == 0:
+        resp = rget.get(f"{DOMAIN}/{code}", headers={"referer": "https://usanewstoday.club/"})
         await asleep(2)
     soup = BeautifulSoup(resp.content, "html.parser")
-    data = { input.get('name'): input.get('value') for input in soup.find_all("input") }
+    data = { input.get('name'): (input.get('value') for input in soup.find_all("input")) }
     await asleep(8)
-    r = cget("POST", f"{DOMAIN}/links/go", data=data, headers={ "x-requested-with": "XMLHttpRequest" })
+    resp = rget.post(f"{DOMAIN}/links/go", data=data, headers={ "x-requested-with": "XMLHttpRequest" })
     try: 
-        return r.json()['url']
+        return resp.json()['url']
     except: 
         raise DDLException("Link Extraction Failed")
