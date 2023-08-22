@@ -48,6 +48,15 @@ async def transcript(url: str, DOMAIN: str, ref: str, sltime) -> str:
         raise DDLException("Link Extraction Failed")
 
 
+async def rslinks(url: str) -> str:
+      resp = rget(url, stream=True, allow_redirects=False)
+      code = resp.headers["location"].split('ms9')[-1]
+      try:
+          return f"http://techyproio.blogspot.com/p/short.html?{code}=="
+      except:
+          raise DDLException("Link Extraction Failed")
+      
+
 async def bitly_tinyurl(url: str) -> str:
 	try: 
 	    return rget(url).url
