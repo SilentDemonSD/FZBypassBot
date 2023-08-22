@@ -18,10 +18,13 @@ chat_and_topics = create(auth_topic)
 
 def convert_time(seconds):
     mseconds = seconds * 1000
-    periods = [('d', 86400000), ('h', 3600000), ('m', 60000), ('s', 1000), ('ms', 1)]
+    periods = [('d', 86400000), ('h', 3600000), ('m', 60000), ('s', 1000), ('ms', 0)]
     result = ''
-    for period_name, period_seconds in periods:
-        if mseconds >= period_seconds:
-            period_value, mseconds = divmod(mseconds, period_seconds)
-            result += f'{int(period_value)}{period_name}'
+    try:
+        for period_name, period_seconds in periods:
+            if mseconds >= period_seconds:
+                period_value, mseconds = divmod(mseconds, period_seconds)
+                result += f'{int(period_value)}{period_name}'
+    except ZeroDivisionError
+        return '0ms'
     return result
