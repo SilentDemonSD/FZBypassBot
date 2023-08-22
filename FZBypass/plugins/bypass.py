@@ -1,4 +1,5 @@
 from time import time
+from asyncio import create_task, gather
 from pyrogram.filters import command, private, user
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram.enums import MessageEntityType
@@ -40,8 +41,8 @@ async def bypass_check(client, message):
     wait_msg = await message.reply("<i>Bypassing...</i>")
     start = time()
 
-    parse_data = []
-    link, no = '', 0
+    link, tlinks, no = '', [], 0
+    atasks = []
     for enty in entities:
         if enty.type == MessageEntityType.URL:
             link = txt[enty.offset:(enty.offset+enty.length)]
@@ -50,15 +51,23 @@ async def bypass_check(client, message):
             
         if link:
             no += 1
-            try:
-                bp_link = await direct_link_checker(link)
-            except Exception as e:
-                bp_link = str(e)
-            if is_share_link(link):
-                parse_data.append(bp_link + "\n\n✎﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏\n\n")
-            else:
-                parse_data.append(f'┎ <b>Source Link:</b> {link}\n┃\n┖ <b>Bypassed Link:</b> {bp_link}\n\n✎﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏\n\n')
+            tlinks.append(link)
+            atasks.append(create_task(direct_link_checker(link)))
             link = ''
+
+    completed_tasks = await gather(*atasks, return_exceptions=True)
+    
+    parse_data = []
+    for result, link in zip(completed_tasks, tlinks):
+        if isinstance(result, Exception):
+            bp_link = f"<b>Bypass Error:</b> {result}"
+        else:
+            bp_link = f"<b>Bypass Link:</b> {result}"
+        
+        if is_share_link(link):
+            parse_data.append(bp_link + "\n\n✎﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏\n\n")
+        else:
+            parse_data.append(f'┎ <b>Source Link:</b> {link}\n┃\n┖ {bp_link}\n\n✎﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏\n\n')
             
     end = time()
 
