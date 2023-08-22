@@ -31,7 +31,17 @@ async def direct_link_checker(link):
         return await transcript(link, "https://du-link.in", "https://profitshort.com/", 0)
     elif bool(match(r"https?:\/\/indianshortner\.\S+", link)):
         return await transcript(link, "https://indianshortner.com/", "https://moddingzone.in/", 5)
+    elif bool(match(r"https?:\/\/m.easysky\.\S+", link)):
+        return await transcript(link, "https://techy.veganab.co/", "https://veganab.co/", 8)
+    elif bool(match(r"https?:\/\/linkbnao\.\S+", link)):
+        return await transcript(link, "https://vip.linkbnao.com", "https://ffworld.xyz/", 2)
+    elif bool(match(r"https?:\/\/go.indiurl\.\S+", link)):
+        return await transcript(link, "https://file.earnash.com/", "https://indiurl.cordtpoint.co.in/", 10)
+    elif bool(match(r"https?:\/\/go.earnl\.\S+", link)):
+        return await transcript(link, "https://v.earnl.xyz", "https://link.modmakers.xyz/", 5)
     
+    elif bool(match(r"https?:\/\/linkvertise\.\S+", link)):
+        return await linkvertise(link)
     elif bool(match(r"https?:\/\/rslinks\.\S+", link)):
         return await rslinks(link)
     elif bool(match(r"https?:\/\/(bit|tinyurl)\.\S+", link)):

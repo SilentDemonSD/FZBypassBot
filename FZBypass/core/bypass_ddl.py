@@ -48,6 +48,14 @@ async def transcript(url: str, DOMAIN: str, ref: str, sltime) -> str:
         raise DDLException("Link Extraction Failed")
 
 
+async def linkvertise(url: str) -> str:
+    resp = rget('https://bypass.pm/bypass2', params={'url': url}).json()
+    if resp["success"]: 
+        return resp["destination"]
+    else: 
+        raise DDLException(resp["msg"])
+
+
 async def rslinks(url: str) -> str:
       resp = rget(url, stream=True, allow_redirects=False)
       code = resp.headers["location"].split('ms9')[-1]
