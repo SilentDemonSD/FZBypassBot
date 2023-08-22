@@ -17,7 +17,7 @@ async def auth_topic(_, __, message):
 chat_and_topics = create(auth_topic)
 
 def convert_time(seconds):
-    periods = [('d', 86400), ('h', 3600), ('m', 60), ('s', 1)]
+    periods = [('d', 86400), ('h', 3600), ('m', 60), ('s', 0)]
     result = ''
     for period_name, period_seconds in periods:
         if seconds >= period_seconds:

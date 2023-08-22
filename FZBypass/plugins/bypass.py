@@ -61,6 +61,8 @@ async def bypass_check(client, message):
     for result, link in zip(completed_tasks, tlinks):
         if isinstance(result, Exception):
             bp_link = f"<b>Bypass Error:</b> {result}"
+        elif is_share_link(link):
+            bp_link = result
         else:
             bp_link = f"<b>Bypass Link:</b> {result}"
         
