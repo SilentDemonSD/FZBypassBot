@@ -131,15 +131,18 @@ async def appdrive(url):
         cget = create_scraper().request
         soup = BeautifulSoup(cget("GET", url).content, "html.parser")
         p_url = urlparse(url)
-        body = ""
+        body, atasks = "", []
         for ss in soup.select("a[href^='/file/']"):
-            body += await appdrive_single(f"{p_url.scheme}://{p_url.hostname}" + ss['href'], True)
-            body += "\n\n"
+            atasks.append(create_task(appdrive_single(f"{p_url.scheme}://{p_url.hostname}" + ss['href'], True)))
+        completed_tasks = await gather(*atasks, return_exceptions=True)
+        for bp_link in completed_tasks:
+            if isinstance(bp_link, Exception):
+                body += "\n\n" + f"<b>Bypass Error:</b> {bp_link}"
+            else:
+                body += "\n\n" + bp_link
         return f'''┎ <b>Name :</b> <i>{soup.title.string}</i>
 ┃ 
-┖ <b>AppDrive Pack Link :</b> {url}
-
-{body}'''
+┖ <b>AppDrive Pack Link :</b> {url}{body}'''
     return await appdrive_single(url)
 
 
