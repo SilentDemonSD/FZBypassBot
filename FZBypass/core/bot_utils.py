@@ -25,6 +25,6 @@ def convert_time(seconds):
             if mseconds >= period_seconds:
                 period_value, mseconds = divmod(mseconds, period_seconds)
                 result += f'{int(period_value)}{period_name}'
-    except ZeroDivisionError
+    except ZeroDivisionError:
         return '0ms'
     return result
