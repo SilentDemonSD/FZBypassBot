@@ -62,7 +62,7 @@ async def mdisk(url: str) -> str:
          'Accept-Encoding': 'gzip, deflate, br', 
          'Referer': 'https://mdisk.me/', 
          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36' }
-    URL = f'https://diskuploader.entertainvideo.com/v1/file/cdnurl?param={url.rstrip('/').split("/")[-1]}'
+    URL = f'https://diskuploader.entertainvideo.com/v1/file/cdnurl?param={url.rstrip("/").split("/")[-1]}'
     res = rget(url=URL, headers=header).json() 
     return res['download'] + '\n\n' + res['source']
 
