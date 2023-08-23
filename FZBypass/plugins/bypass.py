@@ -1,7 +1,7 @@
 from time import time
 from asyncio import create_task, gather
 from pyrogram.filters import command, private, user
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultArticle, InputTextMessageContent
 from pyrogram.enums import MessageEntityType
 
 from FZBypass import Config, Bypass, BOT_START
@@ -88,3 +88,21 @@ async def bypass_check(client, message):
 @Bypass.on_message(command('log') & user(Config.OWNER_ID))
 async def send_logs(client, message):
     await message.reply_document('log.txt', quote=True)
+
+
+@Bypass.on_inline_query()
+async def inline_query(client, query):
+    await query.answer(
+        results=[InlineQueryResultArticle(
+                title="Bypass Usage",
+                input_message_content=InputTextMessageContent(
+                    "Here's how to use this Bot !!"
+                ),
+                description="Abcd | Hello",
+                reply_markup=InlineKeyboardMarkup([
+                        [InlineKeyboardButton("Dev", url="https://t.me/SilentDemonSD")]
+                ])
+            )
+        ],
+        cache_time=0
+    )
