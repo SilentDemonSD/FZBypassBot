@@ -10,7 +10,6 @@ from uuid import uuid4
 
 from bs4 import BeautifulSoup
 from cloudscraper import create_scraper
-from lk21 import Bypass
 from lxml import etree
 from requests import Session, get as rget
 
