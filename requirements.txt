@@ -2,7 +2,6 @@ aiohttp
 bs4
 cfscrape
 cloudscraper
-git+https://github.com/zevtyardt/lk21.git
 lxml
 httpx
 python-dotenv
