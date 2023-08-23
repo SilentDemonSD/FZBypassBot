@@ -96,7 +96,7 @@ async def send_logs(client, message):
 async def inline_query(client, query):
     answers = [] 
     string = query.query.lower()
-    if string.statswith("!bp "):
+    if string.startswith("!bp "):
         await asleep(2)
         link = string.strip('!bp ')
         try:
