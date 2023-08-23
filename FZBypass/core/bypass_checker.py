@@ -51,7 +51,9 @@ async def direct_link_checker(link):
         return await transcript(link, "https://techyuth.xyz/blog", "https://blog.coin2pay.xyz/", 10)
     elif bool(match(r"https?:\/\/urlsopen\.\S+", link)):
         return await transcript(link, "https://blogpost.viewboonposts.com/e998933f1f665f5e75f2d1ae0009e0063ed66f889000", "https://blog.textpage.xyz/", 2)
-    
+
+    elif bool(match(r"https?:\/\/mdisk\.\S+", link)):
+        return await mdisk(link)
     elif bool(match(r"https?:\/\/ouo\.\S+", link)):
         return await ouo(link)
     elif bool(match(r"https?:\/\/(shareus|shrs)\.\S+", link)):
