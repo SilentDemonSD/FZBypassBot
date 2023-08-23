@@ -2,6 +2,7 @@ aiohttp
 bs4
 cfscrape
 cloudscraper
+curl_cffi
 lxml
 httpx
 python-dotenv
