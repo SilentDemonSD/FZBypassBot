@@ -119,6 +119,8 @@ async def inline_query(client, query):
             ))
         except Exception as e:
             bp_link = f"<b>Bypass Error:</b> {e}"
+            end = time()
+
             answers.append(InlineQueryResultArticle(
                 title="❌️ Bypass Link Error !",
                 input_message_content=InputTextMessageContent(
