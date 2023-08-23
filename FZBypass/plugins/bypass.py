@@ -1,6 +1,6 @@
 from time import time
 from re import match
-from asyncio import create_task, gather
+from asyncio import create_task, gather, sleep as asleep
 from pyrogram.filters import command, private, user
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultArticle, InputTextMessageContent
 from pyrogram.enums import MessageEntityType
