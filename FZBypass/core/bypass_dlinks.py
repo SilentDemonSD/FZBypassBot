@@ -53,11 +53,10 @@ async def filepress(url: str):
         raise DDLException(f'<b>ERROR:</b> {e.__class__.__name__}')
     return f'''┎ <b>Name :</b> <i>{name}</i>
 ┠ <b>Size :</b> <i>{size}</i>
-┃ 
+┃
+┠ <b>Filepress Link :</b> {url}
 ┠ <b>Direct Download :</b> {dl_link}
-┠ <b>Telegram Link :</b> {tg_link}
-┃ 
-┖ <b>Filepress Link :</b> {url}'''
+┖ <b>Telegram Link :</b> {tg_link}'''
 
 
 async def gdtot(url):
@@ -102,38 +101,32 @@ async def gdtot(url):
         final_url = f'{raw.scheme}://{raw.hostname}{path}'
         d_link = await sharer_scraper(final_url)
     soup = BeautifulSoup(cget('GET', url).content, "html.parser")
-    title = soup.select('meta[property^="og:description"]')
-    return f'''┎ <b>Name :</b> <i>{(title[0]['content']).replace('Download ' , '')}</i>
+    parse_data = (soup.select('meta[property^="og:description"]')[0]['content']).replace('Download ' , '').split('-')
+    return f'''┎ <b>Name :</b> <i>{parse_data[0]}</i>
+┠ <b>Size :</b> <i>{parse_data[-1]}</i>
 ┃ 
-┠ <b>Drive Link :</b> {d_link}
-┃ 
-┖ <b>GDToT Link :</b> {url}'''
+┠ <b>GDToT Link :</b> {url}
+┖ <b>Drive Link :</b> {d_link}'''
 
 
 async def appdrive(url):
-    async def appdrive_single(url, ispack=False):
+    async def appdrive_single(url):
         d_link = await sharer_scraper(url)
         cget = create_scraper().request
         soup = BeautifulSoup(cget('GET', url).content, "html.parser")
         ss = soup.select("li[class^='list-group-item']")
-        if not ispack:
-            return f'''┎ <b>Name :</b> <i>{ss[0].string.split(":")[1]}</i>
-┠ <b>Size :</b> <i>{ss[2].string.split(":")[1]}</i>
-┃ 
-┠ <b>Drive Link :</b> {d_link}
-┃ 
-┖ <b>AppDrive Link :</b> {url}'''
         return f'''┎ <b>Name :</b> <i>{ss[0].string.split(":")[1]}</i>
 ┠ <b>Size :</b> <i>{ss[2].string.split(":")[1]}</i>
 ┃ 
-┖<b>Drive Link :</b> {d_link}'''
-    if "pack" in url:
+┠ <b>AppDrive Link :</b> {url}
+┖ <b>Drive Link :</b> {d_link}'''
+    if "/pack/" in url:
         cget = create_scraper().request
         soup = BeautifulSoup(cget("GET", url).content, "html.parser")
         p_url = urlparse(url)
         body, atasks = "", []
         for ss in soup.select("a[href^='/file/']"):
-            atasks.append(create_task(appdrive_single(f"{p_url.scheme}://{p_url.hostname}" + ss['href'], True)))
+            atasks.append(create_task(appdrive_single(f"{p_url.scheme}://{p_url.hostname}" + ss['href'])))
         completed_tasks = await gather(*atasks, return_exceptions=True)
         for bp_link in completed_tasks:
             if isinstance(bp_link, Exception):
@@ -141,7 +134,6 @@ async def appdrive(url):
             else:
                 body += "\n\n" + bp_link
         return f'''┎ <b>Name :</b> <i>{soup.title.string}</i>
-┃ 
 ┖ <b>AppDrive Pack Link :</b> {url}{body}'''
     return await appdrive_single(url)
 
