@@ -4,6 +4,7 @@ from asyncio import create_task, gather, sleep as asleep
 from pyrogram.filters import command, private, user
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultArticle, InputTextMessageContent
 from pyrogram.enums import MessageEntityType
+from pyrogram.errors import QueryIdInvalid
 
 from FZBypass import Config, Bypass, BOT_START
 from FZBypass.core.bypass_checker import direct_link_checker, is_share_link
@@ -97,18 +98,21 @@ async def inline_query(client, query):
     answers = [] 
     string = query.query.lower()
     if string.startswith("!bp "):
-        await asleep(2)
+        await asleep(4)
         link = string.strip('!bp ')
+        start = time()
         try:
             bp_link = await direct_link_checker(link)
+            end = time()
+            
             if not is_share_link(link):
-                bp_link = f"<b>Bypass Link:</b> {bp_link}"
+                bp_link = f"┎ <b>Source Link:</b> {link}\n┃\n┖ <b>Bypass Link:</b> {bp_link}"
             answers.append(InlineQueryResultArticle(
-                title="✅️ <b>Bypassed Link !</b>",
+                title="✅️ Bypass Link Success !",
                 input_message_content=InputTextMessageContent(
-                    f'┎ <b>Source Link:</b> {link}\n┃\n┖ {bp_link}\n\n✎﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏\n\n'
+                    f'{bp_link}\n\n✎﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏\n\n🧭 <b>Took Only <code>{convert_time(end - start)}</code>'
                 ),
-                description="Bypass Any Link Anywhere : !bp [Link]",
+                description=f"Bypass via !bp {link}",
                 reply_markup=InlineKeyboardMarkup([
                         [InlineKeyboardButton('Bypass Again', switch_inline_query_current_chat="!bp ")]
                 ])
@@ -116,11 +120,11 @@ async def inline_query(client, query):
         except Exception as e:
             bp_link = f"<b>Bypass Error:</b> {e}"
             answers.append(InlineQueryResultArticle(
-                title="❌️ <b>Bypass Link Error !</b>",
+                title="❌️ Bypass Link Error !",
                 input_message_content=InputTextMessageContent(
-                    f'┎ <b>Source Link:</b> {link}\n┃\n┖ {bp_link}\n\n✎﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏\n\n'
+                    f'┎ <b>Source Link:</b> {link}\n┃\n┖ {bp_link}\n\n✎﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏\n\n🧭 <b>Took Only <code>{convert_time(end - start)}</code>'
                 ),
-                description="Try any Other Link : !bp [Link]",
+                description=f"Bypass via !bp {link}",
                 reply_markup=InlineKeyboardMarkup([
                         [InlineKeyboardButton('Bypass Again', switch_inline_query_current_chat="!bp ")]
                 ])
@@ -128,17 +132,29 @@ async def inline_query(client, query):
         
     else:
         answers.append(InlineQueryResultArticle(
-                title="Inline Bypass Usage",
+                title="🔗 Bypass Usage: In Line",
                 input_message_content=InputTextMessageContent(
-                    "Inline Bypass via this Bot !"
+                    '''<b><i>FZ Bypass Bot!</i></b>
+    
+    <i>A Powerful Elegant Multi Threaded Bot written in Python... which can Bypass Various Shortener Links, Scrape links, and More ... </i>
+    
+<b>Inline Use :</b> !bp [link]''',
                 ),
-                description="Bypass Format : !bp [Link]",
+                description="Bypass via !bp [link]",
                 reply_markup=InlineKeyboardMarkup([
-                        [InlineKeyboardButton("Dev", url="https://t.me/SilentDemonSD"),
-                        InlineKeyboardButton('Bypass Now', switch_inline_query_current_chat="!bp ")]
+                        [InlineKeyboardButton("FZ Channel", url="https://t.me/FXTorrentz"),
+                        InlineKeyboardButton('Try Bypass', switch_inline_query_current_chat="!bp ")]
                 ])
             ))
-    await query.answer(
-        results=answers,
-        cache_time=0
-    )
+    try:
+        await query.answer(
+            results=answers,
+            cache_time=0
+        )
+    except QueryIdInvalid:
+        await query.answer( 
+            results=answers, 
+            cache_time=0, 
+            switch_pm_text="Error: Search Timed Out!", 
+            switch_pm_parameter="help" 
+        )
