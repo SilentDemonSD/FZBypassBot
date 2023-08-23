@@ -49,7 +49,7 @@ async def ouo(url: str):
          bs4 = BeautifulSoup(res.content, 'lxml') 
          inputs = bs4.form.findAll("input", {"name": compile(r"token$")}) 
          data = { inp.get('name'): inp.get('value') for inp in inputs } 
-         data['x-token'] = recaptchaV3()
+         data['x-token'] = await recaptchaV3()
          res = client.post(next_url, data=data, headers= {'content-type': 'application/x-www-form-urlencoded'}, allow_redirects=False, impersonate="chrome110") 
          next_url = f"{p.scheme}://{p.hostname}/xreallcygo/{id}" 
   

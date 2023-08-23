@@ -134,7 +134,7 @@ async def inline_query(client, query):
         
     else:
         answers.append(InlineQueryResultArticle(
-                title="🔗 Bypass Usage: In Line",
+                title="🔍 Bypass Usage: In Line",
                 input_message_content=InputTextMessageContent(
                     '''<b><i>FZ Bypass Bot!</i></b>
     
@@ -154,9 +154,4 @@ async def inline_query(client, query):
             cache_time=0
         )
     except QueryIdInvalid:
-        await query.answer( 
-            results=answers, 
-            cache_time=0, 
-            switch_pm_text="Error: Search Timed Out!", 
-            switch_pm_parameter="help" 
-        )
+        pass
