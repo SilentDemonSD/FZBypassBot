@@ -1,4 +1,5 @@
 from time import time
+from re import match
 from asyncio import create_task, gather
 from pyrogram.filters import command, private, user
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultArticle, InputTextMessageContent
@@ -94,7 +95,37 @@ async def send_logs(client, message):
 async def inline_query(client, query):
     answers = [] 
     string = query.query.lower()
-    if string == "": 
+    if bool(match(r"^\!bp https?\:\/\/S+", string)):
+        await asleep(2)
+        link = string.strip('!bp ')
+        try:
+            bp_link = await direct_link_checker(link)
+            if not is_share_link(link):
+                bp_link = f"<b>Bypass Link:</b> {bp_link}"
+            answers.append(InlineQueryResultArticle(
+                title="✅️ <b>Bypassed Link !</b>",
+                input_message_content=InputTextMessageContent(
+                    f'┎ <b>Source Link:</b> {link}\n┃\n┖ {bp_link}\n\n✎﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏\n\n'
+                ),
+                description="Bypass Any Link Anywhere : !bp [Link]",
+                reply_markup=InlineKeyboardMarkup([
+                        [InlineKeyboardButton('Bypass Again', switch_inline_query_current_chat="!bp ")]
+                ])
+            ))
+        except Exception as e:
+            bp_link = f"<b>Bypass Error:</b> {e}"
+            answers.append(InlineQueryResultArticle(
+                title="❌️ <b>Bypass Link Error !</b>",
+                input_message_content=InputTextMessageContent(
+                    f'┎ <b>Source Link:</b> {link}\n┃\n┖ {bp_link}\n\n✎﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏\n\n'
+                ),
+                description="Try any Other Link : !bp [Link]",
+                reply_markup=InlineKeyboardMarkup([
+                        [InlineKeyboardButton('Bypass Again', switch_inline_query_current_chat="!bp ")]
+                ])
+            ))    
+        
+    else:
         answers.append(InlineQueryResultArticle(
                 title="Inline Bypass Usage",
                 input_message_content=InputTextMessageContent(
