@@ -96,7 +96,7 @@ async def send_logs(client, message):
 async def inline_query(client, query):
     answers = [] 
     string = query.query.lower()
-    if bool(match(r"^\!bp https?\:\/\/S+", string)):
+    if string.statswith("!bp "):
         await asleep(2)
         link = string.strip('!bp ')
         try:
