@@ -75,7 +75,7 @@ async def bypass_check(client, message):
             
     end = time()
 
-    if len(parse_data) > 1:
+    if len(parse_data) != 0:
         parse_data[-1] = parse_data[-1] + f"🔗 <i><b>Total Links : {no}</b>\n🧭 <b>Took Only <code>{convert_time(end - start)}</code></b></i> !\n#cc : {message.from_user.mention} ( #ID{message.from_user.id} )"
     tg_txt = ""
     for tg_data in parse_data:

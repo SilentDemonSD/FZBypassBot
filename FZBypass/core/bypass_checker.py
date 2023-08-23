@@ -39,7 +39,25 @@ async def direct_link_checker(link):
         return await transcript(link, "https://file.earnash.com/", "https://indiurl.cordtpoint.co.in/", 10)
     elif bool(match(r"https?:\/\/go.earnl\.\S+", link)):
         return await transcript(link, "https://v.earnl.xyz", "https://link.modmakers.xyz/", 5)
+    elif bool(match(r"https?:\/\/.+\.tnlink\.\S+", link)):
+        return await transcript(link, "https://page.tnlink.in/", "https://financeyogi.net/", 8)
+    elif bool(match(r"https?:\/\/link4earn\.\S+", link)):
+        return await transcript(link, "https://link4earn.com", "https://studyis.xyz/", 6)
+    elif bool(match(r"https?:\/\/shortingly\.\S+", link)):
+        return await transcript(link, "https://shortingly.in", "https://tech.gyanitheme.com/", 5)
+    elif bool(match(r"https?:\/\/go.flashlink\.\S+", link)):
+        return await transcript(link, "https://files.earnash.com/", "https://flash1.cordtpoint.co.in", 15)
+    elif bool(match(r"https?:\/\/short2url\.\S+", link)):
+        return await transcript(link, "https://techyuth.xyz/blog", "https://blog.coin2pay.xyz/", 10)
+    elif bool(match(r"https?:\/\/urlsopen\.\S+", link)):
+        return await transcript(link, "https://blogpost.viewboonposts.com/e998933f1f665f5e75f2d1ae0009e0063ed66f889000", "https://blog.textpage.xyz/", 2)
     
+    elif bool(match(r"https?:\/\/ouo\.\S+", link)):
+        return await ouo(link)
+    elif bool(match(r"https?:\/\/(shareus|shrs)\.\S+", link)):
+        return await shareus(link)
+    elif bool(match(r"https?:\/\/dropbox\.\S+", link)):
+        return await dropbox(link)
     elif bool(match(r"https?:\/\/linkvertise\.\S+", link)):
         return await linkvertise(link)
     elif bool(match(r"https?:\/\/rslinks\.\S+", link)):
