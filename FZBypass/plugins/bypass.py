@@ -92,17 +92,21 @@ async def send_logs(client, message):
 
 @Bypass.on_inline_query()
 async def inline_query(client, query):
-    await query.answer(
-        results=[InlineQueryResultArticle(
-                title="Bypass Usage",
+    answers = [] 
+    string = query.query.lower()
+    if string == "": 
+        answers.append(InlineQueryResultArticle(
+                title="Inline Bypass Usage",
                 input_message_content=InputTextMessageContent(
-                    "Here's how to use this Bot !!"
+                    "Inline Bypass via this Bot !"
                 ),
-                description="Abcd | Hello",
+                description="Bypass Format : !bp [Link]",
                 reply_markup=InlineKeyboardMarkup([
-                        [InlineKeyboardButton("Dev", url="https://t.me/SilentDemonSD")]
+                        [InlineKeyboardButton("Dev", url="https://t.me/SilentDemonSD"),
+                        InlineKeyboardButton('Bypass Now', switch_inline_query_current_chat="!bp ")]
                 ])
-            )
-        ],
+            ))
+    await query.answer(
+        results=answers,
         cache_time=0
     )
