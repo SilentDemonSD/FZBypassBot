@@ -28,17 +28,17 @@ async def yandex_disk(url: str) -> str:
 
 async def try2link(url: str) -> str:
     cget = create_scraper(allow_brotli=False).request
-	url = url.rstrip("/")
-	res = cget("GET", url, params=('d', int(time()) + (60 * 4)), headers={'Referer': 'https://newforex.online/'})
-	soup = BeautifulSoup(res.text, 'html.parser')
-	inputs = soup.find(id="go-link").find_all(name="input")
-	data = { inp.get('name'): inp.get('value') for inp in inputs }	
-	await asleep(7)
-	headers = {'Host': 'try2link.com', 'X-Requested-With': 'XMLHttpRequest', 'Origin': 'https://try2link.com', 'Referer': url}
-	resp = cget('POST', 'https://try2link.com/links/go', headers=headers, data=data)
-	try:
-	    return resp.json()["url"]
-	except:
+    url = url.rstrip("/")
+    res = cget("GET", url, params=('d', int(time()) + (60 * 4)), headers={'Referer': 'https://newforex.online/'})
+    soup = BeautifulSoup(res.text, 'html.parser')
+    inputs = soup.find(id="go-link").find_all(name="input")
+    data = { inp.get('name'): inp.get('value') for inp in inputs }    
+    await asleep(7)
+    headers = {'Host': 'try2link.com', 'X-Requested-With': 'XMLHttpRequest', 'Origin': 'https://try2link.com', 'Referer': url}
+    resp = cget('POST', 'https://try2link.com/links/go', headers=headers, data=data)
+    try:
+        return resp.json()["url"]
+    except:
         raise DDLException("Link Extraction Failed")
 
 
@@ -141,14 +141,14 @@ async def rslinks(url: str) -> str:
       
 
 async def bitly_tinyurl(url: str) -> str:
-	try: 
-	    return rget(url).url
-	except: 
-	    raise DDLException("Link Extraction Failed")
+    try: 
+        return rget(url).url
+    except: 
+        raise DDLException("Link Extraction Failed")
 
 
 async def thinfi(url: str) -> str:
-	try: 
-	    return BeautifulSoup(rget(url).content,  "html.parser").p.a.get("href")
-	except: 
-	    raise DDLException("Link Extraction Failed")
+    try: 
+        return BeautifulSoup(rget(url).content,  "html.parser").p.a.get("href")
+    except: 
+        raise DDLException("Link Extraction Failed")
