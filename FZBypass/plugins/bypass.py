@@ -80,9 +80,10 @@ async def bypass_check(client, message):
     tg_txt = ""
     for tg_data in parse_data:
         tg_txt += tg_data
-        if len(tg_txt) > 4000:
+        if len(tg_txt) > 3500:
             await wait_msg.edit(tg_txt, disable_web_page_preview=True)
             wait_msg = await message.reply("<i>Fetching...</i>", reply_to_message_id=wait_msg.id)
+            await asleep(2.5)
     
     if tg_txt != "":
         await wait_msg.edit(tg_txt, disable_web_page_preview=True)
