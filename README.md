@@ -78,27 +78,32 @@
 2. `VPS`
     - **Build And Run The Docker Image Using Official Docker Commands**
         - _Clone the Repository_
-        ```
-        git clone https://github.com/SilentDemonSD/FZBypassBot && cd FZBypassBot
-        ```
+            ```
+            git clone https://github.com/SilentDemonSD/FZBypassBot && cd FZBypassBot
+            ```
         - _Build Docker image:_
-        ```
-        docker build . -t fzbypass
-        ```
+            ```
+            docker build . -t fzbypass
+            ```
         - _Run the image:_
-        ```
-        docker run fzbypass
-        ```
+            ```
+            docker run fzbypass
+            ```
         - _To stop the running image:_
             - Check Running Containers
-            ```
-            docker ps
-            ```
+                ```
+                docker ps
+                ```
             - Get the ID and Stop the Container
-            ```
-            docker stop idxxxxx
-            ```
+                ```
+                docker stop idxxxxx
+                ```
     - _Add `sudo` at the Start of Each Command if your CLI is rooted_
+    - _Add all Config Data in `config.env`_
+    - To Update your Repo Directly, Fill Up UPSTREAM_REPO & UPSTREAM_BRANCH 
+        ```
+        docker restart idxxxxx
+        ```
 
 ---
 
@@ -110,6 +115,8 @@
 - `AUTH_CHATS`: Group ID (with Topic ID), Separated by space.
   > **Format:** chat_id:topic_id chat_id chat_id:topic_id
 - `GDTOT_CRYPT`: GdToT Crypt (Optional). It works with & without Crypt!
+- `UPSTREAM_REPO`: Put Upstream Repo to Update. Defaults to `https://github.com/SilentDemonSD/FZBypassBot`
+- `UPSTREAM_BRANCH`: Put Branch Name. Defaults to `main`
 
 ---
 
