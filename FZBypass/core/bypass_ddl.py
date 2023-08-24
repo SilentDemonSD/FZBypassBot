@@ -3,7 +3,7 @@ from http.cookiejar import MozillaCookieJar
 from json import loads
 from os import path
 from re import findall, match, search, sub, compile
-from time import sleep
+from time import sleep, time
 from asyncio import sleep as asleep
 from urllib.parse import parse_qs, quote, unquote, urlparse
 from uuid import uuid4
@@ -16,6 +16,30 @@ from requests import Session, get as rget
 
 from FZBypass.core.exceptions import DDLException
 from FZBypass.core.recaptcha import recaptchaV3
+
+
+async def yandex_disk(url: str) -> str:
+    cget = create_scraper().request
+    try:
+        return cget('get', f'https://cloud-api.yandex.net/v1/disk/public/resources/download?public_key={url}').json()['href']
+    except KeyError:
+        raise DDLException("File not Found / Download Limit Exceeded")
+
+
+async def try2link(url: str) -> str:
+    cget = create_scraper(allow_brotli=False).request
+	url = url.rstrip("/")
+	res = cget("GET", url, params=('d', int(time()) + (60 * 4)), headers={'Referer': 'https://newforex.online/'})
+	soup = BeautifulSoup(res.text, 'html.parser')
+	inputs = soup.find(id="go-link").find_all(name="input")
+	data = { inp.get('name'): inp.get('value') for inp in inputs }	
+	await asleep(7)
+	headers = {'Host': 'try2link.com', 'X-Requested-With': 'XMLHttpRequest', 'Origin': 'https://try2link.com', 'Referer': url}
+	resp = cget('POST', 'https://try2link.com/links/go', headers=headers, data=data)
+	try:
+	    return resp.json()["url"]
+	except:
+        raise DDLException("Link Extraction Failed")
 
 
 async def gyanilinks(url: str) -> str:
@@ -56,7 +80,7 @@ async def ouo(url: str):
     return  res.headers.get('Location')
 
 
-async def mdisk(url: str) -> str: 
+async def mdisk(url: str) -> str: # Depreciated ( Code Preserved )
     header = {'Accept': '*/*', 
          'Accept-Language': 'en-US,en;q=0.5', 
          'Accept-Encoding': 'gzip, deflate, br', 
