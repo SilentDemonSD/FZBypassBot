@@ -101,7 +101,7 @@ async def gdtot(url):
         final_url = f'{raw.scheme}://{raw.hostname}{path}'
         d_link = await sharer_scraper(final_url)
     soup = BeautifulSoup(cget('GET', url).content, "html.parser")
-    parse_data = (soup.select('meta[property^="og:description"]')[0]['content']).replace('Download ' , '').split('-')
+    parse_data = (soup.select('meta[property^="og:description"]')[0]['content']).replace('Download ' , '').rsplit('-', maxsplit=1)
     return f'''┎ <b>Name :</b> <i>{parse_data[0]}</i>
 ┠ <b>Size :</b> <i>{parse_data[-1]}</i>
 ┃ 

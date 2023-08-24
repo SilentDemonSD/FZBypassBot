@@ -111,7 +111,8 @@ async def inline_query(client, query):
             answers.append(InlineQueryResultArticle(
                 title="✅️ Bypass Link Success !",
                 input_message_content=InputTextMessageContent(
-                    f'{bp_link}\n\n✎﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏\n\n🧭 <b>Took Only <code>{convert_time(end - start)}</code></b>'
+                    f'{bp_link}\n\n✎﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏\n\n🧭 <b>Took Only <code>{convert_time(end - start)}</code></b>',
+                    disable_web_page_preview=True,
                 ),
                 description=f"Bypass via !bp {link}",
                 reply_markup=InlineKeyboardMarkup([
@@ -125,7 +126,8 @@ async def inline_query(client, query):
             answers.append(InlineQueryResultArticle(
                 title="❌️ Bypass Link Error !",
                 input_message_content=InputTextMessageContent(
-                    f'┎ <b>Source Link:</b> {link}\n┃\n┖ {bp_link}\n\n✎﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏\n\n🧭 <b>Took Only <code>{convert_time(end - start)}</code></b>'
+                    f'┎ <b>Source Link:</b> {link}\n┃\n┖ {bp_link}\n\n✎﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏\n\n🧭 <b>Took Only <code>{convert_time(end - start)}</code></b>',
+                    disable_web_page_preview=True,
                 ),
                 description=f"Bypass via !bp {link}",
                 reply_markup=InlineKeyboardMarkup([
@@ -135,13 +137,13 @@ async def inline_query(client, query):
         
     else:
         answers.append(InlineQueryResultArticle(
-                title="🔍 Bypass Usage: In Line",
+                title="♻️ Bypass Usage: In Line",
                 input_message_content=InputTextMessageContent(
                     '''<b><i>FZ Bypass Bot!</i></b>
     
     <i>A Powerful Elegant Multi Threaded Bot written in Python... which can Bypass Various Shortener Links, Scrape links, and More ... </i>
     
-<b>Inline Use :</b> !bp [link]''',
+🎛 <b>Inline Use :</b> !bp [Single Link]''',
                 ),
                 description="Bypass via !bp [link]",
                 reply_markup=InlineKeyboardMarkup([
