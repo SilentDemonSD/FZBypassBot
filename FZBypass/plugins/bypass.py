@@ -7,7 +7,7 @@ from pyrogram.enums import MessageEntityType
 from pyrogram.errors import QueryIdInvalid
 
 from FZBypass import Config, Bypass, BOT_START
-from FZBypass.core.bypass_checker import direct_link_checker, is_share_link
+from FZBypass.core.bypass_checker import direct_link_checker, is_excep_link
 from FZBypass.core.bot_utils import chat_and_topics, convert_time
 from FZBypass.core.exceptions import DDLException
 
@@ -63,12 +63,12 @@ async def bypass_check(client, message):
     for result, link in zip(completed_tasks, tlinks):
         if isinstance(result, Exception):
             bp_link = f"<b>Bypass Error:</b> {result}"
-        elif is_share_link(link):
+        elif is_excep_link(link):
             bp_link = result
         else:
             bp_link = f"<b>Bypass Link:</b> {result}"
         
-        if is_share_link(link):
+        if is_excep_link(link):
             parse_data.append(bp_link + "\n\n✎﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏\n\n")
         else:
             parse_data.append(f'┎ <b>Source Link:</b> {link}\n┃\n┖ {bp_link}\n\n✎﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏\n\n')
@@ -107,7 +107,7 @@ async def inline_query(client, query):
             bp_link = await direct_link_checker(link)
             end = time()
             
-            if not is_share_link(link):
+            if not is_excep_link(link):
                 bp_link = f"┎ <b>Source Link:</b> {link}\n┃\n┖ <b>Bypass Link:</b> {bp_link}"
             answers.append(InlineQueryResultArticle(
                 title="✅️ Bypass Link Success !",

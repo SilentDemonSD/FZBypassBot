@@ -26,6 +26,88 @@ async def yandex_disk(url: str) -> str:
         raise DDLException("File not Found / Download Limit Exceeded")
 
 
+async def mediafire(url: str) -> str:
+    final_link = findall(r'https?:\/\/download\d+\.mediafire\.com\/\S+\/\S+\/\S+', url)
+    if final_link: 
+        return final_link[0]
+    cget = create_scraper().request
+    try:
+        url = cget('get', url).url
+        page = cget('get', url).text
+    except Exception as e:
+        raise DDLException(f"ERROR: {e.__class__.__name__}")
+    final_link = findall(r"\'(https?:\/\/download\d+\.mediafire\.com\/\S+\/\S+\/\S+)\'", page)
+    if not final_link:
+        raise DDLException("No links found in this page")
+    return final_link[0]
+
+
+async def shrdsk(url: str) -> str:
+    cget = create_scraper().request
+    try:
+        url = cget('GET', url).url
+        res = cget('GET', f'https://us-central1-affiliate2apk.cloudfunctions.net/get_data?shortid={url.split("/")[-1]}')
+    except Exception as e:
+        raise DDLException(f'{e.__class__.__name__}')
+    if res.status_code != 200:
+        raise DDLException(f'Status Code {res.status_code}')
+    res = res.json()
+    if ("type" in res and res["type"].lower() == "upload" and "video_url" in res):
+        return res["video_url"]
+    raise DDLException("No Direct Link Found")
+
+
+async def anonsites(url: str):
+    cget = create_scraper().request
+    try:
+        soup = BeautifulSoup(cget('get', url).content, 'lxml')
+    except Exception as e:
+        raise DDLException(f"{e.__class__.__name__}")
+    if (sp := soup.find(id="download-url")):
+        return sp['href']
+    raise DDLException("File not found!")
+
+
+async def terabox(url: str) -> str:
+    sess = Session()
+    def retryme(url):
+        while True:
+            try: 
+                return sess.get(url)
+            except:
+                pass
+    url = retryme(url).url
+    key = url.split('?surl=')[-1]
+    url = f'http://www.terabox.com/wap/share/filelist?surl={key}'
+    sess.cookies.update(Config.TERA_COOKIE)
+
+    res = retryme(url)
+    key = res.url.split('?surl=')[-1]
+    soup = BeautifulSoup(res.content, 'lxml')
+    jsToken = None
+
+    for fs in soup.find_all('script'):
+        fstring = fs.string
+        if fstring and fstring.startswith('try {eval(decodeURIComponent'):
+            jsToken = fstring.split('%22')[1]
+
+    res = retryme(f'https://www.terabox.com/share/list?app_id=250528&jsToken={jsToken}&shorturl={key}&root=1')
+    result = res.json()
+    if result['errno'] != 0: 
+        raise DDLException(f"{result['errmsg']}' Check cookies")
+    result = result['list']
+    if len(result) > 1: 
+        raise DDLException("ERROR: Can't download mutiple files")
+    result = result[0]
+
+    if result['isdir'] != '0':
+        raise DDLException("ERROR: Can't download folder")
+    try:
+        return result['dlink']
+    except:
+        raise DDLException("Link Extraction Failed")
+
+
 async def try2link(url: str) -> str:
     cget = create_scraper(allow_brotli=False).request
     url = url.rstrip("/")

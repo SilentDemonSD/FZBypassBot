@@ -3,24 +3,37 @@ from urllib.parse import urlparse
 
 from FZBypass.core.bypass_dlinks import *
 from FZBypass.core.bypass_ddl import *
+from FZBypass.core.bypass_scrape import *
 from FZBypass.core.exceptions import DDLException
 
 fmed_list = ['fembed.net', 'fembed.com', 'femax20.com', 'fcdn.stream', 'feurl.com', 'layarkacaxxi.icu',
              'naniplay.nanime.in', 'naniplay.nanime.biz', 'naniplay.com', 'mm9842.com']
 
-anonfilesBaseSites = ['anonfiles.com', 'hotfile.io', 'bayfiles.com', 'megaupload.nz', 'letsupload.cc',
+anonSites = ['anonfiles.com', 'hotfile.io', 'bayfiles.com', 'megaupload.nz', 'letsupload.cc',
                       'filechan.org', 'myfile.is', 'vshare.is', 'rapidshare.nu', 'lolabits.se',
                       'openload.cc', 'share-online.is', 'upvid.cc']
 
 def is_share_link(url):
     return bool(match(r'https?:\/\/.+\.gdtot\.\S+|https?:\/\/(filepress|filebee|appdrive|driveleech|driveseed)\.\S+', url))
 
+def is_excep_link(url):
+    return bool(match(r'https?:\/\/.+\.gdtot\.\S+|https?:\/\/(cinevood|filepress|filebee|appdrive|driveleech|driveseed)\.\S+', url))
+
 async def direct_link_checker(link):
     domain = urlparse(link).hostname
+    # DDL Links
     if bool(match(r"https?:\/\/(yadi|disk.yandex)\.\S+", link)):
         return await yandex_disk(link)
     elif bool(match(r"https?:\/\/try2link\.\S+", link)):
         return await try2link(link)
+    elif bool(match(r"https?:\/\/mediafire\.\S+", link)):
+        return await mediafire(link)
+    elif bool(match(r"https?:\/\/shrdsk\.\S+", link)):
+        return await shrdsk(link)
+    elif any(x in domain for x in anonSites):
+        return await anonsites(link)
+    elif any(x in domain for x in ['terabox', 'nephobox', '4funbox', 'mirrobox', 'momerybox', 'teraboxapp']):
+        return await terabox(link)
 
     elif bool(match(r"https?:\/\/(gyanilinks|gtlinks)\.\S+", link)):
         return await gyanilinks(link)
@@ -90,6 +103,10 @@ async def direct_link_checker(link):
         return await transcript(link, "https://linkyearn.com", "https://gktech.uk/", 5)
     elif bool(match(r"https?:\/\/earn4link\.\S+", link)):
         return await transcript(link, "https://m.open2get.in/", "https://ezeviral.com/", 8)
+    elif bool(match(r"https?:\/\/linksly\.\S+", link)):
+        return await transcript(link, "https://go.linksly.co/", "https://en.themezon.net/", 5)
+    elif bool(match(r"https?:\/\/.+\.mdiskshortner\.\S+", link)):
+        return await transcript("https://download.mdiskshortner.link/pfcUU3f", "https://loans.yosite.net/", "https://yosite.net/", 10)
     
     elif bool(match(r"https?:\/\/ouo\.\S+", link)):
         return await ouo(link)
@@ -105,7 +122,12 @@ async def direct_link_checker(link):
         return await bitly_tinyurl(link)
     elif bool(match(r"https?:\/\/thinfi\.\S+", link)):
         return await thinfi(link)
+        
+    # DL Sites
+    elif bool(match(r"https?:\/\/cinevood\.\S+", link)):
+        return await cinevood(link)
     
+    # DL Links
     elif is_share_link(link):
         if 'gdtot' in domain:
             return await gdtot(link)
