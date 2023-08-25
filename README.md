@@ -70,10 +70,10 @@
 |`earn4link.in`|✅️|
 |`linksly.co`|✅️|
 |`download.mdiskshortner.link`|✅️|
-|`shrdsk.me`|✅️|
+|`shrdsk.me`|️❌️|
 |`mediafire.com`|✅️|
 |`terabox.*` + `terabox.*` + `nephobox.*` + `4funbox.*` + `mirrobox.*` + `momerybox.*` + `teraboxapp.*`|✅️|
-|`hotfile.io` + `bayfiles.com` + `megaupload.nz` + `letsupload.cc` + `filechan.org` + `myfile.is` + `vshare.is` + `rapidshare.nu` + `lolabits.se` + `openload.cc` + `share-online.is` + `upvid.cc`|✅️|
+|`hotfile.io` + `bayfiles.com` + `megaupload.nz` + `letsupload.cc` + `filechan.org` + `myfile.is` + `vshare.is` + `rapidshare.nu` + `lolabits.se` + `openload.cc` + `share-online.is` + `upvid.cc`️|⚠️|
 |`More Sites...Updating`|✅️|
 
 ### ***Scrape Sites***

@@ -14,6 +14,7 @@ from curl_cffi.requests import Session as cSession
 from lxml import etree
 from requests import Session, get as rget
 
+from FZBypass import Config, LOGGER
 from FZBypass.core.exceptions import DDLException
 from FZBypass.core.recaptcha import recaptchaV3
 
