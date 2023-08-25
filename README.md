@@ -68,7 +68,18 @@
 |`9qr.de`|✅️|
 |`linkyearn.com`|✅️|
 |`earn4link.in`|✅️|
+|`linksly.co`|✅️|
+|`download.mdiskshortner.link`|✅️|
+|`shrdsk.me`|✅️|
+|`mediafire.com`|✅️|
+|`terabox.*` + `terabox.*` + `nephobox.*` + `4funbox.*` + `mirrobox.*` + `momerybox.*` + `teraboxapp.*`|✅️|
+|`hotfile.io` + `bayfiles.com` + `megaupload.nz` + `letsupload.cc` + `filechan.org` + `myfile.is` + `vshare.is` + `rapidshare.nu` + `lolabits.se` + `openload.cc` + `share-online.is` + `upvid.cc`|✅️|
 |`More Sites...Updating`|✅️|
+
+### ***Scrape Sites***
+| __Websites__ | __Status__ |
+|:--------------------:|:----------:|
+|`cinevood.*`|✅️|
 
 ---
 
@@ -115,6 +126,7 @@
 - `AUTH_CHATS`: Group ID (with Topic ID), Separated by space.
   > **Format:** chat_id:topic_id chat_id chat_id:topic_id
 - `GDTOT_CRYPT`: GdToT Crypt (Optional). It works with & without Crypt!
+- `TERA_COOKIE`: Get the Terabox `ndus` Cookie from Cookie Editor Extension.
 - `UPSTREAM_REPO`: Put Upstream Repo to Update. Defaults to `https://github.com/SilentDemonSD/FZBypassBot`
 - `UPSTREAM_BRANCH`: Put Branch Name. Defaults to `main`
 

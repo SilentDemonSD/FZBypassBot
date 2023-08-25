@@ -9,9 +9,9 @@ from FZBypass.core.exceptions import DDLException
 fmed_list = ['fembed.net', 'fembed.com', 'femax20.com', 'fcdn.stream', 'feurl.com', 'layarkacaxxi.icu',
              'naniplay.nanime.in', 'naniplay.nanime.biz', 'naniplay.com', 'mm9842.com']
 
-anonSites = ['anonfiles.com', 'hotfile.io', 'bayfiles.com', 'megaupload.nz', 'letsupload.cc',
-                      'filechan.org', 'myfile.is', 'vshare.is', 'rapidshare.nu', 'lolabits.se',
-                      'openload.cc', 'share-online.is', 'upvid.cc']
+anonSites = ['hotfile.io', 'bayfiles.com', 'megaupload.nz', 'letsupload.cc',
+            'filechan.org', 'myfile.is', 'vshare.is', 'rapidshare.nu', 'lolabits.se',
+            'openload.cc', 'share-online.is', 'upvid.cc']
 
 def is_share_link(url):
     return bool(match(r'https?:\/\/.+\.gdtot\.\S+|https?:\/\/(filepress|filebee|appdrive|driveleech|driveseed)\.\S+', url))
@@ -26,7 +26,7 @@ async def direct_link_checker(link):
         return await yandex_disk(link)
     elif bool(match(r"https?:\/\/try2link\.\S+", link)):
         return await try2link(link)
-    elif bool(match(r"https?:\/\/mediafire\.\S+", link)):
+    elif bool(match(r"https?:\/\/.+\.mediafire\.\S+", link)):
         return await mediafire(link)
     elif bool(match(r"https?:\/\/shrdsk\.\S+", link)):
         return await shrdsk(link)
