@@ -17,10 +17,11 @@ def is_share_link(url):
     return bool(match(r'https?:\/\/.+\.gdtot\.\S+|https?:\/\/(filepress|filebee|appdrive|driveleech|driveseed)\.\S+', url))
 
 def is_excep_link(url):
-    return bool(match(r'https?:\/\/.+\.gdtot\.\S+|https?:\/\/(cinevood|filepress|filebee|appdrive|driveleech|driveseed)\.\S+', url))
+    return bool(match(r'https?:\/\/.+\.gdtot\.\S+|https?:\/\/(toonworld4all|cinevood|filepress|filebee|appdrive|driveleech|driveseed)\.\S+', url))
 
 async def direct_link_checker(link):
     domain = urlparse(link).hostname
+
     # DDL Links
     if bool(match(r"https?:\/\/(yadi|disk.yandex)\.\S+", link)):
         return await yandex_disk(link)
@@ -106,7 +107,9 @@ async def direct_link_checker(link):
     elif bool(match(r"https?:\/\/linksly\.\S+", link)):
         return await transcript(link, "https://go.linksly.co/", "https://en.themezon.net/", 5)
     elif bool(match(r"https?:\/\/.+\.mdiskshortner\.\S+", link)):
-        return await transcript("https://download.mdiskshortner.link/pfcUU3f", "https://loans.yosite.net/", "https://yosite.net/", 10)
+        return await transcript(link, "https://loans.yosite.net/", "https://yosite.net/", 10)
+    elif bool(match(r"https?:\/\/.+\.rocklinks\.\S+", link)):
+        return await transcript(link, "https://insurance.techymedies.com/", "https://highkeyfinance.com/", 5)
     
     elif bool(match(r"https?:\/\/ouo\.\S+", link)):
         return await ouo(link)
@@ -126,6 +129,8 @@ async def direct_link_checker(link):
     # DL Sites
     elif bool(match(r"https?:\/\/cinevood\.\S+", link)):
         return await cinevood(link)
+    elif bool(match(r"https?:\/\/toonworld4all\.\S+", link)):
+        return await toonworld4all(link)
     
     # DL Links
     elif is_share_link(link):

@@ -1,9 +1,15 @@
+<div align="center">
+    <a href="https://github.com/weebzone/WZML">
+        <kbd>
+            <img width="250" src="https://graph.org/file/80f677693ae80cbd8707e.jpg" alt="FZ Bypass Logo">
+        </kbd>
+    </a>
+
 ## ***FZBypassBot***
-- A **Elegant Fast Multi Threaded Bypass Telegram Bot** for Bigger Deeds like Mass Bypass. Try Now, and Feel the Speedy Work.
 
-<div align=center>
+<i>A **Elegant Fast Multi Threaded Bypass Telegram Bot** for Bigger Deeds like Mass Bypass. Try Now, and Feel the Speedy Work.</i>
 
-[**Demo Bot**](https://t.me/FZBypassBot) | [**Support Group**](https://t.me/FXTorrentz)
+[**Demo Bot**](https://t.me/FZBypassBot) | [**Supported Sites**](#supported-sites) | [**Support Group**](https://t.me/FXTorrentz)
 
 </div>
 
@@ -19,7 +25,7 @@
 ---
 
 ## ***Supported Sites***
-- **All `Credits` to Respective Script Owner & Contributors**
+- All `Credits` to Respective Script Owner & Contributors
 - All these are Collected from the Internet / Web
 
 | __Websites / Sites__ | __Status__ |
@@ -74,18 +80,25 @@
 |`mediafire.com`|✅️|
 |`terabox.*` + `terabox.*` + `nephobox.*` + `4funbox.*` + `mirrobox.*` + `momerybox.*` + `teraboxapp.*`|✅️|
 |`hotfile.io` + `bayfiles.com` + `megaupload.nz` + `letsupload.cc` + `filechan.org` + `myfile.is` + `vshare.is` + `rapidshare.nu` + `lolabits.se` + `openload.cc` + `share-online.is` + `upvid.cc`️|⚠️|
+|`rocklinks.net`|✅️|
 |`More Sites...Updating`|✅️|
 
 ### ***Scrape Sites***
 | __Websites__ | __Status__ |
 |:--------------------:|:----------:|
-|`cinevood.*`|✅️|
+|`cinevood.*` **(Page)** |✅️|
+|`toonworld4all.*` **(Page)** |✅️|
 
 ---
 
 ## ***Deploy Guide***
-1. `Heroku`
+1. `Heroku` _(Recommended)_
     - Use [HK-Loader](https://github.com/SilentDemonSD/HK-Loader) and Follow further Steps.
+    - Use Process Type `worker` to run without any Stop.
+    - **Variables Values:**
+      - `REPO_URL`: https://github.com/SilentDemonSD/FZBypassBot
+      - `REPO_BRANCH`: main
+      - `START_CMD`: bash start.sh
 2. `VPS`
     - **Build And Run The Docker Image Using Official Docker Commands**
         - _Clone the Repository_
@@ -111,7 +124,7 @@
                 ```
     - _Add `sudo` at the Start of Each Command if your CLI is rooted_
     - _Add all Config Data in `config.env`_
-    - To Update your Repo Directly, Fill Up UPSTREAM_REPO & UPSTREAM_BRANCH 
+    - _Update your Repo Directly, Make sure to fill Up `UPSTREAM_REPO` & `UPSTREAM_BRANCH`_
         ```
         docker restart idxxxxx
         ```
