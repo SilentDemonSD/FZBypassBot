@@ -24,7 +24,7 @@ async def cinevood(url: str) -> str:
 
 async def toonworld4all(url: str):
     if "/redirect/main.php?url=" in url:
-        return f'┎ <b>Source Link:</b> {link}\n┃\n┖ <b>Bypass Link:</b> {rget(url).url}"
+        return f'┎ <b>Source Link:</b> {url}\n┃\n┖ <b>Bypass Link:</b> {rget(url).url}"
     xml = rget(url).text
     soup = BeautifulSoup(xml, 'html.parser')
     if '/episode/' not in url:
