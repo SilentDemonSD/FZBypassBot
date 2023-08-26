@@ -23,6 +23,8 @@ async def cinevood(url: str) -> str:
 
 
 async def toonworld4all(url: str):
+    if "/redirect/main.php?url=" in url:
+        return f'┎ <b>Source Link:</b> {link}\n┃\n┖ <b>Bypass Link:</b> {rget(url).url}"
     xml = rget(url).text
     soup = BeautifulSoup(xml, 'html.parser')
     if '/episode/' not in url:
@@ -41,12 +43,13 @@ async def toonworld4all(url: str):
     titles = soup.select('h5')
     prsd = f"<b><i>{titles[0].string}</i></b>"
     titles.pop(0)
+    slicer = len(links) / len(titles)
     atasks = []
     for sl in links:
         atasks.append(create_task(transcript(rget(sl["href"]).url, "https://insurance.techymedies.com/", "https://highkeyfinance.com/", 5)))
     
     com_tasks = await gather(*atasks, return_exceptions=True)
-    lstd = [com_tasks[i:i+4] for i in range(0, len(com_tasks), 4)]
+    lstd = [com_tasks[i:i+slicer] for i in range(0, len(com_tasks), slicer)]
     
     for no, tl in enumerate(titles):
         prsd += f"\n\n<b>{tl.string}</b>\n\n<b>Links :</b> "
