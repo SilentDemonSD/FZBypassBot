@@ -81,7 +81,12 @@
 |`terabox.*` + `terabox.*` + `nephobox.*` + `4funbox.*` + `mirrobox.*` + `momerybox.*` + `teraboxapp.*`|✅️|
 |`hotfile.io` + `bayfiles.com` + `megaupload.nz` + `letsupload.cc` + `filechan.org` + `myfile.is` + `vshare.is` + `rapidshare.nu` + `lolabits.se` + `openload.cc` + `share-online.is` + `upvid.cc`️|⚠️|
 |`rocklinks.net`|✅️|
-|`More Sites...Updating`|✅️|
+|`mplaylink.com`|✅️|
+|`shrinke.me`|✅️|
+|`urlspay.in`|✅️|
+|`short.tnvalue.in`|✅️|
+|`sxslink.com`|✅️|
+|`More Sites...Updating`|️♻️|
 
 ### ***Scrape Sites***
 | __Websites__ | __Status__ |

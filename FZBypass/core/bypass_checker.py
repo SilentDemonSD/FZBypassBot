@@ -110,6 +110,16 @@ async def direct_link_checker(link):
         return await transcript(link, "https://loans.yosite.net/", "https://yosite.net/", 10)
     elif bool(match(r"https?:\/\/.+\.rocklinks\.\S+", link)):
         return await transcript(link, "https://insurance.techymedies.com/", "https://highkeyfinance.com/", 5)
+    elif bool(match(r"https?:\/\/mplaylink\.\S+", link)):
+        return await transcript(link, "https://tera-box.cloud/", "https://zisnews.com/", 5)
+    elif bool(match(r"https?:\/\/shrinke\.\S+", link)):
+        return await transcript(link, "https://en.shrinke.me/", "https://themezon.net/", 15)
+    elif bool(match(r"https?:\/\/urlspay\.\S+", link)):
+        return await transcript(link, "https://finance.smallinfo.in/", "https://loans.techyinfo.in/", 5)
+    elif bool(match(r"https?:\/\/.+\.tnvalue\.\S+", link)):
+        return await transcript(link, "https://page.finclub.in/", "https://finclub.in/", 8)
+    elif bool(match(r"https?:\/\/sxslink\.\S+", link)):
+        return await transcript(link, "https://getlink.sxslink.com/", "https://cinemapettai.in/", 5)
     
     elif bool(match(r"https?:\/\/ouo\.\S+", link)):
         return await ouo(link)
