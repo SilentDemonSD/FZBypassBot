@@ -25,7 +25,8 @@ async def toonworld4all(url: str):
     if '/episode/' not in url:
         epl = soup.select('a[href*="/episode/"]')
         tls = soup.select('div[class*="mks_accordion_heading"]')
-        prsd = f'''<b><u>{search(r'\"name\":\"(.+)\"', resp.text).group(1).split('"')[0]}</u></b>'''
+        stitle = search(r'\"name\":\"(.+)\"', resp.text).group(1).split('"')[0]
+        prsd = f'<b><u>{stitle}</u></b>'
         for n, (t, l) in enumerate(zip(tls, epl)):
             prsd += f'''
         
