@@ -25,7 +25,7 @@ async def toonworld4all(url: str):
     if '/episode/' not in url:
         epl = soup.select('a[href*="/episode/"]')
         tls = soup.select('div[class*="mks_accordion_heading"]')
-        stitle = search(r'\"name\":\"(.+)\"', xml.text).group(1).split('"')[0]
+        stitle = search(r'\"name\":\"(.+)\"', xml).group(1).split('"')[0]
         prsd = f'<b><u>{stitle}</u></b>'
         for n, (t, l) in enumerate(zip(tls, epl)):
             prsd += f'''
@@ -37,5 +37,6 @@ async def toonworld4all(url: str):
     titles = soup.select('h5')
     links = soup.select('a[href*="/redirect/main.php?url="]')
     prsd = f"<b><u>{titles[0].string}</u></b>\n\n<b>Links :</b> "
-    prsd += ", ".join(f'''<a href='{await transcript(rget(sl["href"]).url, "https://insurance.techymedies.com/", "https://highkeyfinance.com/", 5)}'>{sl.string}</a>''' for sl in links)
+    for sl in links:
+        prsd += f'''<a href='{await transcript(rget(sl["href"]).url, "https://insurance.techymedies.com/", "https://highkeyfinance.com/", 5)}'>{sl.string}</a>'''
     return prsd
