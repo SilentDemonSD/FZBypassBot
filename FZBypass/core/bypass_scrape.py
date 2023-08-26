@@ -40,10 +40,12 @@ async def toonworld4all(url: str):
     prsd = f"<b><i>{titles[0].string}</i></b>\n\n"
     titles.pop(0)
     atasks = []
-    for l in links:
+    for sl in links:
         atasks.append(create_task(transcript(rget(sl["href"]).url, "https://insurance.techymedies.com/", "https://highkeyfinance.com/", 5)))
+    
     com_tasks = await gather(*atasks, return_exceptions=True)
     lstd = [com_tasks[i:i+4] for i in range(0, len(com_tasks), 4)]
+    
     for no, tl in enumerate(titles):
         prsd += f"\n\n{tl.string}\n\n<b>Links :</b> "
         for sl in lstd[no]:
