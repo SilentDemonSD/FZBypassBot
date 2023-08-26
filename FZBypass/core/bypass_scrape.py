@@ -1,6 +1,7 @@
+from asyncio import gather, create_task
+from re import search
 from requests import get as rget
 from bs4 import BeautifulSoup
-from re import search
 
 from FZBypass import Config, LOGGER
 from FZBypass.core.bypass_ddl import transcript
@@ -26,17 +27,29 @@ async def toonworld4all(url: str):
         epl = soup.select('a[href*="/episode/"]')
         tls = soup.select('div[class*="mks_accordion_heading"]')
         stitle = search(r'\"name\":\"(.+)\"', xml).group(1).split('"')[0]
-        prsd = f'<b><u>{stitle}</u></b>'
-        for n, (t, l) in enumerate(zip(tls, epl)):
+        prsd = f'<b><i>{stitle}</i></b>'
+        for n, (t, l) in enumerate(zip(tls, epl), start=1):
             prsd += f'''
         
 {n}. <i><b>{t.strong.string}</b></i>
 ┃ 
 ┖ <b>Episode Link :</b> {l["href"]}'''
         return prsd
-    titles = soup.select('h5')
     links = soup.select('a[href*="/redirect/main.php?url="]')
-    prsd = f"<b><u>{titles[0].string}</u></b>\n\n<b>Links :</b> "
-    for sl in links:
-        prsd += f'''<a href='{await transcript(rget(sl["href"]).url, "https://insurance.techymedies.com/", "https://highkeyfinance.com/", 5)}'>{sl.string}</a>'''
+    titles = soup.select('h5')
+    prsd = f"<b><i>{titles[0].string}</i></b>\n\n"
+    titles.pop(0)
+    atasks = []
+    for l in links:
+        atasks.append(create_task(transcript(rget(sl["href"]).url, "https://insurance.techymedies.com/", "https://highkeyfinance.com/", 5)))
+    com_tasks = await gather(*atasks, return_exceptions=True)
+    lstd = [com_tasks[i:i+4] for i in range(0, len(com_tasks), 4)]
+    for no, tl in enumerate(titles):
+        prsd += f"\n\n{tl.string}\n\n<b>Links :</b> "
+        for sl in lstd[no]:
+            if isinstance(sl, Exception):
+                prsd += str(sl)
+            else:
+                prsd += f'''<a href='{sl}'>{sl.string}</a>, '''
+        prsd = prsd[:-2]
     return prsd
