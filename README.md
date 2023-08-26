@@ -90,7 +90,7 @@
 |`moneycase.link`|✅️|
 |`urllinkshort.in`|✅️|
 |`dtglinks.in`|✅️|
-|`v2links.com`|✅️|
+|`shorturl.ac`|✅️|
 |`More Sites...Updating`|️♻️|
 
 ### ***Scrape Sites***

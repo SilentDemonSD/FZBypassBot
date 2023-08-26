@@ -98,8 +98,6 @@ async def direct_link_checker(link):
         return await transcript(link, "https://count.vipurl.in/", "https://loanhelpful.net/", 9)
     elif bool(match(r"https?:\/\/indyshare\.\S+", link)):
         return await transcript(link, "https://indyshare.net", "https://bestdjsong.com", 6)
-    elif bool(match(r"https?:\/\/v2links\.\S+", link)):
-        return await transcript(link, "https://v2links.com", "https://gadgetsreview27.com", 6)
     elif bool(match(r"https?:\/\/linkyearn\.\S+", link)):
         return await transcript(link, "https://linkyearn.com", "https://gktech.uk/", 5)
     elif bool(match(r"https?:\/\/earn4link\.\S+", link)):
@@ -141,7 +139,7 @@ async def direct_link_checker(link):
         return await linkvertise(link)
     elif bool(match(r"https?:\/\/rslinks\.\S+", link)):
         return await rslinks(link)
-    elif bool(match(r"https?:\/\/(bit|tinyurl|9qr)\.\S+", link)):
+    elif bool(match(r"https?:\/\/(bit|tinyurl|9qr|shorturl)\.\S+", link)):
         return await bitly_tinyurl(link)
     elif bool(match(r"https?:\/\/thinfi\.\S+", link)):
         return await thinfi(link)
