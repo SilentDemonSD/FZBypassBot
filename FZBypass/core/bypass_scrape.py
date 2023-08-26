@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 from FZBypass import Config, LOGGER
 from FZBypass.core.bypass_ddl import transcript
 
+
 async def cinevood(url: str) -> str:
     soup = BeautifulSoup(rget(url).text, 'html.parser')
     titles = soup.select('h6')
@@ -19,7 +20,8 @@ async def cinevood(url: str) -> str:
 ┃ 
 ┖ <a href='{gt["href"]}'><b>GDToT Link</b></a> | <a href='{gf["href"]}'><b>GDFlix Link</b></a>'''
     return prsd
-    
+
+
 async def toonworld4all(url: str):
     xml = rget(url).text
     soup = BeautifulSoup(xml, 'html.parser')
@@ -37,7 +39,7 @@ async def toonworld4all(url: str):
         return prsd
     links = soup.select('a[href*="/redirect/main.php?url="]')
     titles = soup.select('h5')
-    prsd = f"<b><i>{titles[0].string}</i></b>\n\n"
+    prsd = f"<b><i>{titles[0].string}</i></b>"
     titles.pop(0)
     atasks = []
     for sl in links:
@@ -47,11 +49,11 @@ async def toonworld4all(url: str):
     lstd = [com_tasks[i:i+4] for i in range(0, len(com_tasks), 4)]
     
     for no, tl in enumerate(titles):
-        prsd += f"\n\n{tl.string}\n\n<b>Links :</b> "
+        prsd += f"\n\n<b>{tl.string}</b>\n\n<b>Links :</b> "
         for tl, sl in zip(links, lstd[no]):
             if isinstance(sl, Exception):
                 prsd += str(sl)
             else:
-                prsd += f'''<a href='{sl}'>{tl.string}</a>, '''
+                prsd += f"<a href='{sl}'>{tl.string}</a>, "
         prsd = prsd[:-2]
     return prsd

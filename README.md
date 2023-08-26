@@ -87,7 +87,7 @@
 | __Websites__ | __Status__ |
 |:--------------------:|:----------:|
 |`cinevood.*` **(Page)** |✅️|
-|`toonworld4all.*` **(Page)** |✅️|
+|`toonworld4all.*` **(Page + Episode)** |✅️|
 
 ---
 
