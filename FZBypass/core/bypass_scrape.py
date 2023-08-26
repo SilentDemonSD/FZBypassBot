@@ -48,10 +48,10 @@ async def toonworld4all(url: str):
     
     for no, tl in enumerate(titles):
         prsd += f"\n\n{tl.string}\n\n<b>Links :</b> "
-        for sl in lstd[no]:
+        for tl, sl in zip(links, lstd[no]):
             if isinstance(sl, Exception):
                 prsd += str(sl)
             else:
-                prsd += f'''<a href='{sl}'>{sl.string}</a>, '''
+                prsd += f'''<a href='{sl}'>{tl.string}</a>, '''
         prsd = prsd[:-2]
     return prsd
