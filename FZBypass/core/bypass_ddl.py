@@ -80,7 +80,7 @@ async def terabox(url: str) -> str:
     url = retryme(url).url
     key = url.split('?surl=')[-1]
     url = f'http://www.terabox.com/wap/share/filelist?surl={key}'
-    sess.cookies.update(Config.TERA_COOKIE)
+    sess.cookies.update({"ndus": Config.TERA_COOKIE})
 
     res = retryme(url)
     key = res.url.split('?surl=')[-1]
@@ -98,11 +98,11 @@ async def terabox(url: str) -> str:
         raise DDLException(f"{result['errmsg']}' Check cookies")
     result = result['list']
     if len(result) > 1: 
-        raise DDLException("ERROR: Can't download mutiple files")
+        raise DDLException("Can't download mutiple files")
     result = result[0]
 
     if result['isdir'] != '0':
-        raise DDLException("ERROR: Can't download folder")
+        raise DDLException("Can't download folder")
     try:
         return result['dlink']
     except:

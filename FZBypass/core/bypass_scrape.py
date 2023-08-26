@@ -43,7 +43,8 @@ async def toonworld4all(url: str):
     titles = soup.select('h5')
     prsd = f"<b><i>{titles[0].string}</i></b>"
     titles.pop(0)
-    slicer = len(links) / len(titles)
+    slicer, _ = divmod(len(links), len(titles))
+    LOGGER.info(slicer)
     atasks = []
     for sl in links:
         atasks.append(create_task(transcript(rget(sl["href"]).url, "https://insurance.techymedies.com/", "https://highkeyfinance.com/", 5)))
