@@ -120,6 +120,16 @@ async def direct_link_checker(link):
         return await transcript(link, "https://page.finclub.in/", "https://finclub.in/", 8)
     elif bool(match(r"https?:\/\/sxslink\.\S+", link)):
         return await transcript(link, "https://getlink.sxslink.com/", "https://cinemapettai.in/", 5)
+    elif bool(match(r"https?:\/\/ziplinker\.\S+", link)):
+        return await transcript(link, "https://ziplinker.net/web/", "https://ontechhindi.com/", 5)
+    elif bool(match(r"https?:\/\/moneycase\.\S+", link)):
+        return await transcript(link, "https://page.moneycase.link/", "https://www.infokeeda.xyz/", 5)
+    elif bool(match(r"https?:\/\/urllinkshort\.\S+", link)):
+        return await transcript(link, "https://web.urllinkshort.in", "https://suntechu.in/", 5)
+    elif bool(match(r"https?:\/\/.+\.dtglinks\.\S+", link)):
+        return await transcript(link, "https://happyfiles.dtglinks.in/", "https://tech.filohappy.in/", 5)
+    elif bool(match(r"https?:\/\/v2links\.\S+", link)):
+        return await transcript(link, "https://vzu.us/", "https://gadgetsreview27.com/", 5)
     
     elif bool(match(r"https?:\/\/ouo\.\S+", link)):
         return await ouo(link)

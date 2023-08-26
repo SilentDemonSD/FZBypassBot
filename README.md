@@ -86,6 +86,11 @@
 |`urlspay.in`|✅️|
 |`short.tnvalue.in`|✅️|
 |`sxslink.com`|✅️|
+|`ziplinker.net`|✅️|
+|`moneycase.link`|✅️|
+|`urllinkshort.in`|✅️|
+|`dtglinks.in`|✅️|
+|`v2links.com`|✅️|
 |`More Sites...Updating`|️♻️|
 
 ### ***Scrape Sites***
