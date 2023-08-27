@@ -1,6 +1,7 @@
 from asyncio import gather, create_task
 from re import search, match, findall, sub
 from requests import get as rget
+from urllib.parse import urlparse
 from bs4 import BeautifulSoup, NavigableString, Tag
 
 from FZBypass import Config, LOGGER
@@ -16,11 +17,10 @@ async def sharespark(url: str) -> str:
         if not (next_s and isinstance(next_s, NavigableString)): 
             continue
         next2_s = next_s.nextSibling 
-        if next2_s and isinstance(next2_s, Tag) and next2_s.name == 'br' and str(next_s).strip(): 
-            List = next_s.split() 
+        if next2_s and isinstance(next2_s, Tag) and next2_s.name == 'br' and str(next_s).strip():
             if match(r'^(480p|720p|1080p)(.+)? Links:\Z', next_s): 
                 gd_txt += f'<b>{next_s.replace("Links:", "GDToT Links :")}</b>\n\n' 
-            for s in List: 
+            for s in next_s.split(): 
                 ns = sub(r'\(|\)', '', s)
                 if match(r'https?://.+\.gdtot\.\S+', ns):
                     soup = BeautifulSoup(rget(ns).text, "html.parser") 
@@ -70,9 +70,10 @@ async def kayoanime(url: str) -> str:
     prsd = f"<b>{soup.title.string}</b>"
     gd_txt, link = "GDrive", ""
     for n, gd in enumerate(gdlinks, start=1):
-        if (link := gd["href"].lower()) and "tinyurl" in link:
+        if (link := gd["href"]) and "tinyurl" in link:
             link = rget(link).url
-            gd_txt = "Mega" if "mega" in link else "G Group" if "groups" in link else "Direct Link"
+            domain = urlparse(link).hostname
+            gd_txt = "Mega" if "mega" in domain else "G Group" if "groups" in domain else "Direct Link"
         prsd += f'''
 
 {n}. <i><b>{gd.string}</b></i>
