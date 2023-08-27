@@ -1,6 +1,7 @@
 from asyncio import gather, create_task
 from re import search, match, findall, sub
 from requests import get as rget
+from cloudscraper import create_scraper
 from urllib.parse import urlparse
 from bs4 import BeautifulSoup, NavigableString, Tag
 
@@ -9,21 +10,21 @@ from FZBypass.core.bypass_ddl import transcript
 
 
 async def sharespark(url: str) -> str:
-    gd_txt = "" 
-    res = rget("?action=printpage;".join(url.split('?'))) 
+    gd_txt = ""
+    cget = create_scraper().request
+    res = cget("GET", "?action=printpage;".join(url.split('?'))) 
     soup = BeautifulSoup(res.text, 'html.parser') 
     for br in soup.findAll('br'): 
-        next_s = br.nextSibling 
+        next_s = br.nextSibling
         if not (next_s and isinstance(next_s, NavigableString)): 
             continue
-        next2_s = next_s.nextSibling 
-        if next2_s and isinstance(next2_s, Tag) and next2_s.name == 'br' and str(next_s).strip():
+        if (next2_s := next_s.nextSibling) and isinstance(next2_s, Tag) and next2_s.name == 'br' and str(next_s).strip():
             if match(r'^(480p|720p|1080p)(.+)? Links:\Z', next_s): 
                 gd_txt += f'<b>{next_s.replace("Links:", "GDToT Links :")}</b>\n\n' 
             for s in next_s.split(): 
                 ns = sub(r'\(|\)', '', s)
                 if match(r'https?://.+\.gdtot\.\S+', ns):
-                    soup = BeautifulSoup(rget(ns.strip()).text, "html.parser")
+                    soup = BeautifulSoup(cget("GET", ns).text, "html.parser")
                     LOGGER.info(soup.select('meta[property^="og:description"]'))
                     #parse_data = ([0]['content']).replace('Download ' , '').rsplit('-', maxsplit=1)
                     gd_txt += f"\n{ns}\n\n"

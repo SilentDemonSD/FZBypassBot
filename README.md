@@ -70,7 +70,7 @@
 |`link.vipurl.in` + `vipurl.in` + `count.vipurl.in`|✅️|
 |`v2links.com`|✅️|
 |`indyshare.net`|✅️|
-|`9qr.de` + `shorturl.ac` + `aylm.short.gy`|✅️|
+|`bit.ly` + `tinyurl.com` + `aylm.short.gy`|✅️|
 |`linkyearn.com`|✅️|
 |`earn4link.in`|✅️|
 |`linksly.co`|✅️|
@@ -89,6 +89,7 @@
 |`moneycase.link`|✅️|
 |`urllinkshort.in`|✅️|
 |`dtglinks.in`|✅️|
+|`shrtco.de` + `9qr.de` + `shiny.link`|✅️|
 |`More Sites...Updating`|️♻️|
 
 ### ***Scrape Sites***
