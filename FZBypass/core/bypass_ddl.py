@@ -233,7 +233,7 @@ async def bitly_tinyurl(url: str) -> str:
 async def shrtco(url: str) -> str:
     try:
         code = url.rstrip("/").split("/")[-1]
-        return cget('GET', f'https://api.shrtco.de/v2/info?code={code}').json()['result']['url']
+        return rget(f'https://api.shrtco.de/v2/info?code={code}').json()['result']['url']
     except: 
         raise DDLException("Link Extraction Failed")
     
