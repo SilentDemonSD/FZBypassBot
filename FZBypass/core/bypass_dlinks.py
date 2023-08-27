@@ -109,7 +109,7 @@ async def gdtot(url):
 ┖ <b>Drive Link :</b> {d_link}'''
 
 
-async def appdrive(url):
+async def appdriveorgdflix(url):
     async def appdrive_single(url):
         d_link = await sharer_scraper(url)
         cget = create_scraper().request
@@ -124,9 +124,8 @@ async def appdrive(url):
         cget = create_scraper().request
         soup = BeautifulSoup(cget("GET", url).content, "html.parser")
         p_url = urlparse(url)
-        body, atasks = "", []
-        for ss in soup.select("a[href^='/file/']"):
-            atasks.append(create_task(appdrive_single(f"{p_url.scheme}://{p_url.hostname}" + ss['href'])))
+        body = ""
+        atasks = [create_task(appdrive_single(f"{p_url.scheme}://{p_url.hostname}" + ss['href'])) for ss in soup.select("a[href^='/file/']")]
         completed_tasks = await gather(*atasks, return_exceptions=True)
         for bp_link in completed_tasks:
             if isinstance(bp_link, Exception):

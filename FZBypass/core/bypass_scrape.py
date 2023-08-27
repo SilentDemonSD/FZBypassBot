@@ -1,7 +1,7 @@
 from asyncio import gather, create_task
 from re import search, match, findall, sub
 from requests import get as rget
-from bs4 import BeautifulSoup, NavigableString
+from bs4 import BeautifulSoup, NavigableString, Tag
 
 from FZBypass import Config, LOGGER
 from FZBypass.core.bypass_ddl import transcript
@@ -16,7 +16,7 @@ async def sharespark(url: str) -> str:
         if not (next_s and isinstance(next_s, NavigableString)): 
             continue 
         next2_s = next_s.nextSibling 
-        if next2_s and isinstance(next2_s,Tag) and next2_s.name == 'br' and str(next_s).strip(): 
+        if next2_s and isinstance(next2_s, Tag) and next2_s.name == 'br' and str(next_s).strip(): 
             List = next_s.split() 
             if match(r'^(480p|720p|1080p)(.+)? Links:\Z', next_s): 
                 gd_txt += f'<b>{next_s.replace("Links:", "GDToT Links :")}</b>\n\n' 
@@ -72,11 +72,10 @@ async def kayoanime(url: str) -> str:
     for n, gd in enumerate(gdlinks, start=1):
         if (link := gd["href"].lower()) and "tinyurl" in link:
             link = rget(link).url
-            gd_txt = "Mega" if "mega" in link else "G Group" if  "groups.google" in link else "GDrive"
+            gd_txt = "Mega" if "mega" in link else "G Group" if "groups" in link else "Direct Link"
         prsd += f'''
 
 {n}. <i><b>{gd.string}</b></i>
-┃ 
 ┗ <b>Links :</b> <a href='{link}'><b>{gd_txt}</b></a>'''
     return prsd
 
@@ -95,23 +94,20 @@ async def toonworld4all(url: str):
             prsd += f'''
         
 {n}. <i><b>{t.strong.string}</b></i>
-┃ 
-┖ <b>Episode Link :</b> {l["href"]}'''
+┖ <b>Link :</b> {l["href"]}'''
         return prsd
     links = soup.select('a[href*="/redirect/main.php?url="]')
     titles = soup.select('h5')
     prsd = f"<b><i>{titles[0].string}</i></b>"
     titles.pop(0)
     slicer, _ = divmod(len(links), len(titles))
-    atasks = []
-    for sl in links:
-        atasks.append(create_task(transcript(rget(sl["href"]).url, "https://insurance.techymedies.com/", "https://highkeyfinance.com/", 5)))
-    
+    atasks = [create_task(transcript(rget(sl["href"]).url, "https://insurance.techymedies.com/", "https://highkeyfinance.com/", 5)) for sl in links]
+
     com_tasks = await gather(*atasks, return_exceptions=True)
     lstd = [com_tasks[i:i+slicer] for i in range(0, len(com_tasks), slicer)]
     
     for no, tl in enumerate(titles):
-        prsd += f"\n\n<b>{tl.string}</b>\n\n<b>Links :</b> "
+        prsd += f"\n\n<b>{tl.string}</b>\n┃\n┖ <b>Links :</b> "
         for tl, sl in zip(links, lstd[no]):
             if isinstance(sl, Exception):
                 prsd += str(sl)
