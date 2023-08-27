@@ -26,7 +26,7 @@ async def sharespark(url: str) -> str:
                     soup = BeautifulSoup(rget(ns).text, "html.parser") 
                     title = soup.select('meta[property^="og:description"]') 
                     gd_txt += f"<code>{(title[0]['content']).replace('Download ' , '')}</code>\n{ns}\n\n" 
-                elif rematch(r'https?://pastetot\.\S+', ns):
+                elif match(r'https?://pastetot\.\S+', ns):
                     nxt = sub(r'\(|\)|(https?://pastetot\.\S+)', '', next_s) 
                     gd_txt += f"\n<code>{nxt}</code>\n{ns}\n"
         if len(gd_txt) > 4000:

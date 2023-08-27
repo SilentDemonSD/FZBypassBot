@@ -17,7 +17,7 @@ def is_share_link(url):
     return bool(match(r'https?:\/\/.+\.(gdtot|gdflix)\.\S+|https?:\/\/(filepress|filebee|appdrive|driveleech|driveseed)\.\S+', url))
 
 def is_excep_link(url):
-    return bool(match(r'https?:\/\/.+\.gdtot\.\S+|https?:\/\/(sharespark|skymovieshd|toonworld4all|kayoanime|cinevood|filepress|filebee|appdrive|driveleech|driveseed)\.\S+', url))
+    return bool(match(r'https?:\/\/.+\.(gdtot|gdflix)\.\S+|https?:\/\/(sharespark|skymovieshd|toonworld4all|kayoanime|cinevood|filepress|filebee|appdrive|driveleech|driveseed)\.\S+', url))
 
 async def direct_link_checker(link):
     domain = urlparse(link).hostname
@@ -54,7 +54,7 @@ async def direct_link_checker(link):
         return await transcript(link, "https://adrinolinks.in", "https://bhojpuritop.in/", 8)
     elif bool(match(r"https?:\/\/krownlinks\.\S+", link)):
         return await transcript(link, "https://go.hostadviser.net/", "blog.hostadviser.net/", 8)
-    elif bool(match(r"https?:\/\/du-link\.\S+", link)):
+    elif bool(match(r"https?:\/\/(du-link|dulink)\.\S+", link)):
         return await transcript(link, "https://du-link.in", "https://profitshort.com/", 0)
     elif bool(match(r"https?:\/\/indianshortner\.\S+", link)):
         return await transcript(link, "https://indianshortner.com/", "https://moddingzone.in/", 5)
@@ -139,7 +139,7 @@ async def direct_link_checker(link):
         return await linkvertise(link)
     elif bool(match(r"https?:\/\/rslinks\.\S+", link)):
         return await rslinks(link)
-    elif bool(match(r"https?:\/\/(bit|tinyurl|9qr|shorturl)\.\S+", link)):
+    elif bool(match(r"https?:\/\/(bit|tinyurl|9qr|shorturl|aylm.short.gy)\.\S+", link)):
         return await bitly_tinyurl(link)
     elif bool(match(r"https?:\/\/thinfi\.\S+", link)):
         return await thinfi(link)
@@ -163,7 +163,7 @@ async def direct_link_checker(link):
         elif 'filepress' in domain:
             return await filepress(link)
         elif 'appdrive' in domain or 'gdflix' in domain:
-            return await appdriveorgdflix(link)
+            return await appflix(link)
         else:
             return await sharer_scraper(link)
     else:

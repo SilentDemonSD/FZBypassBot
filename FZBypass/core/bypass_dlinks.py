@@ -109,8 +109,8 @@ async def gdtot(url):
 ┖ <b>Drive Link :</b> {d_link}'''
 
 
-async def appdriveorgdflix(url):
-    async def appdrive_single(url):
+async def appflix(url):
+    async def appflix_single(url):
         d_link = await sharer_scraper(url)
         cget = create_scraper().request
         soup = BeautifulSoup(cget('GET', url).content, "html.parser")
@@ -118,7 +118,7 @@ async def appdriveorgdflix(url):
         return f'''┎ <b>Name :</b> <i>{ss[0].string.split(":")[1]}</i>
 ┠ <b>Size :</b> <i>{ss[2].string.split(":")[1]}</i>
 ┃ 
-┠ <b>AppDrive Link :</b> {url}
+┠ <b>Source Link :</b> {url}
 ┖ <b>Drive Link :</b> {d_link}'''
     if "/pack/" in url:
         cget = create_scraper().request
@@ -133,8 +133,8 @@ async def appdriveorgdflix(url):
             else:
                 body += "\n\n" + bp_link
         return f'''┎ <b>Name :</b> <i>{soup.title.string}</i>
-┖ <b>AppDrive Pack Link :</b> {url}{body}'''
-    return await appdrive_single(url)
+┖ <b>Source Pack Link :</b> {url}{body}'''
+    return await appflix_single(url)
 
 
 async def sharer_scraper(url):

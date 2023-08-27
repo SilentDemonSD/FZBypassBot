@@ -28,10 +28,9 @@
 - All `Credits` to Respective Script Owner & Contributors
 - All these are Collected from the Internet / Web
 
-| __Websites / Sites__ | __Status__ |
+### ***Shorten Sites***
+| __Shortener Sites__ | __Status__ |
 |:--------------------:|:----------:|
-|`new9.gdtot.cfd`|✅️|
-|`appdrive.club`|✅️|
 |`tinyfy.in`|✅️|
 |`xpshort.com` + `push.bdnewsx.com` + `techymozo.com`|✅️|
 |`gtlinks.me` + `gyanilinks.com`|✅️|
@@ -39,7 +38,7 @@
 |`earn.moneykamalo.com`|✅️|
 |`adrinolinks.com`|❌️|
 |`krownlinks.me`|✅️|
-|`du-link.in`|✅️|
+|`du-link.in` + `dulink.in`|✅️|
 |`link.tnshort.net`|✅️|
 |`go.lolshort.tech`|✅️|
 |`indianshortner.in`|✅️|
@@ -57,7 +56,7 @@
 |`urlsopen.com`|⚠️|
 |`mdisk.pro`|✅️|
 |`ouo.io` + `ouo.press`|✅️|
-|`shareus.in` + `shareus.io` + `shrs.link`|✅️|
+|`shareus.in` + `shareus.io` + `shrs.link`|️❌️|
 |`dropbox.in`|✅️|
 |`disk.yandex.ru` + `yandex.com`|✅️|
 |`try2link.com`|✅️|
@@ -71,7 +70,7 @@
 |`link.vipurl.in` + `vipurl.in` + `count.vipurl.in`|✅️|
 |`v2links.com`|✅️|
 |`indyshare.net`|✅️|
-|`9qr.de`|✅️|
+|`9qr.de` + `shorturl.ac` + `aylm.short.gy`|✅️|
 |`linkyearn.com`|✅️|
 |`earn4link.in`|✅️|
 |`linksly.co`|✅️|
@@ -90,7 +89,6 @@
 |`moneycase.link`|✅️|
 |`urllinkshort.in`|✅️|
 |`dtglinks.in`|✅️|
-|`shorturl.ac`|✅️|
 |`More Sites...Updating`|️♻️|
 
 ### ***Scrape Sites***
@@ -101,6 +99,15 @@
 |`kayoanime.com` **(Page)**|✅️|
 |`skymovieshd.*`|✅️|
 |`ww1.sharespark.cfd`|✅️|
+
+### ***GDrive Sites***
+| __Websites__ | __Status__ |
+|:--------------------:|:----------:|
+|`new9.gdtot.cfd`|✅️|
+|`filepress.space`|✅️|
+|`appdrive.club` **(File + Pack)**|✅️|
+|`gdflix.cc`**(File + Pack)**|✅️|
+|`driveleech.*` + `driveseed.*`|✅️|
 
 ---
 
