@@ -14,7 +14,7 @@ async def sharespark(url: str) -> str:
     for br in soup.findAll('br'): 
         next_s = br.nextSibling 
         if not (next_s and isinstance(next_s, NavigableString)): 
-            continue 
+            continue
         next2_s = next_s.nextSibling 
         if next2_s and isinstance(next2_s, Tag) and next2_s.name == 'br' and str(next_s).strip(): 
             List = next_s.split() 

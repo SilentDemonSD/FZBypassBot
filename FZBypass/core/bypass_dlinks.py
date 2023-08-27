@@ -125,7 +125,7 @@ async def appflix(url):
         soup = BeautifulSoup(cget("GET", url).content, "html.parser")
         p_url = urlparse(url)
         body = ""
-        atasks = [create_task(appdrive_single(f"{p_url.scheme}://{p_url.hostname}" + ss['href'])) for ss in soup.select("a[href^='/file/']")]
+        atasks = [create_task(appflix_single(f"{p_url.scheme}://{p_url.hostname}" + ss['href'])) for ss in soup.select("a[href^='/file/']")]
         completed_tasks = await gather(*atasks, return_exceptions=True)
         for bp_link in completed_tasks:
             if isinstance(bp_link, Exception):
