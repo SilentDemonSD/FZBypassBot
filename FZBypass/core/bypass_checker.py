@@ -17,7 +17,7 @@ def is_share_link(url):
     return bool(match(r'https?:\/\/.+\.gdtot\.\S+|https?:\/\/(filepress|filebee|appdrive|driveleech|driveseed)\.\S+', url))
 
 def is_excep_link(url):
-    return bool(match(r'https?:\/\/.+\.gdtot\.\S+|https?:\/\/(toonworld4all|cinevood|filepress|filebee|appdrive|driveleech|driveseed)\.\S+', url))
+    return bool(match(r'https?:\/\/.+\.gdtot\.\S+|https?:\/\/(toonworld4all|kayoanime|cinevood|filepress|filebee|appdrive|driveleech|driveseed)\.\S+', url))
 
 async def direct_link_checker(link):
     domain = urlparse(link).hostname
@@ -147,6 +147,8 @@ async def direct_link_checker(link):
     # DL Sites
     elif bool(match(r"https?:\/\/cinevood\.\S+", link)):
         return await cinevood(link)
+    elif bool(match(r"https?:\/\/kayoanime\.\S+", link)):
+        return await kayoanime(link)
     elif bool(match(r"https?:\/\/toonworld4all\.\S+", link)):
         return await toonworld4all(link)
     

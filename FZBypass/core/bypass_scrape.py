@@ -21,6 +21,29 @@ async def cinevood(url: str) -> str:
 ┖ <a href='{gt["href"]}'><b>GDToT Link</b></a> | <a href='{gf["href"]}'><b>GDFlix Link</b></a>'''
     return prsd
 
+# kayoanime
+async def kayoanime(url: str) -> str:
+    soup = BeautifulSoup(rget(url).text, 'html.parser')
+    titles = soup.select('h6')
+    gdlinks = soup.select('a[href*="drive.google.com"], a[href*="tinyurl"]')
+    prsd = f"<b>{soup.title.string}</b>"
+    gd_txt, link = "", ""
+    for n, gd in enumerate(gdlinks, start=1):
+        if (link := gd["href"]) and "tinyurl" in link:
+            link = rget(link).url
+            if "mega" in link:
+                gd_txt = "Mega"
+            elif "groups.google" in link:
+                gd_txt = "G Group"
+            else:
+                gd_txt = "Direct Link"
+        else:
+            gd_txt = "GDrive"
+        prsd += f'''
+        
+┏<b>🏷️ Name:</b> <code>{gd.string}</code>
+┗<b>🔗 Links:</b> <a href='{link}'><b>{gd_txt}</b></a>'''
+    return prsd
 
 async def toonworld4all(url: str):
     if "/redirect/main.php?url=" in url:
