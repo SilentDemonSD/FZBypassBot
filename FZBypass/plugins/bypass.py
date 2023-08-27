@@ -1,6 +1,5 @@
 from time import time
 from re import match
-from traceback import format_exc
 from asyncio import create_task, gather, sleep as asleep
 from pyrogram.filters import command, private, user
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultArticle, InputTextMessageContent
@@ -63,7 +62,6 @@ async def bypass_check(client, message):
     parse_data = []
     for result, link in zip(completed_tasks, tlinks):
         if isinstance(result, Exception):
-            LOGGER.info(format_exc())
             bp_link = f"<b>Bypass Error:</b> {result}"
         elif is_excep_link(link):
             bp_link = result

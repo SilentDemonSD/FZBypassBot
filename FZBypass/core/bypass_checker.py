@@ -1,6 +1,8 @@
 from re import match
+from traceback import format_exc
 from urllib.parse import urlparse
 
+from FZBypass import LOGGER
 from FZBypass.core.bypass_dlinks import *
 from FZBypass.core.bypass_ddl import *
 from FZBypass.core.bypass_scrape import *
@@ -154,7 +156,10 @@ async def direct_link_checker(link):
     elif bool(match(r"https?:\/\/skymovieshd\.\S+", link)):
         return await skymovieshd(link)
     elif bool(match(r"https?:\/\/.+\.sharespark\.\S+", link)):
-        return await sharespark(link)
+        try:
+            return await sharespark(link)
+        except:
+            LOGGER.info(format_exc())
     
     # DL Links
     elif is_share_link(link):
