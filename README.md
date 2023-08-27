@@ -98,6 +98,9 @@
 |:--------------------:|:----------:|
 |`cinevood.*` **(Page)** |✅️|
 |`toonworld4all.*` **(Page + Episode)** |✅️|
+|`kayoanime.com` **(Page)**|✅️|
+|`skymovieshd.*`|✅️|
+|`ww1.sharespark.cfd`|✅️|
 
 ---
 

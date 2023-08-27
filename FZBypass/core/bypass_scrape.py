@@ -1,10 +1,51 @@
 from asyncio import gather, create_task
-from re import search
+from re import search, match, findall, sub
 from requests import get as rget
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, NavigableString
 
 from FZBypass import Config, LOGGER
 from FZBypass.core.bypass_ddl import transcript
+
+
+async def sharespark(url: str) -> str:
+    gd_txt = "" 
+    res = rget("?action=printpage;".join(url.split('?'))) 
+    soup = BeautifulSoup(res.text, 'html.parser') 
+    for br in soup.findAll('br'): 
+        next_s = br.nextSibling 
+        if not (next_s and isinstance(next_s, NavigableString)): 
+            continue 
+        next2_s = next_s.nextSibling 
+        if next2_s and isinstance(next2_s,Tag) and next2_s.name == 'br' and str(next_s).strip(): 
+            List = next_s.split() 
+            if match(r'^(480p|720p|1080p)(.+)? Links:\Z', next_s): 
+                gd_txt += f'<b>{next_s.replace("Links:", "GDToT Links :")}</b>\n\n' 
+            for s in List: 
+                ns = sub(r'\(|\)', '', s)
+                if match(r'https?://.+\.gdtot\.\S+', ns):
+                    soup = BeautifulSoup(rget(ns).text, "html.parser") 
+                    title = soup.select('meta[property^="og:description"]') 
+                    gd_txt += f"<code>{(title[0]['content']).replace('Download ' , '')}</code>\n{ns}\n\n" 
+                elif rematch(r'https?://pastetot\.\S+', ns):
+                    nxt = sub(r'\(|\)|(https?://pastetot\.\S+)', '', next_s) 
+                    gd_txt += f"\n<code>{nxt}</code>\n{ns}\n"
+        if len(gd_txt) > 4000:
+            return gd_txt # Broken Function
+    if gd_txt != "": 
+        return gd_txt
+
+
+async def skymovieshd(url: str) -> str:
+    gd_txt = ""
+    soup = BeautifulSoup(rget(url, allow_redirects=False).text, 'html.parser') 
+    a = soup.select('a[href*="howblogs.xyz"]')
+    t = soup.select('div[class^="Robiul"]')
+    gd_txt += f"<i>{t[-1].text.replace('Download ', '')}</i>\n\n<b>{a[0].text} :</b> \n"
+    nsoup = BeautifulSoup(rget(a[0]['href'], allow_redirects=False).text, 'html.parser') 
+    atag = nsoup.select('div[class="cotent-box"] > a[href]')
+    for no, link in enumerate(atag, start=1): 
+        gd_txt += f"{no}. {link['href']}\n"
+    return gd_txt
 
 
 async def cinevood(url: str) -> str:
@@ -21,29 +62,24 @@ async def cinevood(url: str) -> str:
 ┖ <a href='{gt["href"]}'><b>GDToT Link</b></a> | <a href='{gf["href"]}'><b>GDFlix Link</b></a>'''
     return prsd
 
-# kayoanime
+
 async def kayoanime(url: str) -> str:
     soup = BeautifulSoup(rget(url).text, 'html.parser')
     titles = soup.select('h6')
     gdlinks = soup.select('a[href*="drive.google.com"], a[href*="tinyurl"]')
     prsd = f"<b>{soup.title.string}</b>"
-    gd_txt, link = "", ""
+    gd_txt, link = "GDrive", ""
     for n, gd in enumerate(gdlinks, start=1):
-        if (link := gd["href"]) and "tinyurl" in link:
+        if (link := gd["href"].lower()) and "tinyurl" in link:
             link = rget(link).url
-            if "mega" in link:
-                gd_txt = "Mega"
-            elif "groups.google" in link:
-                gd_txt = "G Group"
-            else:
-                gd_txt = "Direct Link"
-        else:
-            gd_txt = "GDrive"
+            gd_txt = "Mega" if "mega" in link else "G Group" if  "groups.google" in link else "GDrive"
         prsd += f'''
-        
-┏<b>🏷️ Name:</b> <code>{gd.string}</code>
-┗<b>🔗 Links:</b> <a href='{link}'><b>{gd_txt}</b></a>'''
+
+{n}. <i><b>{gd.string}</b></i>
+┃ 
+┗ <b>Links :</b> <a href='{link}'><b>{gd_txt}</b></a>'''
     return prsd
+
 
 async def toonworld4all(url: str):
     if "/redirect/main.php?url=" in url:
