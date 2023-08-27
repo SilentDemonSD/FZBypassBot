@@ -48,9 +48,9 @@
 |`go.indiurl.in.net`|⚠️|
 |`go.earnl.xyz`|⚠️|
 |`linkvertise.com`|✅️|
-|`link.tnlink.in`|❌️|
+|`link.tnlink.in`|️✅️|
 |`link4earn.com` + `link4earn.in`|✅️|
-|`shortingly.in`|❌️|️
+|`shortingly.com`|️✅️|️
 |`go.flashlink.in`|⚠️|
 |`short2url.in`|✅️|
 |`urlsopen.com`|⚠️|
@@ -90,6 +90,12 @@
 |`urllinkshort.in`|✅️|
 |`dtglinks.in`|✅️|
 |`shrtco.de` + `9qr.de` + `shiny.link`|✅️|
+|`kpslink.in`|✅️|
+|`v2.kpslink.in`|✅️|
+|`tamizhmasters.com`|✅️|
+|`tglink.in`|✅️|
+|`pandaznetwork.com`|✅️|
+|`url4earn.in`|✅️|
 |`More Sites...Updating`|️♻️|
 
 ### ***Scrape Sites***

@@ -69,11 +69,11 @@ async def direct_link_checker(link):
     elif bool(match(r"https?:\/\/go.earnl\.\S+", link)):
         return await transcript(link, "https://v.earnl.xyz", "https://link.modmakers.xyz/", 5)
     elif bool(match(r"https?:\/\/.+\.tnlink\.\S+", link)):
-        return await transcript(link, "https://page.tnlink.in/", "https://financeyogi.net/", 8)
+        return await transcript(link, "https://news.speedynews.xyz/", "https://market.finclub.in/", 5)
     elif bool(match(r"https?:\/\/link4earn\.\S+", link)):
         return await transcript(link, "https://link4earn.com", "https://studyis.xyz/", 6)
     elif bool(match(r"https?:\/\/shortingly\.\S+", link)):
-        return await transcript(link, "https://shortingly.in", "https://tech.gyanitheme.com/", 5)
+        return await transcript(link, "https://go.blogytube.com/", "https://blogytube.com/", 5)
     elif bool(match(r"https?:\/\/go.flashlink\.\S+", link)):
         return await transcript(link, "https://files.earnash.com/", "https://flash1.cordtpoint.co.in", 15)
     elif bool(match(r"https?:\/\/short2url\.\S+", link)):
@@ -130,6 +130,18 @@ async def direct_link_checker(link):
         return await transcript(link, "https://happyfiles.dtglinks.in/", "https://tech.filohappy.in/", 5)
     elif bool(match(r"https?:\/\/v2links\.\S+", link)):
         return await transcript(link, "https://vzu.us/", "https://gadgetsreview27.com/", 5)
+    elif bool(match(r"https?:\/\/kpslink\.\S+", link)):
+        return await transcript(link, "https://get.infotamizhan.xyz/", "https://infotamizhan.xyz/", 5)
+    elif bool(match(r"https?:\/\/v2.kpslink\.\S+", link)):
+        return await transcript(link, "https://v2download.kpslink.in/", "https://infotamizhan.xyz/", 5)
+    elif bool(match(r"https?:\/\/tamizhmasters\.\S+", link)):
+        return await transcript(link, "https://tamizhmasters.com/", "https://pokgames.com/", 5)
+    elif bool(match(r"https?:\/\/tglink\.\S+", link)):
+        return await transcript(link, "https://tglink.in/", "https://www.proappapk.com/", 5)
+    elif bool(match(r"https?:\/\/go.pandaznetwork\.\S+", link)):
+        return await transcript(link, "https://pandaznetwork.com/", "https://bhaiyaji.cyberstockofficial.in/", 0)
+    elif bool(match(r"https?:\/\/url4earn\.\S+", link)):
+        return await transcript(link, "https://go.url4earn.in/", "https://techminde.com/", 8)
     
     elif bool(match(r"https?:\/\/ouo\.\S+", link)):
         return await ouo(link)
@@ -158,10 +170,7 @@ async def direct_link_checker(link):
     elif bool(match(r"https?:\/\/skymovieshd\.\S+", link)):
         return await skymovieshd(link)
     elif bool(match(r"https?:\/\/.+\.sharespark\.\S+", link)):
-        try:
-            return await sharespark(link)
-        except:
-            LOGGER.info(format_exc())
+        return await sharespark(link)
     
     # DL Links
     elif is_share_link(link):
