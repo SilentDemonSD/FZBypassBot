@@ -23,13 +23,13 @@ async def sharespark(url: str) -> str:
             for s in next_s.split(): 
                 ns = sub(r'\(|\)', '', s)
                 if match(r'https?://.+\.gdtot\.\S+', ns):
-                    #soup = BeautifulSoup(rget(ns).text, "html.parser") 
-                    #parse_data = (soup.select('meta[property^="og:description"]')[0]['content']).replace('Download ' , '').rsplit('-', maxsplit=1)
-                    #LOGGER.info(parse_data)
+                    soup = BeautifulSoup(rget(ns.strip()).text, "html.parser")
+                    LOGGER.info(soup.select('meta[property^="og:description"]'))
+                    #parse_data = ([0]['content']).replace('Download ' , '').rsplit('-', maxsplit=1)
                     gd_txt += f"\n{ns}\n\n"
                 elif match(r'https?://pastetot\.\S+', ns):
                     nxt = sub(r'\(|\)|(https?://pastetot\.\S+)', '', next_s) 
-                    gd_txt += f"\n<code>{nxt}</code>\n{ns}\n"
+                    gd_txt += f"\n<b>{nxt}</b>\n┖ {ns}\n"
         if len(gd_txt) > 4000:
             return gd_txt # Broken Function
     if gd_txt != "": 
