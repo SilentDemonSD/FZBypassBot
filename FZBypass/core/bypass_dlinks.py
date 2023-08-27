@@ -49,7 +49,6 @@ async def filepress(url: str):
             else:
                 tg_link = 'Telegram Not Uploaded / Unavailable' if tg_id["statusText"] == "Ok" else tg_id["statusText"]
     except Exception as e:
-        LOGGER.error(format_exc())
         raise DDLException(f'<b>ERROR:</b> {e.__class__.__name__}')
     return f'''┎ <b>Name :</b> <i>{name}</i>
 ┠ <b>Size :</b> <i>{size}</i>

@@ -24,8 +24,9 @@ async def sharespark(url: str) -> str:
                 ns = sub(r'\(|\)', '', s)
                 if match(r'https?://.+\.gdtot\.\S+', ns):
                     soup = BeautifulSoup(rget(ns).text, "html.parser") 
-                    title = soup.select('meta[property^="og:description"]') 
-                    gd_txt += f"<code>{(title[0]['content']).replace('Download ' , '')}</code>\n{ns}\n\n" 
+                    parse_data = (soup.select('meta[property^="og:description"]')[0]['content']).replace('Download ' , '').rsplit('-', maxsplit=1)
+                    LOGGER.info(parse_data)
+                    gd_txt += f"<code>{parse_data[0]}</code>\n{ns}\n\n"
                 elif match(r'https?://pastetot\.\S+', ns):
                     nxt = sub(r'\(|\)|(https?://pastetot\.\S+)', '', next_s) 
                     gd_txt += f"\n<code>{nxt}</code>\n{ns}\n"
