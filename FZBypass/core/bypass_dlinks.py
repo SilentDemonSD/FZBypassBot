@@ -70,7 +70,7 @@ async def gdtot(url):
             url = cget('GET', url).url
             p_url = urlparse(url)
             res = cget("POST", f"{p_url.scheme}://{p_url.hostname}/ddl", data={ 'dl': str(url.split('/')[-1])})
-        except Exception as e
+        except Exception as e:
             raise DDLException(f'ERROR: {e.__class__.__name__}')
         if (drive_link := findall(r"myDl\('(.*?)'\)", res.text)) and "drive.google.com" in drive_link[0]:
             d_link = drive_link[0]
