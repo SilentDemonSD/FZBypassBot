@@ -69,32 +69,32 @@ async def gdtot(url):
         try:
             url = cget('GET', url).url
             p_url = urlparse(url)
-            res = cget("POST", f"{p_url.scheme}://{p_url.hostname}/ddl", data={ 'dl': str(url.split('/')[-1])})
+            res = cget("POST", f"{p_url.scheme}://{p_url.hostname}/ddl", data={'dl': str(url.split('/')[-1])})
         except Exception as e:
-            raise DDLException(f'ERROR: {e.__class__.__name__}')
+            raise DDLException(f'{e.__class__.__name__}')
         if (drive_link := findall(r"myDl\('(.*?)'\)", res.text)) and "drive.google.com" in drive_link[0]:
             d_link = drive_link[0]
         elif Config.GDTOT_CRYPT:
             cget('GET', url, cookies={'crypt': Config.GDTOT_CRYPT})
             p_url = urlparse(url)
-            js_script = cget('GET', f"{p_url.scheme}://{p_url.hostname}/dld?id={url.split('/')[-1]}")
+            js_script = cget('POST', f"{p_url.scheme}://{p_url.hostname}/dld", data={'dwnld': url.split('/')[-1]})
             g_id = findall('gd=(.*?)&', js_script.text)
             try:
                 decoded_id = b64decode(str(g_id[0])).decode('utf-8')
             except:
-                raise DDLException("ERROR: Try in your browser, mostly file not found or user limit exceeded!")
+                raise DDLException("Try in your browser, mostly file not found or user limit exceeded!")
             d_link = f'https://drive.google.com/open?id={decoded_id}'
         else:
-            raise DDLException('ERROR: Drive Link not found, Try in your broswer! GDTOT_CRYPT not Provided!')
+            raise DDLException('Drive Link not found, Try in your broswer! GDTOT_CRYPT not Provided!')
     else:
         token_url = token_url[0]
         try:
             token_page = cget('GET', token_url)
         except Exception as e:
-            raise DDLException(f'ERROR: {e.__class__.__name__} with {token_url}')
+            raise DDLException(f'{e.__class__.__name__} with {token_url}')
         path = findall('\("(.*?)"\)', token_page.text)
         if not path:
-            raise DDLException('ERROR: Cannot bypass this')
+            raise DDLException('Cannot bypass this')
         path = path[0]
         raw = urlparse(token_url)
         final_url = f'{raw.scheme}://{raw.hostname}{path}'
@@ -106,6 +106,33 @@ async def gdtot(url):
 ┃ 
 ┠ <b>GDToT Link :</b> {url}
 ┖ <b>Drive Link :</b> {d_link}'''
+
+
+async def hubdrive(url):
+    if not Config.HUBDRIVE_CRYPT:
+        raise DDLException("HubDrive Crypt Not Provided !")
+    rs = Session()
+    rs.cookies.update({'crypt': Config.HUBDRIVE_CRYPT})
+    resp = rs.get(url)
+    title = findall(r'>(.*?)<\/h4>', resp.text)[0]
+    size = findall(r'>(.*?)<\/td>', resp.text)[1]
+    p_url = urlparse(url)
+    try:
+        js_query = rs.post(f"{p_url.scheme}://{p_url.hostname}/ajax.php?ajax=download", data={'id': str(url.split('/')[-1])}, headers={'x-requested-with': 'XMLHttpRequest'}).json()
+    except Exception as e:
+        raise DDLException(f'{e.__class__.__name__}')
+    if str(js_query['code']) == '200':
+        res = rs.get(f"{p_url.scheme}://{p_url.hostname}{js_query['file']}")
+        soup = BeautifulSoup(res.text, 'html.parser')
+        gd_data = soup.select('a[class="btn btn-primary btn-user"]')
+        return f'''┎ <b>Name :</b> <i>{title}</i>
+┠ <b>Size :</b> <i>{size}</i>
+┃ 
+┠ <b>HubDrive Link :</b> {url}
+┠ <b>Drive Link :</b> {gd_data[0]['href']}
+┖ <b>Instant Link :</b> <a href="{gd_data[1]['href']}">Click Here</a>'''
+    else:
+        raise DDLException(f'{js_query["file"]}')'
 
 
 async def appflix(url):
@@ -146,13 +173,13 @@ async def sharer_scraper(url):
         header = {"useragent": "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/534.10 (KHTML, like Gecko) Chrome/7.0.548.0 Safari/534.10"}
         res = cget('GET', url, headers=header)
     except Exception as e:
-        raise DDLException(f'ERROR: {e.__class__.__name__}')
+        raise DDLException(f'{e.__class__.__name__}')
     key = findall('"key",\s+"(.*?)"', res.text)
     if not key:
-        raise DDLException("ERROR: Download Link Key not found!")
+        raise DDLException("Download Link Key not found!")
     key = key[0]
     if not etree.HTML(res.content).xpath("//button[@id='drc']"):
-        raise DDLException("ERROR: This link don't have direct download button")
+        raise DDLException("Link don't have direct download button")
     boundary = uuid4()
     headers = {
         'Content-Type': f'multipart/form-data; boundary=----WebKitFormBoundary{boundary}',
@@ -165,12 +192,11 @@ async def sharer_scraper(url):
            f'------WebKitFormBoundary{boundary}\r\nContent-Disposition: form-data; name="action_token"\r\n\r\n\r\n' \
            f'------WebKitFormBoundary{boundary}--\r\n'
     try:
-        res = cget("POST", url, cookies=res.cookies,
-                   headers=headers, data=data).json()
+        res = cget("POST", url, cookies=res.cookies, headers=headers, data=data).json()
     except Exception as e:
         raise DDLException(f'ERROR: {e.__class__.__name__}')
     if "url" not in res:
-        raise DDLException('ERROR: Drive Link not found, Try in your broswer')
+        raise DDLException('Drive Link not found, Try in your browser')
     if "drive.google.com" in res["url"]:
         return res["url"]
     try:
@@ -180,7 +206,7 @@ async def sharer_scraper(url):
     if (drive_link := etree.HTML(res.content).xpath("//a[contains(@class,'btn')]/@href")) and "drive.google.com" in drive_link[0]:
         return drive_link[0]
     else:
-        raise DDLException('ERROR: Drive Link not found, Try in your broswer')
+        raise DDLException('Drive Link not found, Try in your browser')
 
 
 

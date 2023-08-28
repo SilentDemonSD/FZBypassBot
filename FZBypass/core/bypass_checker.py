@@ -46,8 +46,8 @@ async def direct_link_checker(link):
         return await transcript(link, "https://xpshort.com/", "https://www.twinthrottlers.xyz/", 8)
     elif bool(match(r"https?:\/\/go.lolshort\.\S+", link)):
         return await transcript(link, "https://get.lolshort.tech/", "https://tech.animezia.com/", 8)
-    elif bool(match(r"https?:\/\/go.onepagelink\.\S+", link)):
-        return await transcript(link, "go.onepagelink.in", "gorating.in", 9)
+    elif bool(match(r"https?:\/\/(.+\.)?onepagelink\.\S+", link)):
+        return await transcript(link, "https://go.onepagelink.in/", "https://gorating.in/", 5)
     elif bool(match(r"https?:\/\/earn.moneykamalo\.\S+", link)):
         return await transcript(link, "https://go.moneykamalo.com", "https://blog.techkeshri.com/", 5)
     elif bool(match(r"https?:\/\/tinyfy\.\S+", link)):
@@ -142,6 +142,8 @@ async def direct_link_checker(link):
         return await transcript(link, "https://pandaznetwork.com/", "https://bhaiyaji.cyberstockofficial.in/", 0)
     elif bool(match(r"https?:\/\/url4earn\.\S+", link)):
         return await transcript(link, "https://go.url4earn.in/", "https://techminde.com/", 8)
+    elif bool(match(r"https?:\/\/ez4short\.\S+", link)):
+        return await transcript(link, "https://ez4short.com/", "https://ez4mods.com/", 5)
     
     elif bool(match(r"https?:\/\/ouo\.\S+", link)):
         return await ouo(link)
@@ -173,6 +175,8 @@ async def direct_link_checker(link):
         return await sharespark(link)
     
     # DL Links
+    elif bool(match(r"https?:\/\/hubdrive\.\S+", link)):
+        return await hubdrive(link)
     elif is_share_link(link):
         if 'gdtot' in domain:
             return await gdtot(link)

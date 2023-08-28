@@ -32,7 +32,7 @@ class Config:
     GDTOT_CRYPT     = getenv('GDTOT_CRYPT', '')
     DRIVEFIRE_CRYPT = getenv('DRIVEFIRE_CRYPT', '')
     KOLOP_CRYPT     = getenv('KOLOP_CRYPT', '')
-    HUB_CRYPT       = getenv('HUB_CRYPT', '')
+    HUBDRIVE_CRYPT  = getenv('HUBDRIVE_CRYPT', '')
     KAT_CRYPT       = getenv('KAT_CRYPT', '')
     UPTOBOX_TOKEN   = getenv('UPTOBOX_TOKEN', '')
     TERA_COOKIE     = getenv('TERA_COOKIE', '')

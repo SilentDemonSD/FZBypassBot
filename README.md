@@ -39,6 +39,7 @@
 |`adrinolinks.com`|❌️|
 |`krownlinks.me`|✅️|
 |`du-link.in` + `dulink.in`|✅️|
+|`onepagelink.in`|✅️|
 |`link.tnshort.net`|✅️|
 |`go.lolshort.tech`|✅️|
 |`indianshortner.in`|✅️|
@@ -96,6 +97,7 @@
 |`tglink.in`|✅️|
 |`pandaznetwork.com`|✅️|
 |`url4earn.in`|✅️|
+|`ez4short.com`|✅️|
 |`More Sites...Updating`|️♻️|
 
 ### ***Scrape Sites***
@@ -114,6 +116,7 @@
 |`filepress.space` + `filebee.*`|✅️|
 |`appdrive.club` **(File + Pack)**|✅️|
 |`gdflix.cc`**(File + Pack)**|✅️|
+|`hubdrive.co`|✅️|
 
 ---
 
@@ -165,6 +168,7 @@
 - `AUTH_CHATS`: Group ID (with Topic ID), Separated by space.
   > **Format:** chat_id:topic_id chat_id chat_id:topic_id
 - `GDTOT_CRYPT`: GdToT Crypt (Optional). It works with & without Crypt!
+- `HUBDRIVE_CRYPT`: HubDrive Crypt, Get from Cookie Editor Extension.
 - `TERA_COOKIE`: Get the Terabox `ndus` Cookie from Cookie Editor Extension.
 - `UPSTREAM_REPO`: Put Upstream Repo to Update. Defaults to `https://github.com/SilentDemonSD/FZBypassBot`
 - `UPSTREAM_BRANCH`: Put Branch Name. Defaults to `main`
