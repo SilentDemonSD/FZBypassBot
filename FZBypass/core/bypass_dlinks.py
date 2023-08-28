@@ -12,7 +12,7 @@ from uuid import uuid4
 from bs4 import BeautifulSoup
 from cloudscraper import create_scraper
 from lxml import etree
-from requests import session
+from requests import Session
 from aiohttp import ClientSession 
 
 from FZBypass import LOGGER, Config
