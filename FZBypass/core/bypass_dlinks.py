@@ -132,7 +132,7 @@ async def hubdrive(url):
 ┠ <b>Drive Link :</b> {gd_data[0]['href']}
 ┖ <b>Instant Link :</b> <a href="{gd_data[1]['href']}">Click Here</a>'''
     else:
-        raise DDLException(f'{js_query["file"]}')'
+        raise DDLException(f'{js_query["file"]}')
 
 
 async def appflix(url):
