@@ -111,10 +111,9 @@
 | __Websites__ | __Status__ |
 |:--------------------:|:----------:|
 |`new9.gdtot.cfd`|✅️|
-|`filepress.space`|✅️|
+|`filepress.space` + `filebee.*`|✅️|
 |`appdrive.club` **(File + Pack)**|✅️|
 |`gdflix.cc`**(File + Pack)**|✅️|
-|`driveleech.*` + `driveseed.*`|✅️|
 
 ---
 

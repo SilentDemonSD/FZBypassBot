@@ -16,10 +16,10 @@ anonSites = ['hotfile.io', 'bayfiles.com', 'megaupload.nz', 'letsupload.cc',
             'openload.cc', 'share-online.is', 'upvid.cc']
 
 def is_share_link(url):
-    return bool(match(r'https?:\/\/.+\.(gdtot|gdflix)\.\S+|https?:\/\/(filepress|filebee|appdrive|driveleech|driveseed)\.\S+', url))
+    return bool(match(r'https?:\/\/.+\.(gdtot|gdflix)\.\S+|https?:\/\/(gdflix|filepress|filebee|appdrive)\.\S+', url))
 
 def is_excep_link(url):
-    return bool(match(r'https?:\/\/.+\.(gdtot|gdflix|sharespark)\.\S+|https?:\/\/(skymovieshd|toonworld4all|kayoanime|cinevood|filepress|filebee|appdrive|driveleech|driveseed)\.\S+', url))
+    return bool(match(r'https?:\/\/.+\.(gdtot|gdflix|sharespark)\.\S+|https?:\/\/(skymovieshd|toonworld4all|kayoanime|cinevood|gdflix|filepress|filebee|appdrive)\.\S+', url))
 
 async def direct_link_checker(link):
     domain = urlparse(link).hostname

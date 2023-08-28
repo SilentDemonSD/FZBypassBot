@@ -69,8 +69,8 @@ async def gdtot(url):
         try:
             url = cget('GET', url).url
             p_url = urlparse(url)
-            res = cget("GET", f"{p_url.scheme}://{p_url.hostname}/ddl/{url.split('/')[-1]}")
-        except Exception as e:
+            res = cget("POST", f"{p_url.scheme}://{p_url.hostname}/ddl", data={ 'dl': str(url.split('/')[-1])})
+        except Exception as e
             raise DDLException(f'ERROR: {e.__class__.__name__}')
         if (drive_link := findall(r"myDl\('(.*?)'\)", res.text)) and "drive.google.com" in drive_link[0]:
             d_link = drive_link[0]
@@ -112,6 +112,7 @@ async def appflix(url):
     async def appflix_single(url):
         d_link = await sharer_scraper(url)
         cget = create_scraper().request
+        url = cget("GET", url).url
         soup = BeautifulSoup(cget('GET', url).content, "html.parser")
         ss = soup.select("li[class^='list-group-item']")
         return f'''┎ <b>Name :</b> <i>{ss[0].string.split(":")[1]}</i>
@@ -121,6 +122,7 @@ async def appflix(url):
 ┖ <b>Drive Link :</b> {d_link}'''
     if "/pack/" in url:
         cget = create_scraper().request
+        url = cget("GET", url).url
         soup = BeautifulSoup(cget("GET", url).content, "html.parser")
         p_url = urlparse(url)
         body = ""
