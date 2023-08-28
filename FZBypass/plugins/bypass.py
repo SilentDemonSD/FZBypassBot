@@ -100,7 +100,7 @@ async def send_logs(client, message):
 @Bypass.on_message(command('restart') & user(Config.OWNER_ID))
 async def restart(client, message):
     restart_message = await message.reply('<i>Restarting...</i>')
-    (await create_subprocess_exec('python3', 'update.py')).wait()
+    await (await create_subprocess_exec('python3', 'update.py')).wait()
     with open(".restartmsg", "w") as f:
         f.write(f"{restart_message.chat.id}\n{restart_message.id}\n")
     osexecl(executable, executable, "-m", "FZBypass")
