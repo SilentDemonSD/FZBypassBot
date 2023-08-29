@@ -30,7 +30,7 @@ async def start_msg(client, message):
     )
 
 
-@Bypass.on_message(command(['bypass', 'bp']) & chat_and_topics & user(Config.OWNER_ID))
+@Bypass.on_message(command(['bypass', 'bp']) & chat_and_topics | (private & user(Config.OWNER_ID)))
 async def bypass_check(client, message):
     uid = message.from_user.id
     if (reply_to := message.reply_to_message) and (reply_to.text is not None or reply_to.caption is not None):
