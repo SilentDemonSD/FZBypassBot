@@ -25,7 +25,7 @@ async def start_msg(client, message):
  <b>Use Me Here :</b> @zenupdatess''',
         quote=True,
         reply_markup=InlineKeyboardMarkup([
-            [InlineKeyboardButton('🎓 Dev', url='https://t.me/nyapurana'), InlineKeyboardButton('🔍 Updates', url='https://t.me/zenupdatess')]
+            [InlineKeyboardButton('Dev', url='https://t.me/nyapurana'), InlineKeyboardButton('Group', url='https://t.me/+LvdzXnhY4l9lMGU1')]
             ])
     )
 
