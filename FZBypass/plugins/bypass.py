@@ -22,7 +22,7 @@ async def start_msg(client, message):
     
     <i><b>Bot Started {convert_time(time() - BOT_START)} ago...</b></i>
  
- <b>Use Me Here @zenupdatess:</b>'''
+ <b>Use Me Here :</b> @zenupdatess''',
         quote=True,
         reply_markup=InlineKeyboardMarkup([
             [InlineKeyboardButton('🎓 Dev', url='https://t.me/nyapurana'), InlineKeyboardButton('🔍 Updates', url='https://t.me/zenupdatess')]
