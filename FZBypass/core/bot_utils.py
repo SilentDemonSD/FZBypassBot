@@ -1,4 +1,6 @@
 from pyrogram.filters import create
+from re import search
+from urllib.parse import urlparse, parse_qs
 from FZBypass import Config
 
 async def auth_topic(_, __, message):
@@ -15,6 +17,16 @@ async def auth_topic(_, __, message):
     return False
 
 chat_and_topics = create(auth_topic)
+
+def get_gdriveid(link):
+    if "folders" in link or "file" in link:
+        res = search(r"https:\/\/drive\.google\.com\/(?:drive(.*?)\/folders\/|file(.*?)?\/d\/)([-\w]+)", link)
+        return res.group(3)
+    parsed = urlparse(link)
+    return parse_qs(parsed.query)['id'][0]
+
+def get_dl(link):
+    return f"{Config.DIRECT_INDEX}/direct.aspx?id={get_gdriveid(link)}"
 
 def convert_time(seconds):
     mseconds = seconds * 1000

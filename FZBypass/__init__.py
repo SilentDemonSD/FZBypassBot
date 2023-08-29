@@ -27,6 +27,7 @@ class Config:
         exit(1)
     AUTH_CHATS      = getenv('AUTH_CHATS', '').split()
     OWNER_ID        = int(getenv('OWNER_ID', 0))
+    DIRECT_INDEX    = getenv('DIRECT_INDEX', '').rstrip('/')
     LARAVEL_SESSION = getenv('LARAVEL_SESSION', '')
     XSRF_TOKEN      = getenv('XSRF_TOKEN', '')
     GDTOT_CRYPT     = getenv('GDTOT_CRYPT', '')

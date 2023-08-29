@@ -1,5 +1,5 @@
 <div align="center">
-    <a href="https://github.com/weebzone/WZML">
+    <a href="https://github.com/SilentDemonSD">
         <kbd>
             <img width="250" src="https://graph.org/file/80f677693ae80cbd8707e.jpg" alt="FZ Bypass Logo">
         </kbd>
@@ -115,7 +115,7 @@
 |`new9.gdtot.cfd`|✅️|
 |`filepress.space` + `filebee.*`|✅️|
 |`appdrive.club` **(File + Pack)**|✅️|
-|`gdflix.cc`**(File + Pack)**|✅️|
+|`gdflix.cc`**(File + Pack)**|❌️|
 |`hubdrive.co` **(Instant Link)**|✅️|
 |`katdrive.org` **(Direct Download)**|✅️|
 |`drivefire.co`|✅️|
@@ -173,6 +173,9 @@
 - `HUBDRIVE_CRYPT`: HubDrive Crypt (Optional), It works with or without Cookie, Get from Cookie Editor Extension.
 - `KATDRIVE_CRYPT`: KatDrive Crypt (Optional), It works with or without Cookie, Get from Cookie Editor Extension.
 - `DRIVEFIRE_CRYPT`: DriveFire Crypt, Get from Cookie Editor Extension.
+- `DIRECT_INDEX`: Direct Fast Download GDrive Links.
+  - Generate via [Google-Drive-Index](https://gitlab.com/GoogleDriveIndex/cloudflare-gdrive-download-worker/-/blob/main/src/worker.js). Follow further from inside the script. Copy & Deploy on [CF Workers](https://cloudflare.com)
+  - Get Raw `Refresh Token` from [lavarel-google](https://github.com/ivanvermeyen/laravel-google-drive-demo/blob/master/README/2-getting-your-refresh-token.md)
 - `TERA_COOKIE`: Get the Terabox `ndus` Cookie from Cookie Editor Extension.
 - `UPSTREAM_REPO`: Put Upstream Repo to Update. Defaults to `https://github.com/SilentDemonSD/FZBypassBot`
 - `UPSTREAM_BRANCH`: Put Branch Name. Defaults to `main`
