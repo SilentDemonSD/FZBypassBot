@@ -1,6 +1,6 @@
 from time import time
 from re import match
-from sys import executable
+from sys import executable, argv
 from os import execl
 from asyncio import create_task, gather, sleep as asleep, create_subprocess_exec
 from pyrogram.filters import command, private, user
@@ -30,7 +30,7 @@ async def start_msg(client, message):
     )
 
 
-@Bypass.on_message(command(['bypass', 'bp']) & chat_and_topics)
+@Bypass.on_message(command(['bypass', 'bp']) & chat_and_topics & user(Config.OWNER_ID))
 async def bypass_check(client, message):
     uid = message.from_user.id
     if (reply_to := message.reply_to_message) and (reply_to.text is not None or reply_to.caption is not None):
@@ -103,7 +103,7 @@ async def restart(client, message):
     await (await create_subprocess_exec('python3', 'update.py')).wait()
     with open(".restartmsg", "w") as f:
         f.write(f"{restart_message.chat.id}\n{restart_message.id}\n")
-    execl(executable, executable, "-m", "FZBypass")
+    execl(executable, executable, *argv)
 
 
 @Bypass.on_inline_query()
