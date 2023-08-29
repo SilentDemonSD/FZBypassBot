@@ -37,15 +37,19 @@ async def sharespark(url: str) -> str:
 
 
 async def skymovieshd(url: str) -> str:
-    gd_txt = ""
-    soup = BeautifulSoup(rget(url, allow_redirects=False).text, 'html.parser') 
-    a = soup.select('a[href*="howblogs.xyz"]')
+    soup = BeautifulSoup(rget(url, allow_redirects=False).text, 'html.parser')
     t = soup.select('div[class^="Robiul"]')
-    gd_txt += f"<i>{t[-1].text.replace('Download ', '')}</i>\n\n<b>{a[0].text} :</b> \n"
-    nsoup = BeautifulSoup(rget(a[0]['href'], allow_redirects=False).text, 'html.parser') 
-    atag = nsoup.select('div[class="cotent-box"] > a[href]')
-    for no, link in enumerate(atag, start=1): 
-        gd_txt += f"{no}. {link['href']}\n"
+    gd_txt = f"<i>{t[-1].text.replace('Download ', '')}</i>"
+    _cache = []
+    for link in soup.select('a[href*="howblogs.xyz"]'):
+        if link in _cache:
+            continue
+        _cache.append(link)
+        gd_txt += f"\n\n<b>{link.text} :</b> \n"
+        nsoup = BeautifulSoup(rget(link['href'], allow_redirects=False).text, 'html.parser') 
+        atag = nsoup.select('div[class="cotent-box"] > a[href]')
+        for no, link in enumerate(atag, start=1): 
+            gd_txt += f"{no}. {link['href']}\n"
     return gd_txt
 
 
