@@ -129,23 +129,33 @@ async def drivescript(url, crypt, dtype):
             parse_txt += f"┖ <b>Drive Link :</b> {gd_data[0]['href']}"
         return parse_txt
     elif not dlink and not crypt:
-        raise DDLException(f'{dtype} Crypt Not Provided & {js_query["file"]}')
+        raise DDLException(f'{dtype} Crypt Not Provided')
     else:
         raise DDLException(f'{js_query["file"]}')
 
 
 async def appflix(url):
     async def appflix_single(url):
-        d_link = await sharer_scraper(url)
         cget = create_scraper().request
         url = cget("GET", url).url
-        soup = BeautifulSoup(cget('GET', url).content, "html.parser")
+        soup = BeautifulSoup(cget('GET', url, allow_redirects=False).text, "html.parser")
         ss = soup.select("li[class^='list-group-item']")
-        return f'''┎ <b>Name :</b> <i>{ss[0].string.split(":")[1]}</i>
+        dbotv2 = dbot[0]['href'] if "gdflix" in url and (dbot := soup.select("a[href*='drivebot.lol']")) else None
+        try:
+            d_link = await sharer_scraper(url)
+        except Exception as e:
+            if not dbotv2:
+                raise e
+            else:
+                d_link = str(e)
+        parse_txt = f'''┎ <b>Name :</b> <i>{ss[0].string.split(":")[1]}</i>
 ┠ <b>Size :</b> <i>{ss[2].string.split(":")[1]}</i>
 ┃ 
 ┠ <b>Source Link :</b> {url}
-┖ <b>Drive Link :</b> {d_link}'''
+'''
+        if dbotv2:
+            parse_txt += f'┠ <b>DriveBot V2 :</b> <a href="{dbotv2}">Click Here</a>'
+        return parse_txt + f'┖ <b>Drive Link :</b> {d_link}'
     if "/pack/" in url:
         cget = create_scraper().request
         url = cget("GET", url).url
