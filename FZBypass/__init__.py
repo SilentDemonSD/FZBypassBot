@@ -31,11 +31,9 @@ class Config:
     XSRF_TOKEN      = getenv('XSRF_TOKEN', '')
     GDTOT_CRYPT     = getenv('GDTOT_CRYPT', '')
     DRIVEFIRE_CRYPT = getenv('DRIVEFIRE_CRYPT', '')
-    KOLOP_CRYPT     = getenv('KOLOP_CRYPT', '')
     HUBDRIVE_CRYPT  = getenv('HUBDRIVE_CRYPT', '')
-    KAT_CRYPT       = getenv('KAT_CRYPT', '')
+    KATDRIVE_CRYPT  = getenv('KATDRIVE_CRYPT', '')
     UPTOBOX_TOKEN   = getenv('UPTOBOX_TOKEN', '')
     TERA_COOKIE     = getenv('TERA_COOKIE', '')
-    CF_COOKIE       = getenv('CF_COOKIE', '')
 
 Bypass = Client("FZ", api_id=Config.API_ID, api_hash=Config.API_HASH, bot_token=Config.BOT_TOKEN, plugins=dict(root="FZBypass/plugins"), parse_mode=ParseMode.HTML)

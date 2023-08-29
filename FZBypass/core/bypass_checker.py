@@ -176,7 +176,12 @@ async def direct_link_checker(link):
     
     # DL Links
     elif bool(match(r"https?:\/\/hubdrive\.\S+", link)):
-        return await hubdrive(link)
+        return await drivescript(link, Config.HUBDRIVE_CRYPT, "HubDrive")
+    elif bool(match(r"https?:\/\/katdrive\.\S+", link)):
+        return await drivescript(link, Config.KATDRIVE_CRYPT, "KatDrive")
+    elif bool(match(r"https?:\/\/drivefire\.\S+", link)):
+        return await drivescript(link, Config.DRIVEFIRE_CRYPT, "DriveFire")
+    
     elif is_share_link(link):
         if 'gdtot' in domain:
             return await gdtot(link)

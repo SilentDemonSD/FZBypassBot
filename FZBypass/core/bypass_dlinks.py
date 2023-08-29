@@ -89,29 +89,46 @@ async def gdtot(url):
 ┖ <b>Drive Link :</b> {d_link}'''
 
 
-async def hubdrive(url):
-    if not Config.HUBDRIVE_CRYPT:
-        raise DDLException("HubDrive Crypt Not Provided !")
+async def drivescript(url, crypt, dtype):
     rs = Session()
-    rs.cookies.update({'crypt': Config.HUBDRIVE_CRYPT})
     resp = rs.get(url)
     title = findall(r'>(.*?)<\/h4>', resp.text)[0]
     size = findall(r'>(.*?)<\/td>', resp.text)[1]
     p_url = urlparse(url)
-    try:
-        js_query = rs.post(f"{p_url.scheme}://{p_url.hostname}/ajax.php?ajax=download", data={'id': str(url.split('/')[-1])}, headers={'x-requested-with': 'XMLHttpRequest'}).json()
-    except Exception as e:
-        raise DDLException(f'{e.__class__.__name__}')
-    if str(js_query['code']) == '200':
-        res = rs.get(f"{p_url.scheme}://{p_url.hostname}{js_query['file']}")
+    dlink = ''
+    if dtype != "DriveFire":
+        try:
+            js_query = rs.post(f"{p_url.scheme}://{p_url.hostname}/ajax.php?ajax=direct-download", data={'id': str(url.split('/')[-1])}, headers={'x-requested-with': 'XMLHttpRequest'}).json()
+            if str(js_query['code']) == '200':
+                dlink = f"{p_url.scheme}://{p_url.hostname}{js_query['file']}"
+        except Exception as e:
+            LOGGER.error(e)
+        
+    if not dlink and crypt:
+        rs.cookies.update({'crypt': crypt})
+        try:
+            js_query = rs.post(f"{p_url.scheme}://{p_url.hostname}/ajax.php?ajax=download", data={'id': str(url.split('/')[-1])}, headers={'x-requested-with': 'XMLHttpRequest'}).json()
+        except Exception as e:
+            raise DDLException(f'{e.__class__.__name__}')
+        if str(js_query['code']) == '200':
+            dlink = f"{p_url.scheme}://{p_url.hostname}{js_query['file']}"
+    
+    if dlink:    
+        res = rs.get(dlink)
         soup = BeautifulSoup(res.text, 'html.parser')
         gd_data = soup.select('a[class="btn btn-primary btn-user"]')
-        return f'''┎ <b>Name :</b> <i>{title}</i>
+        parse_txt = f'''┎ <b>Name :</b> <i>{title}</i>
 ┠ <b>Size :</b> <i>{size}</i>
 ┃ 
-┠ <b>HubDrive Link :</b> {url}
-┠ <b>Drive Link :</b> {gd_data[0]['href']}
+┠ <b>{dtype} Link :</b> {url}'''
+        if dtype == "HubDrive":
+            parse_txt += f'''┠ <b>Drive Link :</b> {gd_data[0]['href']}
 ┖ <b>Instant Link :</b> <a href="{gd_data[1]['href']}">Click Here</a>'''
+        else:
+            parse_txt += f"┖ <b>Drive Link :</b> {gd_data[0]['href']}"
+        return parse_txt
+    elif not dlink and not crypt:
+        raise DDLException(f'{dtype} Crypt Not Provided & {js_query["file"]}')
     else:
         raise DDLException(f'{js_query["file"]}')
 

@@ -1,7 +1,7 @@
 from time import time
 from re import match
 from sys import executable
-from os import execl as osexecl
+from os import execl
 from asyncio import create_task, gather, sleep as asleep, create_subprocess_exec
 from pyrogram.filters import command, private, user
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultArticle, InputTextMessageContent
@@ -103,7 +103,7 @@ async def restart(client, message):
     await (await create_subprocess_exec('python3', 'update.py')).wait()
     with open(".restartmsg", "w") as f:
         f.write(f"{restart_message.chat.id}\n{restart_message.id}\n")
-    osexecl(executable, executable, "-m", "FZBypassBot")
+    execl(executable, executable, "-m", "FZBypass")
 
 
 @Bypass.on_inline_query()
@@ -111,7 +111,6 @@ async def inline_query(client, query):
     answers = [] 
     string = query.query.lower()
     if string.startswith("!bp "):
-        await asleep(4)
         link = string.strip('!bp ')
         start = time()
         try:

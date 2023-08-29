@@ -36,7 +36,7 @@ async def mediafire(url: str) -> str:
         url = cget('get', url).url
         page = cget('get', url).text
     except Exception as e:
-        raise DDLException(f"ERROR: {e.__class__.__name__}")
+        raise DDLException(f"{e.__class__.__name__}")
     final_link = findall(r"\'(https?:\/\/download\d+\.mediafire\.com\/\S+\/\S+\/\S+)\'", page)
     if not final_link:
         raise DDLException("No links found in this page")
@@ -58,7 +58,7 @@ async def shrdsk(url: str) -> str:
     raise DDLException("No Direct Link Found")
 
 
-async def anonsites(url: str):
+async def anonsites(url: str):  # Depreciated ( Code Preserved )
     cget = create_scraper().request
     try:
         soup = BeautifulSoup(cget('get', url).content, 'lxml')
