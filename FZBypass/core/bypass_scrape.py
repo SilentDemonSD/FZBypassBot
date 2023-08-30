@@ -42,16 +42,14 @@ async def skymovieshd(url: str) -> str:
     gd_txt = f"<i>{t[-1].text.replace('Download ', '')}</i>"
     _cache = []
     for link in soup.select('a[href*="howblogs.xyz"]'):
-        if link in _cache:
+        if link['href'] in _cache:
             continue
-        _cache.append(link)
+        _cache.append(link['href'])
         gd_txt += f"\n\n<b>{link.text} :</b> \n"
         nsoup = BeautifulSoup(rget(link['href'], allow_redirects=False).text, 'html.parser') 
         atag = nsoup.select('div[class="cotent-box"] > a[href]')
         for no, link in enumerate(atag, start=1): 
             gd_txt += f"{no}. {link['href']}\n"
-            if len(gd_txt) > 4000:
-                return gd_txt
     return gd_txt
 
 

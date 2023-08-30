@@ -167,6 +167,10 @@ async def direct_link_checker(link):
         return await transcript(link, "https://insurance.yosite.net/", "https://yosite.net/", 10)
     elif bool(match(r"https?:\/\/.+\.anlinks\.\S+", link)):
         return await transcript(link,"https://link.anlinks.in/","https://dsblogs.fun/", 5)
+    elif bool(match(r"https?:\/\/.+\.earn2me\.\S+", link)):
+        return await transcript(link, "https://blog.filepresident.com/", "https://easyworldbusiness.com/", 5)
+    elif bool(match(r"https?:\/\/.+\.vplinks\.\S+", link)):
+        return await transcript(link, "https://get.vplinks.in/", "https://infotamizhan.xyz/", 5)
     
     elif bool(match(r"https?:\/\/ouo\.\S+", link)):
         return await ouo(link)
