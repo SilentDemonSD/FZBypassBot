@@ -50,6 +50,8 @@ async def skymovieshd(url: str) -> str:
         atag = nsoup.select('div[class="cotent-box"] > a[href]')
         for no, link in enumerate(atag, start=1): 
             gd_txt += f"{no}. {link['href']}\n"
+            if len(gd_txt) > 4000:
+                return gd_txt
     return gd_txt
 
 

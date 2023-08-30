@@ -51,11 +51,11 @@ async def filepress(url: str):
                 tg_link = 'Telegram Not Uploaded / Unavailable' if tg_id["statusText"] == "Ok" else tg_id["statusText"]
     except Exception as e:
         raise DDLException(f'<b>ERROR:</b> {e.__class__.__name__}')
-    parse_txt = f'''┎ <b>Name :</b> <i>{name}</i>
-┠ <b>Size :</b> <i>{size}</i>
+    parse_txt = f'''┎ <b>Name :</b> <code>{name}</code>
+┠ <b>Size :</b> <code>{size}</code>
 ┃
 ┠ <b>Filepress Link :</b> {url}
-┖ <b>Telegram Link :</b> {tg_link}
+┠ <b>Telegram Link :</b> {tg_link}
 '''
     if "drive.google.com" in dl_link and Config.DIRECT_INDEX:
         parse_txt += f'┠ <b>Index Link :</b> {get_dl(dl_link)}\n'
@@ -87,8 +87,8 @@ async def gdtot(url):
         raise DDLException('Drive Link not found, Try in your broswer! GDTOT_CRYPT not Provided!')
     soup = BeautifulSoup(cget('GET', url).content, "html.parser")
     parse_data = (soup.select('meta[property^="og:description"]')[0]['content']).replace('Download ' , '').rsplit('-', maxsplit=1)
-    parse_txt = f'''┎ <b>Name :</b> <i>{parse_data[0]}</i>
-┠ <b>Size :</b> <i>{parse_data[-1]}</i>
+    parse_txt = f'''┎ <b>Name :</b> <code>{parse_data[0]}</code>
+┠ <b>Size :</b> <code>{parse_data[-1]}</code>
 ┃ 
 ┠ <b>GDToT Link :</b> {url}
 '''
@@ -126,19 +126,18 @@ async def drivescript(url, crypt, dtype):
         res = rs.get(dlink)
         soup = BeautifulSoup(res.text, 'html.parser')
         gd_data = soup.select('a[class="btn btn-primary btn-user"]')
-        parse_txt = f'''┎ <b>Name :</b> <i>{title}</i>
-┠ <b>Size :</b> <i>{size}</i>
+        parse_txt = f'''┎ <b>Name :</b> <code>{title}</code>
+┠ <b>Size :</b> <code>{size}</code>
 ┃ 
-┠ <b>{dtype} Link :</b> {url}
-'''
+┠ <b>{dtype} Link :</b> {url}'''
         if dtype == "HubDrive":
-            parse_txt += f'''┠ <b>Instant Link :</b> <a href="{gd_data[1]['href']}">Click Here</a>'''
+            parse_txt += f'''\n┠ <b>Instant Link :</b> <a href="{gd_data[1]['href']}">Click Here</a>'''
         if (d_link := gd_data[0]['href']) and Config.DIRECT_INDEX:
             parse_txt += f"\n┠ <b>Index Link :</b> {get_dl(d_link)}"
         parse_txt += f"\n┖ <b>Drive Link :</b> {d_link}"
         return parse_txt
     elif not dlink and not crypt:
-        raise DDLException(f'{dtype} Crypt Not Provided')
+        raise DDLException(f'{dtype} Crypt Not Provided and Direct Link Generate Failed')
     else:
         raise DDLException(f'{js_query["file"]}')
 
@@ -157,16 +156,15 @@ async def appflix(url):
                 raise e
             else:
                 d_link = str(e)
-        parse_txt = f'''┎ <b>Name :</b> <i>{ss[0].string.split(":")[1]}</i>
-┠ <b>Size :</b> <i>{ss[2].string.split(":")[1]}</i>
+        parse_txt = f'''┎ <b>Name :</b> <code>{ss[0].string.split(":")[1]}</code>
+┠ <b>Size :</b> <code>{ss[2].string.split(":")[1]}</code>
 ┃ 
-┠ <b>Source Link :</b> {url}
-'''
+┠ <b>Source Link :</b> {url}'''
         if dbotv2:
-            parse_txt += f'┠ <b>DriveBot V2 :</b> <a href="{dbotv2}">Click Here</a>'
+            parse_txt += f'\n┠ <b>DriveBot V2 :</b> <a href="{dbotv2}">Click Here</a>'
         if d_link and Config.DIRECT_INDEX:
-            parse_txt += f'┠ <b>Index Link :</b> {get_dl(d_link)}'
-        parse_txt += f'┖ <b>Drive Link :</b> {d_link}'
+            parse_txt += f'\n┠ <b>Index Link :</b> {get_dl(d_link)}'
+        parse_txt += f'\n┖ <b>Drive Link :</b> {d_link}'
         return parse_txt
     if "/pack/" in url:
         cget = create_scraper().request
@@ -181,7 +179,7 @@ async def appflix(url):
                 body += "\n\n" + f"<b>Bypass Error:</b> {bp_link}"
             else:
                 body += "\n\n" + bp_link
-        return f'''┎ <b>Name :</b> <i>{soup.title.string}</i>
+        return f'''┎ <b>Name :</b> <code>{soup.title.string}</code>
 ┖ <b>Source Pack Link :</b> {url}{body}'''
     return await appflix_single(url)
 

@@ -79,7 +79,7 @@ async def direct_link_checker(link):
     elif bool(match(r"https?:\/\/short2url\.\S+", link)):
         return await transcript(link, "https://techyuth.xyz/blog", "https://blog.coin2pay.xyz/", 10)
     elif bool(match(r"https?:\/\/urlsopen\.\S+", link)):
-        return await transcript(link, "https://blogpost.viewboonposts.com/e998933f1f665f5e75f2d1ae0009e0063ed66f889000", "https://blog.textpage.xyz/", 2)
+        return await transcript(link, "https://s.humanssurvival.com/", "https://1topjob.xyz/", 5)
     elif bool(match(r"https?:\/\/mdisk\.\S+", link)):
         return await transcript(link, "https://mdisk.pro", "https://m.meclipstudy.in/", 8)
     elif bool(match(r"https?:\/\/(pkin|go.paisakamalo)\.\S+", link)):
@@ -144,6 +144,26 @@ async def direct_link_checker(link):
         return await transcript(link, "https://go.url4earn.in/", "https://techminde.com/", 8)
     elif bool(match(r"https?:\/\/ez4short\.\S+", link)):
         return await transcript(link, "https://ez4short.com/", "https://ez4mods.com/", 5)
+    elif bool(match(r"https?:\/\/dalink\.\S+", link)):
+        return await transcript(link,"https://www.tamilhit.tech/blog//", "https://www.tamilhit.tech/", 8)
+    elif bool(match(r"https?:\/\/.+\.omnifly\.\S+", link)):
+        return await transcript(link, "https://f.omnifly.in.net/", "https://ignitesmm.com/", 5)
+    elif bool(match(r"https?:\/\/sheralinks\.\S+", link)):
+        return await transcript(link, "https://link.blogyindia.com/", "https://blogyindia.com/", 5)
+    elif bool(match(r"https?:\/\/bindaaslinks\.\S+", link)):
+        return await transcript(link, "https://thebindaas.com/blog/", "https://finance.appsinsta.com/", 5)
+    elif bool(match(r"https?:\/\/viplinks\.\S+", link)):
+        return await transcript(link, "https://m.vip-link.net/", "https://m.leadcricket.com/", 5)
+    elif bool(match(r"https?:\/\/.+\.short2url\.\S+", link)):
+        return await transcript(link, "https://techyuth.xyz/blog/", "https://blog.mphealth.online/", 10)
+    elif bool(match(r"https?:\/\/shrinkforearn\.\S+", link)):
+        return await transcript(link, "https://shrinkforearn.in/", "https://wp.uploadfiles.in/", 8)
+    elif bool(match(r"https?:\/\/bringlifes\.\S+", link)):
+        return await transcript(link, "https://bringlifes.com/", "https://hashoneblog.com/", 5)
+    elif bool(match(r"https?:\/\/.+\.linkfly\.\S+", link)):
+        return await transcript(link, "https://insurance.yosite.net/", "https://yosite.net/", 10)
+    elif bool(match(r"https?:\/\/.+\.anlinks\.\S+", link)):
+        return await transcript(link,"https://link.anlinks.in/","https://dsblogs.fun/", 5)
     
     elif bool(match(r"https?:\/\/ouo\.\S+", link)):
         return await ouo(link)

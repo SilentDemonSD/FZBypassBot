@@ -54,7 +54,7 @@
 |`shortingly.com`|️✅️|️
 |`go.flashlink.in`|⚠️|
 |`short2url.in`|✅️|
-|`urlsopen.com`|⚠️|
+|`urlsopen.com`|✅️|
 |`mdisk.pro`|✅️|
 |`ouo.io` + `ouo.press`|✅️|
 |`shareus.in` + `shareus.io` + `shrs.link`|️❌️|
@@ -98,6 +98,16 @@
 |`pandaznetwork.com`|✅️|
 |`url4earn.in`|✅️|
 |`ez4short.com`|✅️|
+|`dalink.in`|✅️|
+|`omnifly.in.net`|✅️|
+|`sheralinks.com`|✅️|
+|`bindaaslinks.com`|✅️|
+|`viplinks.io`|✅️|
+|`short2url.in`|✅️|
+|`shrinkforearn.xyz`|✅️|
+|`bringlifes.com`|✅️|
+|`linkfly.me`|✅️|
+|`anlinks.in`|✅️|
 |`More Sites...Updating`|️♻️|
 
 ### ***Scrape Sites***

@@ -71,15 +71,15 @@ async def bypass_check(client, message):
             bp_link = f"<b>Bypass Link:</b> {result}"
         
         if is_excep_link(link):
-            parse_data.append(bp_link + "\n\n✎﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏\n\n")
+            parse_data.append(bp_link + "\n\n━━━━━━━✦✗✦━━━━━━━\n\n")
         else:
-            parse_data.append(f'┎ <b>Source Link:</b> {link}\n┖ {bp_link}\n\n✎﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏﹏\n\n')
+            parse_data.append(f'┎ <b>Source Link:</b> {link}\n┖ {bp_link}\n\n━━━━━━━✦✗✦━━━━━━━\n\n')
             
     end = time()
 
     if len(parse_data) != 0:
-        parse_data[-1] = parse_data[-1] + f"🔗 <i><b>Total Links : {no}</b>\n🧭 <b>Took Only <code>{convert_time(end - start)}</code></b></i> !\n#cc : {message.from_user.mention} ( #ID{message.from_user.id} )"
-    tg_txt = ""
+        parse_data[-1] = parse_data[-1] + f"┎ <i><b>Total Links : {no}</b>\n┠ <b>Results In <code>{convert_time(end - start)}</code></b></i> !\n┖ <b>By </b>{message.from_user.mention} ( #ID{message.from_user.id} )"
+    tg_txt = "━━━━━━━✦✗✦━━━━━━━\n\n"
     for tg_data in parse_data:
         tg_txt += tg_data
         if len(tg_txt) > 4000:
