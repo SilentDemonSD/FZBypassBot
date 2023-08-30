@@ -6,6 +6,7 @@ from FZBypass import LOGGER
 from FZBypass.core.bypass_dlinks import *
 from FZBypass.core.bypass_ddl import *
 from FZBypass.core.bypass_scrape import *
+from FZBypass.core.bot_utils import get_dl
 from FZBypass.core.exceptions import DDLException
 
 fmed_list = ['fembed.net', 'fembed.com', 'femax20.com', 'fcdn.stream', 'feurl.com', 'layarkacaxxi.icu',
@@ -37,13 +38,15 @@ async def direct_link_checker(link):
         return await anonsites(link)
     elif any(x in domain for x in ['terabox', 'nephobox', '4funbox', 'mirrobox', 'momerybox', 'teraboxapp']):
         return await terabox(link)
+    elif "drive.google.com" in link:
+        return get_dl(link)
 
     elif bool(match(r"https?:\/\/(gyanilinks|gtlinks)\.\S+", link)):
         return await gyanilinks(link)
     elif bool(match(r"https?:\/\/.+\.tnshort\.\S+", link)):
         return await transcript(link, "https://news.speedynews.xyz/", "https://market.finclub.in/", 8)
     elif bool(match(r"https?:\/\/(xpshort|push.bdnewsx|techymozo)\.\S+", link)):
-        return await transcript(link, "https://xpshort.com/", "https://www.twinthrottlers.xyz/", 8)
+        return await transcript(link,"https://xpshort.com/", "https://www.animalwallpapers.online/", 8)
     elif bool(match(r"https?:\/\/go.lolshort\.\S+", link)):
         return await transcript(link, "https://get.lolshort.tech/", "https://tech.animezia.com/", 8)
     elif bool(match(r"https?:\/\/(.+\.)?onepagelink\.\S+", link)):
@@ -181,6 +184,8 @@ async def direct_link_checker(link):
         return await shrtco(link)
     elif bool(match(r"https?:\/\/thinfi\.\S+", link)):
         return await thinfi(link)
+    elif bool(match(r"https?:\/\/.+\.technicalatg\.\S+", link)):
+        return link.replace('files.technicalatg', 'atglinks')
         
     # DL Sites
     elif bool(match(r"https?:\/\/cinevood\.\S+", link)):
