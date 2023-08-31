@@ -110,7 +110,7 @@ async def toonworld4all(url: str):
     atasks = []
     for sl in links:
         nsl = ""
-        while not any(x in sl for x in ['rocklinks', 'link1s']):
+        while not any(x in nsl for x in ['rocklinks', 'link1s']):
             nsl = rget(sl["href"], allow_redirects=False).headers['location']
         if "rocklinks" in nsl:
             atasks.append(create_task(transcript(nsl, "https://insurance.techymedies.com/", "https://highkeyfinance.com/", 5)))
