@@ -188,8 +188,6 @@ async def direct_link_checker(link):
         return await shrtco(link)
     elif bool(match(r"https?:\/\/thinfi\.\S+", link)):
         return await thinfi(link)
-    elif bool(match(r"https?:\/\/.+\.technicalatg\.\S+", link)):
-        return link.replace('files.technicalatg', 'atglinks')
         
     # DL Sites
     elif bool(match(r"https?:\/\/cinevood\.\S+", link)):
@@ -210,7 +208,6 @@ async def direct_link_checker(link):
         return await drivescript(link, Config.KATDRIVE_CRYPT, "KatDrive")
     elif bool(match(r"https?:\/\/drivefire\.\S+", link)):
         return await drivescript(link, Config.DRIVEFIRE_CRYPT, "DriveFire")
-    
     elif is_share_link(link):
         if 'gdtot' in domain:
             return await gdtot(link)
@@ -220,5 +217,10 @@ async def direct_link_checker(link):
             return await appflix(link)
         else:
             return await sharer_scraper(link)
+            
+    # Exceptions
+    elif bool(match(r"https?:\/\/.+\.technicalatg\.\S+", link)):
+        raise DDLException('Bypass Not Allowed !')
+    
     else:
         raise DDLException(f'<i>No Bypass Function Found for your Link :</i> <code>{link}</code>')

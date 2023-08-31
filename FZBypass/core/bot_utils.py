@@ -1,5 +1,6 @@
 from pyrogram.filters import create
 from re import search
+from requests import get as rget
 from urllib.parse import urlparse, parse_qs
 from FZBypass import Config
 
@@ -26,7 +27,10 @@ def get_gdriveid(link):
     return parse_qs(parsed.query)['id'][0]
 
 def get_dl(link):
-    return f"{Config.DIRECT_INDEX}/direct.aspx?id={get_gdriveid(link)}"
+    try:
+        return rget(f"{Config.DIRECT_INDEX}/generate.aspx?id={get_gdriveid(link)}").json()["link"]
+    except:
+        return f"{Config.DIRECT_INDEX}/direct.aspx?id={get_gdriveid(link)}"
 
 def convert_time(seconds):
     mseconds = seconds * 1000

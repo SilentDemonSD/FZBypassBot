@@ -104,6 +104,7 @@ async def drivescript(url, crypt, dtype):
     title = findall(r'>(.*?)<\/h4>', resp.text)[0]
     size = findall(r'>(.*?)<\/td>', resp.text)[1]
     p_url = urlparse(url)
+    
     dlink = ''
     if dtype != "DriveFire":
         try:
@@ -115,6 +116,7 @@ async def drivescript(url, crypt, dtype):
         
     if not dlink and crypt:
         rs.cookies.update({'crypt': crypt})
+        rs.get(url)
         try:
             js_query = rs.post(f"{p_url.scheme}://{p_url.hostname}/ajax.php?ajax=download", data={'id': str(url.split('/')[-1])}, headers={'x-requested-with': 'XMLHttpRequest'}).json()
         except Exception as e:
