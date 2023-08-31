@@ -107,8 +107,9 @@ async def toonworld4all(url: str):
     prsd = f"<b><i>{titles[0].string}</i></b>"
     titles.pop(0)
     slicer, _ = divmod(len(links), len(titles))
-    atasks, nsl = [], ""
+    atasks = []
     for sl in links:
+        nsl = ""
         while "rocklinks" not in nsl:
             nsl = rget(sl["href"], allow_redirects=False).headers['location']
         atasks.append(create_task(transcript(nsl, "https://insurance.techymedies.com/", "https://highkeyfinance.com/", 5)))
