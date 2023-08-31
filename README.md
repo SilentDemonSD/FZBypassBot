@@ -120,6 +120,7 @@
 |`kayoanime.com` **(Page)**|✅️|
 |`skymovieshd.*`|✅️|
 |`ww1.sharespark.cfd`|✅️|
+|`www.1tamilmv.*` **(Page)**|✅️|
 
 ### ***GDrive Sites***
 | __Websites__ | __Status__ |

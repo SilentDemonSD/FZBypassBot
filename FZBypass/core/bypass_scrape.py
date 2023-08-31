@@ -110,9 +110,12 @@ async def toonworld4all(url: str):
     atasks = []
     for sl in links:
         nsl = ""
-        while "rocklinks" not in nsl:
+        while not any(x in link for x in ['rocklinks', 'link1s']):
             nsl = rget(sl["href"], allow_redirects=False).headers['location']
-        atasks.append(create_task(transcript(nsl, "https://insurance.techymedies.com/", "https://highkeyfinance.com/", 5)))
+        if "rocklinks" in link:
+            atasks.append(create_task(transcript(nsl, "https://insurance.techymedies.com/", "https://highkeyfinance.com/", 5)))
+        elif "link1s" in link:
+            atasks.append(create_task(transcript(nsl, "https://link1s.com", "https://anhdep24.com/", 9)))
 
     com_tasks = await gather(*atasks, return_exceptions=True)
     lstd = [com_tasks[i:i+slicer] for i in range(0, len(com_tasks), slicer)]
@@ -126,3 +129,18 @@ async def toonworld4all(url: str):
                 prsd += f"<a href='{sl}'>{tl.string}</a>, "
         prsd = prsd[:-2]
     return prsd
+    
+    
+async def tamilmv(url):
+    cget = create_scraper().request
+    resp = cget("GET", url, allow_redirects=False)
+    soup = BeautifulSoup(resp.text, 'html.parser')
+    mag = soup.select('a[href^="magnet"]')
+    tor = soup.select('a[data-fileext="torrent"]')
+    parse_data = f"<b><u>{soup.title.string}</u></b>"
+    for no, (t, m) in enumerate(zip(tor, mag), start=1):
+        parse_data += f'''
+        
+<b><i>{no}. {t.string.replace('.torrent', '')}</i></b>
+┖ <a href="{m['href']}"><b>Magnet </b>🧲</a>  | <a href="{t['href']}"><b>Torrent 🌐</b></a>'''
+    return parse_data
