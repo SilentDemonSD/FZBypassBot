@@ -142,5 +142,5 @@ async def tamilmv(url):
         parse_data += f'''
         
 <b><i>{no}. {t.string.replace('.torrent', '')}</i></b>
-┖ <a href="{m['href']}"><b>Magnet </b>🧲</a>  | <a href="{t['href']}"><b>Torrent 🌐</b></a>'''
+┖ <a href="https://t.me/share/url?url={m['href'].split('&')[0]}"><b>Magnet </b>🧲</a>  | <a href="{t['href']}"><b>Torrent 🌐</b></a>'''
     return parse_data
