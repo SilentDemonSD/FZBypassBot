@@ -173,8 +173,8 @@ async def direct_link_checker(link):
         return await transcript(link, "https://get.vplinks.in/", "https://infotamizhan.xyz/", 5)
     elif bool(match(r"https?:\/\/.+\.narzolinks\.\S+", link)):
         return await transcript(link, "https://go.narzolinks.click/", "https://hydtech.in/", 5)
-    elif bool(match(r"https?:\/\/up4cash\.\S+", link)):
-        return await transcript(link, "https://up4cash.com/", "https://gold.mazen-ve3.com/", 5)
+    elif bool(match(r"https?:\/\/adsfly\.\S+", link)):
+        return await transcript(link, "https://go.adsfly.in/", "https://loans.quick91.com/", 5)
     
     elif bool(match(r"https?:\/\/ouo\.\S+", link)):
         return await ouo(link)
@@ -186,7 +186,7 @@ async def direct_link_checker(link):
         return await linkvertise(link)
     elif bool(match(r"https?:\/\/rslinks\.\S+", link)):
         return await rslinks(link)
-    elif bool(match(r"https?:\/\/(bit|tinyurl|(.+\.).short.gy|shorturl)\.\S+", link)):
+    elif bool(match(r"https?:\/\/(bit|tinyurl|(.+\.)short.gy|shorturl)\.\S+", link)):
         return await shorter(link)
     elif bool(match(r"https?:\/\/(shrtco|9qr|shiny)\.\S+", link)):
         return await shrtco(link)

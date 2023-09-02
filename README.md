@@ -110,7 +110,7 @@
 |`anlinks.in`|✅️|
 |`vplinks.in`|✅️|
 |`earn2me.com`|✅️|
-|`up4cash.com`|✅️|
+|`adsfly.in`|✅️|
 |`m.narzolinks.click`|✅️|
 |`More Sites...Updating`|️♻️|
 
