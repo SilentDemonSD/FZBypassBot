@@ -223,9 +223,11 @@ async def rslinks(url: str) -> str:
           raise DDLException("Link Extraction Failed")
       
 
-async def bitly_tinyurl(url: str) -> str:
-    try: 
-        return rget(url).url
+async def shorter(url: str) -> str:
+    try:
+        cget = create_scraper().request 
+        resp = cget("GET", url, allow_redirects=False)
+        return resp.headers['Location']
     except: 
         raise DDLException("Link Extraction Failed")
 

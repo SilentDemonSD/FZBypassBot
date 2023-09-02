@@ -17,10 +17,10 @@ anonSites = ['hotfile.io', 'bayfiles.com', 'megaupload.nz', 'letsupload.cc',
             'openload.cc', 'share-online.is', 'upvid.cc']
 
 def is_share_link(url):
-    return bool(match(r'https?:\/\/.+\.(gdtot|gdflix)\.\S+|https?:\/\/(gdflix|filepress|filebee|appdrive)\.\S+', url))
+    return bool(match(r'https?:\/\/.+\.(gdtot|filepress|gdflix)\.\S+|https?:\/\/(gdflix|filepress|onlystream|filebee|appdrive)\.\S+', url))
 
 def is_excep_link(url):
-    return bool(match(r'https?:\/\/.+\.(1tamilmv|gdtot|gdflix|sharespark)\.\S+|https?:\/\/(hubdrive|katdrive|drivefire|skymovieshd|toonworld4all|kayoanime|cinevood|gdflix|filepress|filebee|appdrive)\.\S+', url))
+    return bool(match(r'https?:\/\/.+\.(1tamilmv|gdtot|filepress|gdflix|sharespark)\.\S+|https?:\/\/(onlystream|hubdrive|katdrive|drivefire|skymovieshd|toonworld4all|kayoanime|cinevood|gdflix|filepress|filebee|appdrive)\.\S+', url))
 
 async def direct_link_checker(link):
     domain = urlparse(link).hostname
@@ -46,7 +46,7 @@ async def direct_link_checker(link):
     elif bool(match(r"https?:\/\/.+\.tnshort\.\S+", link)):
         return await transcript(link, "https://news.speedynews.xyz/", "https://market.finclub.in/", 8)
     elif bool(match(r"https?:\/\/(xpshort|push.bdnewsx|techymozo)\.\S+", link)):
-        return await transcript(link,"https://xpshort.com/", "https://www.animalwallpapers.online/", 8)
+        return await transcript(link, "https://techymozo.com/", "https://portgyaan.in/", 8)
     elif bool(match(r"https?:\/\/go.lolshort\.\S+", link)):
         return await transcript(link, "https://get.lolshort.tech/", "https://tech.animezia.com/", 8)
     elif bool(match(r"https?:\/\/(.+\.)?onepagelink\.\S+", link)):
@@ -171,6 +171,10 @@ async def direct_link_checker(link):
         return await transcript(link, "https://blog.filepresident.com/", "https://easyworldbusiness.com/", 5)
     elif bool(match(r"https?:\/\/.+\.vplinks\.\S+", link)):
         return await transcript(link, "https://get.vplinks.in/", "https://infotamizhan.xyz/", 5)
+    elif bool(match(r"https?:\/\/.+\.narzolinks\.\S+", link)):
+        return await transcript(link, "https://go.narzolinks.click/", "https://hydtech.in/", 5)
+    elif bool(match(r"https?:\/\/up4cash\.\S+", link)):
+        return await transcript(link, "https://up4cash.com/", "https://gold.mazen-ve3.com/", 5)
     
     elif bool(match(r"https?:\/\/ouo\.\S+", link)):
         return await ouo(link)
@@ -182,8 +186,8 @@ async def direct_link_checker(link):
         return await linkvertise(link)
     elif bool(match(r"https?:\/\/rslinks\.\S+", link)):
         return await rslinks(link)
-    elif bool(match(r"https?:\/\/(bit|tinyurl|aylm.short.gy)\.\S+", link)):
-        return await bitly_tinyurl(link)
+    elif bool(match(r"https?:\/\/(bit|tinyurl|(.+\.).short.gy|shorturl)\.\S+", link)):
+        return await shorter(link)
     elif bool(match(r"https?:\/\/(shrtco|9qr|shiny)\.\S+", link)):
         return await shrtco(link)
     elif bool(match(r"https?:\/\/thinfi\.\S+", link)):

@@ -71,7 +71,7 @@
 |`link.vipurl.in` + `vipurl.in` + `count.vipurl.in`|✅️|
 |`v2links.com`|✅️|
 |`indyshare.net`|✅️|
-|`bit.ly` + `tinyurl.com` + `aylm.short.gy`|✅️|
+|`bit.ly` + `tinyurl.com` + `*.short.gy` + `shorturl.ac`|✅️|
 |`linkyearn.com`|✅️|
 |`earn4link.in`|✅️|
 |`linksly.co`|✅️|
@@ -105,11 +105,13 @@
 |`viplinks.io`|✅️|
 |`short2url.in`|✅️|
 |`shrinkforearn.xyz`|✅️|
-|`bringlifes.com`|✅️|
+|`bringlifes.com`|️❌️|
 |`linkfly.me`|✅️|
 |`anlinks.in`|✅️|
 |`vplinks.in`|✅️|
 |`earn2me.com`|✅️|
+|`up4cash.com`|✅️|
+|`m.narzolinks.click`|✅️|
 |`More Sites...Updating`|️♻️|
 
 ### ***Scrape Sites***
@@ -126,7 +128,7 @@
 | __Websites__ | __Status__ |
 |:--------------------:|:----------:|
 |`new9.gdtot.cfd`|✅️|
-|`filepress.space` + `filebee.*`|✅️|
+|`new.filepress.store` + `filebee.xyz` + `onlystream.xyz`|✅️|
 |`appdrive.club` **(File + Pack)**|✅️|
 |`gdflix.cc`**(File + Pack)**|❌️|
 |`hubdrive.co` **(Instant Link)**|✅️|
