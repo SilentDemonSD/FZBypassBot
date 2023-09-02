@@ -186,7 +186,7 @@ async def direct_link_checker(link):
         return await linkvertise(link)
     elif bool(match(r"https?:\/\/rslinks\.\S+", link)):
         return await rslinks(link)
-    elif bool(match(r"https?:\/\/(bit|tinyurl|(.+\.)short.gy|shorturl)\.\S+", link)):
+    elif bool(match(r"https?:\/\/(bit|tinyurl|(.+\.)short|shorturl)\.\S+", link)):
         return await shorter(link)
     elif bool(match(r"https?:\/\/(shrtco|9qr|shiny)\.\S+", link)):
         return await shrtco(link)
