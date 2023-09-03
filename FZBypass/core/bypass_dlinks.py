@@ -187,7 +187,7 @@ async def appflix(url):
 
 
 async def sharerpw(url: str, force=False):
-    cget = cloudscraper.create_scraper(allow_brotli=False).request
+    cget = create_scraper(allow_brotli=False).request
     resp = cget("GET", url, cookies={
         "XSRF-TOKEN": Config.XSRF_TOKEN,
         "laravel_session": Config.LARAVEL_SESSION
