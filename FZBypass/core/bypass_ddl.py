@@ -54,7 +54,7 @@ async def shrdsk(url: str) -> str:
         raise DDLException(f'Status Code {res.status_code}')
     res = res.json()
     if ("type" in res and res["type"].lower() == "upload" and "video_url" in res):
-        return res["video_url"]
+        return quote(res["video_url"], safe=":/")
     raise DDLException("No Direct Link Found")
 
 
@@ -151,14 +151,14 @@ async def ouo(url: str):
     next_url = f"{p.scheme}://{p.hostname}/go/{id}" 
   
     for _ in range(2): 
-         if res.headers.get('Location'): 
+        if res.headers.get('Location'): 
             break 
-         bs4 = BeautifulSoup(res.content, 'lxml') 
-         inputs = bs4.form.findAll("input", {"name": compile(r"token$")}) 
-         data = { inp.get('name'): inp.get('value') for inp in inputs } 
-         data['x-token'] = await recaptchaV3()
-         res = client.post(next_url, data=data, headers= {'content-type': 'application/x-www-form-urlencoded'}, allow_redirects=False, impersonate="chrome110") 
-         next_url = f"{p.scheme}://{p.hostname}/xreallcygo/{id}" 
+        bs4 = BeautifulSoup(res.content, 'lxml') 
+        inputs = bs4.form.findAll("input", {"name": compile(r"token$")}) 
+        data = { inp.get('name'): inp.get('value') for inp in inputs } 
+        data['x-token'] = await recaptchaV3()
+        res = client.post(next_url, data=data, headers= {'content-type': 'application/x-www-form-urlencoded'}, allow_redirects=False, impersonate="chrome110") 
+        next_url = f"{p.scheme}://{p.hostname}/xreallcygo/{id}" 
   
     return  res.headers.get('Location')
 

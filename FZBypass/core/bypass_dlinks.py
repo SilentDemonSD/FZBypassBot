@@ -115,8 +115,7 @@ async def drivescript(url, crypt, dtype):
             LOGGER.error(e)
         
     if not dlink and crypt:
-        rs.cookies.update({'crypt': crypt})
-        rs.get(url)
+        rs.get(url, cookies={'crypt': crypt})
         try:
             js_query = rs.post(f"{p_url.scheme}://{p_url.hostname}/ajax.php?ajax=download", data={'id': str(url.split('/')[-1])}, headers={'x-requested-with': 'XMLHttpRequest'}).json()
         except Exception as e:
@@ -187,6 +186,8 @@ async def appflix(url):
 
 
 async def sharerpw(url: str, force=False):
+    if not Config.XSRF_TOKEN and not Config.LARAVEL_SESSION:
+        raise DDLException("XSRF_TOKEN or LARAVEL_SESSION not Provided!")
     cget = create_scraper(allow_brotli=False).request
     resp = cget("GET", url, cookies={
         "XSRF-TOKEN": Config.XSRF_TOKEN,
@@ -206,13 +207,17 @@ async def sharerpw(url: str, force=False):
         res = cget("POST", url+'/dl', headers=headers, data=data).json()
     except Exception as e:
         raise DDLException(str(e))
-    LOGGER.info(res)
-    if (gd_link := res.get('url', False)):
-        return f'''┎ <b>Name :</b> {parse_txt[2]}
-┠ <b>Size :</b> {parse_txt[8]}
-┠ <b>Added On :</b> {parse_txt[11]}
-┃
-┖ <b>Drive Link :</b> {gd_link}'''
+    parse_data = f'''┎ <b>Name :</b> <code>{parse_txt[2]}</code>
+┠ <b>Size :</b> <code>{parse_txt[8]}</code>
+┠ <b>Added On :</b> <code>{parse_txt[11]}</code>
+┃'''
+    if res['status'] == 0:
+        if Config.DIRECT_INDEX:
+            parse_data +=  f'\n┠ <b>Index Link :</b> {get_dl(res["url"])}'
+        return parse_data + f"\n┖ <b>Drive Link :</b> {res['url']}"
+    elif res['status'] == 2:
+        msg = res['message'].replace('<br/>', '\n')
+        return parse_data + f"\n┖ <b>Error Message :</b> {msg}"
     if len(ddl_btn) and not force:
         return await sharerpw(url, force=True)
 

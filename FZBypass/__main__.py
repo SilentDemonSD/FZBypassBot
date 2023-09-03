@@ -1,6 +1,18 @@
-from FZBypass import Bypass, LOGGER
+from FZBypass import Bypass, LOGGER, Config
 from pyrogram import idle
-from os import path as ospath
+from pyrogram.filters import command, user
+from os import path as ospath, execl
+from asyncio import create_subprocess_exec
+from sys import executable
+
+
+@Bypass.on_message(command('restart') & user(Config.OWNER_ID))
+async def restart(client, message):
+    restart_message = await message.reply('<i>Restarting...</i>')
+    await (await create_subprocess_exec('python3', 'update.py')).wait()
+    with open(".restartmsg", "w") as f:
+        f.write(f"{restart_message.chat.id}\n{restart_message.id}\n")
+    execl(executable, executable, "-m", "FZBypass")
 
 async def restart():
     if ospath.isfile(".restartmsg"):

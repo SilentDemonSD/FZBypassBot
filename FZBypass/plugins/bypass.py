@@ -1,7 +1,5 @@
 from time import time
 from re import match
-from sys import executable, argv
-from os import execl
 from asyncio import create_task, gather, sleep as asleep, create_subprocess_exec
 from pyrogram.filters import command, private, user
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultArticle, InputTextMessageContent
@@ -95,15 +93,6 @@ async def bypass_check(client, message):
 @Bypass.on_message(command('log') & user(Config.OWNER_ID))
 async def send_logs(client, message):
     await message.reply_document('log.txt', quote=True)
-
-
-@Bypass.on_message(command('restart') & user(Config.OWNER_ID))
-async def restart(client, message):
-    restart_message = await message.reply('<i>Restarting...</i>')
-    await (await create_subprocess_exec('python3', 'update.py')).wait()
-    with open(".restartmsg", "w") as f:
-        f.write(f"{restart_message.chat.id}\n{restart_message.id}\n")
-    execl(executable, executable, *argv)
 
 
 @Bypass.on_inline_query()
