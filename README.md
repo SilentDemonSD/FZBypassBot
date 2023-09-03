@@ -112,6 +112,8 @@
 |`earn2me.com`|✅️|
 |`adsfly.in`|✅️|
 |`m.narzolinks.click`|✅️|
+|`appurl.io`|✅️|
+|`surl.li`|✅️|
 |`More Sites...Updating`|️♻️|
 
 ### ***Scrape Sites***
@@ -134,6 +136,7 @@
 |`hubdrive.co` **(Instant Link)**|✅️|
 |`katdrive.org` **(Direct Download)**|✅️|
 |`drivefire.co`|✅️|
+|`sharer.pw`|✅️|
 
 ---
 

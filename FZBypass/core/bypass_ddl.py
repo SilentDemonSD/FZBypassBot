@@ -232,6 +232,20 @@ async def shorter(url: str) -> str:
         raise DDLException("Link Extraction Failed")
 
 
+async def appurl(url: str):
+    cget = create_scraper().request 
+    resp = cget("GET", url, allow_redirects=False)
+    soup = BeautifulSoup(resp.text, 'html.parser')
+    return soup.select('meta[property="og:url"]')[0]['content']
+    
+    
+async def surl(url: str):
+    cget = create_scraper().request 
+    resp = cget("GET", url + "+")
+    soup = BeautifulSoup(resp.text, 'html.parser')
+    return soup.select('p[class="long-url"]')[0].string.split()[1]
+
+
 async def shrtco(url: str) -> str:
     try:
         code = url.rstrip("/").split("/")[-1]

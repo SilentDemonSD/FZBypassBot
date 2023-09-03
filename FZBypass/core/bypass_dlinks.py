@@ -4,7 +4,7 @@ from asyncio import create_task, gather
 from http.cookiejar import MozillaCookieJar
 from json import loads
 from os import path
-from re import findall, match, search, sub
+from re import findall, match, search, sub, DOTALL
 from time import sleep
 from urllib.parse import parse_qs, quote, unquote, urlparse
 from uuid import uuid4
@@ -155,7 +155,7 @@ async def appflix(url):
             d_link = await sharer_scraper(url)
         except Exception as e:
             if not dbotv2:
-                raise e
+                raise DDLException(e)
             else:
                 d_link = str(e)
         parse_txt = f'''┎ <b>Name :</b> <code>{ss[0].string.split(":")[1]}</code>
@@ -184,6 +184,31 @@ async def appflix(url):
         return f'''┎ <b>Name :</b> <code>{soup.title.string}</code>
 ┖ <b>Source Pack Link :</b> {url}{body}'''
     return await appflix_single(url)
+
+
+async def sharerpw(url: str, force=False):
+    cget = cloudscraper.create_scraper(allow_brotli=False).request
+    resp = cget("GET", url, cookies={
+        "XSRF-TOKEN": Config.XSRF_TOKEN,
+        "laravel_session": Config.LARAVEL_SESSION
+    })
+    token = findall("_token\s=\s'(.*?)'", resp.text, DOTALL)[0]
+    ddl_btn = etree.HTML(resp.content).xpath("//button[@id='btndirect']")
+    data = {'_token': token}
+    if not force:
+        data['nl'] = 1
+    headers = {
+        'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'x-requested-with': 'XMLHttpRequest'
+    }
+    try:
+        res = cget("POST", url+'/dl', headers=headers, data=data).json()
+    except Exception as e:
+        raise DDLException(str(e))
+    if res.get('url', False):
+        return res['url']
+    if len(ddl_btn) and not force:
+        return await sharerpw(url, force=True)
 
 
 async def sharer_scraper(url):

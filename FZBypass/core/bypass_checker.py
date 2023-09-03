@@ -188,6 +188,10 @@ async def direct_link_checker(link):
         return await rslinks(link)
     elif bool(match(r"https?:\/\/(bit|tinyurl|(.+\.)short|shorturl)\.\S+", link)):
         return await shorter(link)
+    elif bool(match(r"https?:\/\/appurl\.\S+", link)):
+        return await appurl(link)
+    elif bool(match(r"https?:\/\/surl\.\S+", link)):
+        return await surl(link)
     elif bool(match(r"https?:\/\/(shrtco|9qr|shiny)\.\S+", link)):
         return await shrtco(link)
     elif bool(match(r"https?:\/\/thinfi\.\S+", link)):
@@ -214,6 +218,8 @@ async def direct_link_checker(link):
         return await drivescript(link, Config.KATDRIVE_CRYPT, "KatDrive")
     elif bool(match(r"https?:\/\/drivefire\.\S+", link)):
         return await drivescript(link, Config.DRIVEFIRE_CRYPT, "DriveFire")
+    elif bool(match(r"https?:\/\/sharer\.\S+", link)):
+        return await sharerpw(link)
     elif is_share_link(link):
         if 'gdtot' in domain:
             return await gdtot(link)
