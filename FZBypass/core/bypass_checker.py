@@ -20,7 +20,7 @@ def is_share_link(url):
     return bool(match(r'https?:\/\/.+\.(gdtot|filepress|gdflix)\.\S+|https?:\/\/(gdflix|filepress|onlystream|filebee|appdrive)\.\S+', url))
 
 def is_excep_link(url):
-    return bool(match(r'https?:\/\/.+\.(1tamilmv|gdtot|filepress|gdflix|sharespark)\.\S+|https?:\/\/(onlystream|hubdrive|katdrive|drivefire|skymovieshd|toonworld4all|kayoanime|cinevood|gdflix|filepress|filebee|appdrive)\.\S+', url))
+    return bool(match(r'https?:\/\/.+\.(1tamilmv|gdtot|filepress|gdflix|sharespark)\.\S+|https?:\/\/(sharer|onlystream|hubdrive|katdrive|drivefire|skymovieshd|toonworld4all|kayoanime|cinevood|gdflix|filepress|filebee|appdrive)\.\S+', url))
 
 async def direct_link_checker(link):
     domain = urlparse(link).hostname

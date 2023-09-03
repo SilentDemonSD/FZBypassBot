@@ -192,8 +192,9 @@ async def sharerpw(url: str, force=False):
         "XSRF-TOKEN": Config.XSRF_TOKEN,
         "laravel_session": Config.LARAVEL_SESSION
     })
-    token = findall("_token\s=\s'(.*?)'", resp.text, DOTALL)[0]
+    parse_txt = findall(">(.*?)<\/td>", resp.text)
     ddl_btn = etree.HTML(resp.content).xpath("//button[@id='btndirect']")
+    token = findall("_token\s=\s'(.*?)'", resp.text, DOTALL)[0]
     data = {'_token': token}
     if not force:
         data['nl'] = 1
@@ -205,8 +206,13 @@ async def sharerpw(url: str, force=False):
         res = cget("POST", url+'/dl', headers=headers, data=data).json()
     except Exception as e:
         raise DDLException(str(e))
-    if res.get('url', False):
-        return res['url']
+    LOGGER.info(res)
+    if (gd_link := res.get('url', False)):
+        return f'''┎ <b>Name :</b> {parse_txt[2]}
+┠ <b>Size :</b> {parse_txt[8]}
+┠ <b>Added On :</b> {parse_txt[11]}
+┃
+┖ <b>Drive Link :</b> {gd_link}'''
     if len(ddl_btn) and not force:
         return await sharerpw(url, force=True)
 
