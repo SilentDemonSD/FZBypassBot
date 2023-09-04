@@ -127,6 +127,8 @@
 |`www.1tamilmv.*` **(Page)**|✅️|
 
 ### ***GDrive Sites***
+> _Fast Index Link is Supported for all GD Sites_
+
 | __Websites__ | __Status__ |
 |:--------------------:|:----------:|
 |`new9.gdtot.cfd`|✅️|
