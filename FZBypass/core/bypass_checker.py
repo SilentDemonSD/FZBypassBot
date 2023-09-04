@@ -246,7 +246,7 @@ async def direct_link_checker(link, onlylink=False):
             links.append(blink)
             blink = await direct_link_checker(blink, onlylink=True)
             if is_excep_link(links[-1]):
-                links.append(blink)
+                links.append("\n\n" + blink)
                 break
         except Exception as e:
             break
