@@ -1,3 +1,4 @@
+from time import time
 from re import match
 from asyncio import create_task, gather, sleep as asleep, create_subprocess_exec
 from pyrogram.filters import command, private, user
@@ -63,12 +64,15 @@ async def bypass_check(client, message):
         if isinstance(result, Exception):
             bp_link = f"\n┖ <b>Bypass Error:</b> {result}"
         elif is_excep_link(link):
-            bp_link = result[0]
-        else:
-            bp_link = ""
+            bp_link = result
+        elif isinstance(result, list):
+            bp_link, ui = "", "┖"
             for ind, lplink in reversed(list(enumerate(result, start=1))):
-                bp_link = f"\n┖ <b>{ind}x Bypass Link:</b> {lplink}" + bp_link
-        
+                bp_link = f"\n{ui} <b>{ind}x Bypass Link:</b> {lplink}" + bp_link
+                ui = "┠"
+        else:
+            bp_link = f"\n┖ <b>Bypass Link:</b> {result}"
+    
         if is_excep_link(link):
             parse_data.append(f"{bp_link}\n\n━━━━━━━✦✗✦━━━━━━━\n\n")
         else:
