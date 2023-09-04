@@ -248,5 +248,6 @@ async def direct_link_checker(link, onlylink=False):
             if is_excep_link(links[-1]):
                 break
         except Exception as e:
+            LOGGER.info(e)
             break
     return links

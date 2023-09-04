@@ -66,6 +66,7 @@ async def bypass_check(client, message):
         elif is_excep_link(link):
             bp_link = result
         elif isinstance(result, list):
+            LOGGER.info(result)
             bp_link, ui = "", "┖"
             for ind, lplink in reversed(list(enumerate(result, start=1))):
                 bp_link = f"\n{ui} <b>{ind}x Bypass Link:</b> {lplink}" + bp_link
