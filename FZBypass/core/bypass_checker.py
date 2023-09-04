@@ -101,7 +101,7 @@ async def direct_link_checker(link, onlylink=False):
     elif bool(match(r"https?:\/\/powerlinks\.\S+", link)):
         blink = await transcript(link, "http://powerlinks.site", "http://powerlinks.site", 5)
     elif bool(match(r"https?:\/\/(.+\.)?vipurl\.\S+", link)):
-        blink = await transcript(link, "https://count.vipurl.in/", "https://loanhelpful.net/", 9)
+        blink = await transcript(link, "https://count.vipurl.in/", "https://pngreal.com/", 5)
     elif bool(match(r"https?:\/\/indyshare\.\S+", link)):
         blink = await transcript(link, "https://indyshare.net", "https://bestdjsong.com", 6)
     elif bool(match(r"https?:\/\/linkyearn\.\S+", link)):
@@ -246,8 +246,8 @@ async def direct_link_checker(link, onlylink=False):
             links.append(blink)
             blink = await direct_link_checker(blink, onlylink=True)
             if is_excep_link(links[-1]):
+                links.append(blink)
                 break
         except Exception as e:
-            LOGGER.info(e)
             break
     return links

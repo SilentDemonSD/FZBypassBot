@@ -17,6 +17,7 @@
 
 ## ***Features***
 - _Fastest written in Async_
+- _LoopBypass V1 (Auto Bypass Nested Shorteners)_
 - _Build with Simultaneously Bypass Method_
 - _Supported for Authorized Chats & Topics_
 - _Added Support for Inline Bypass ( Use anytime anywhere)_
