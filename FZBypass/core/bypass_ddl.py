@@ -1,3 +1,4 @@
+import asyncio, aiohttp, re
 from base64 import b64decode
 from http.cookiejar import MozillaCookieJar
 from json import loads
@@ -18,6 +19,54 @@ from FZBypass import Config, LOGGER
 from FZBypass.core.exceptions import DDLException
 from FZBypass.core.recaptcha import recaptchaV3
 
+async def get_readable_time(seconds):
+    minutes, seconds = divmod(seconds, 60)
+    hours, minutes = divmod(minutes, 60)
+    return f"{hours}h{minutes}m{seconds}s"
+
+async def uptobox(url):
+    try:
+        link = re.findall(r'\bhttps?://.*uptobox\.com\S+', url)[0]
+    except IndexError:
+        raise DDLException("No Uptobox links found")
+
+    if link := re.findall(r'\bhttps?://.*\.uptobox\.com/dl\S+', url):
+        return link[0]
+
+    try:
+        file_id = re.findall(r'\bhttps?://.*uptobox\.com/(\w+)', url)[0]
+        if UPTOBOX_TOKEN := Config.UPTOBOX_TOKEN:
+            file_link = f'https://uptobox.com/api/link?token={UPTOBOX_TOKEN}&file_code={file_id}'
+        else:
+            file_link = f'https://uptobox.com/api/link?file_code={file_id}'
+    except Exception as e:
+        raise DDLException(f"{e.__class__.__name__}")
+
+    async with aiohttp.ClientSession() as session:
+        try:
+            async with session.get(file_link) as response:
+                res = await response.json()
+        except Exception as e:
+            raise DDLException(f"{e.__class__.__name__}")
+
+        if res['statusCode'] == 0:
+            return res['data']['dlLink']
+        elif res['statusCode'] == 16:
+            sleep(1)
+            waiting_token = res["data"]["waitingToken"]
+            await asyncio.sleep(res["data"]["waiting"])
+        elif res['statusCode'] == 39:
+            readable_time = await get_readable_time(res['data']['waiting'])
+            raise DDLException(f"Uptobox is being Limited. Please wait {readable_time}")
+        else:
+            raise DDLException(f"{res['message']}")
+
+        try:
+            async with session.get(f"{file_link}&waitingToken={waiting_token}") as response:
+                res = await response.json()
+            return res['data']['dlLink']
+        except Exception as e:
+            raise DDLException(f"ERROR: {e.__class__.__name__}")
 
 async def yandex_disk(url: str) -> str:
     cget = create_scraper().request
@@ -28,8 +77,9 @@ async def yandex_disk(url: str) -> str:
 
 
 async def mediafire(url: str) -> str:
-    final_link = findall(r'https?:\/\/download\d+\.mediafire\.com\/\S+\/\S+\/\S+', url)
-    if final_link: 
+    if final_link := findall(
+        r'https?:\/\/download\d+\.mediafire\.com\/\S+\/\S+\/\S+', url
+    ):
         return final_link[0]
     cget = create_scraper().request
     try:
@@ -37,10 +87,12 @@ async def mediafire(url: str) -> str:
         page = cget('get', url).text
     except Exception as e:
         raise DDLException(f"{e.__class__.__name__}")
-    final_link = findall(r"\'(https?:\/\/download\d+\.mediafire\.com\/\S+\/\S+\/\S+)\'", page)
-    if not final_link:
+    if final_link := findall(
+        r"\'(https?:\/\/download\d+\.mediafire\.com\/\S+\/\S+\/\S+)\'", page
+    ):
+        return final_link[0]
+    else:
         raise DDLException("No links found in this page")
-    return final_link[0]
 
 
 async def shrdsk(url: str) -> str:
@@ -240,8 +292,8 @@ async def appurl(url: str):
     
     
 async def surl(url: str):
-    cget = create_scraper().request 
-    resp = cget("GET", url + "+")
+    cget = create_scraper().request
+    resp = cget("GET", f"{url}+")
     soup = BeautifulSoup(resp.text, 'html.parser')
     return soup.select('p[class="long-url"]')[0].string.split()[1]
 
