@@ -52,21 +52,46 @@ async def skymovieshd(url: str) -> str:
             gd_txt += f"{no}. {link['href']}\n"
     return gd_txt
 
-
 async def cinevood(url: str) -> str:
     soup = BeautifulSoup(rget(url).text, 'html.parser')
     titles = soup.select('h6')
-    gtlinks = soup.select('a[href*="gdtot"]')
-    gflinks = soup.select('a[href*="gdflix"]')
-    prsd = f"<b><u>{soup.title.string}</u></b>"
-    for n, (t, gt, gf) in enumerate(zip(titles, gtlinks, gflinks), start=1):
-        prsd += f'''
+    links_by_title = {}
+    
+    # Extract the post title from the webpage's title
+    post_title = soup.title.string.strip()
+    
+    for title in titles:
+        title_text = title.text.strip()
+        gdtot_links = title.find_next('a', href=lambda href: "gdtot" in href.lower())
+        multiup_links = title.find_next('a', href=lambda href: "multiup" in href.lower())
+        filepress_links = title.find_next('a', href=lambda href: "filepress" in href.lower())
+        gdflix_links = title.find_next('a', href=lambda href: "gdflix" in href.lower())
+        kolop_links = title.find_next('a', href=lambda href: "kolop" in href.lower())
+        zipylink_links = title.find_next('a', href=lambda href: "zipylink" in href.lower())
         
-{n}. <i><b>{t}</b></i>
-┃ 
-┖ <a href='{gt["href"]}'><b>GDToT Link</b></a> | <a href='{gf["href"]}'><b>GDFlix Link</b></a>'''
-    return prsd
+        links = []
+        if gdtot_links:
+            links.append(f'<a href="{gdtot_links["href"]}" style="text-decoration:none;"><b>GDToT</b></a>')
+        if multiup_links:
+            links.append(f'<a href="{multiup_links["href"]}" style="text-decoration:none;"><b>MultiUp</b></a>')
+        if filepress_links:
+            links.append(f'<a href="{filepress_links["href"]}" style="text-decoration:none;"><b>FilePress</b></a>')
+        if gdflix_links:
+            links.append(f'<a href="{gdflix_links["href"]}" style="text-decoration:none;"><b>GDFlix</b></a>')
+        if kolop_links:
+            links.append(f'<a href="{kolop_links["href"]}" style="text-decoration:none;"><b>Kolop</b></a>')
+        if zipylink_links:
+            links.append(f'<a href="{zipylink_links["href"]}" style="text-decoration:none;"><b>ZipyLink</b></a>')
+        
+        if links:
+            links_by_title[title_text] = links
+    
+    prsd = f"<b>🔖 Title:</b> {post_title}\n"
+    for title, links in links_by_title.items():
+        prsd += f"\n┏<b>🏷️ Name:</b> <code>{title}</code>\n"
+        prsd += "┗<b>🔗 Links:</b> " + " | ".join(links) + "\n"
 
+    return prsd
 
 async def kayoanime(url: str) -> str:
     soup = BeautifulSoup(rget(url).text, 'html.parser')
@@ -110,7 +135,7 @@ async def toonworld4all(url: str):
     atasks = []
     for sl in links:
         nsl = ""
-        while not any(x in nsl for x in ['rocklinks', 'link1s']):
+        while all(x not in nsl for x in ['rocklinks', 'link1s']):
             nsl = rget(sl["href"], allow_redirects=False).headers['location']
         if "rocklinks" in nsl:
             atasks.append(create_task(transcript(nsl, "https://insurance.techymedies.com/", "https://highkeyfinance.com/", 5)))
@@ -119,7 +144,7 @@ async def toonworld4all(url: str):
 
     com_tasks = await gather(*atasks, return_exceptions=True)
     lstd = [com_tasks[i:i+slicer] for i in range(0, len(com_tasks), slicer)]
-    
+
     for no, tl in enumerate(titles):
         prsd += f"\n\n<b>{tl.string}</b>\n┃\n┖ <b>Links :</b> "
         for tl, sl in zip(links, lstd[no]):
