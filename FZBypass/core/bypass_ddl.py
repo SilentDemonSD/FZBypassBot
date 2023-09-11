@@ -77,8 +77,9 @@ async def yandex_disk(url: str) -> str:
 
 
 async def mediafire(url: str) -> str:
-    final_link = findall(r'https?:\/\/download\d+\.mediafire\.com\/\S+\/\S+\/\S+', url)
-    if final_link: 
+    if final_link := findall(
+        r'https?:\/\/download\d+\.mediafire\.com\/\S+\/\S+\/\S+', url
+    ):
         return final_link[0]
     cget = create_scraper().request
     try:
@@ -86,10 +87,12 @@ async def mediafire(url: str) -> str:
         page = cget('get', url).text
     except Exception as e:
         raise DDLException(f"{e.__class__.__name__}")
-    final_link = findall(r"\'(https?:\/\/download\d+\.mediafire\.com\/\S+\/\S+\/\S+)\'", page)
-    if not final_link:
+    if final_link := findall(
+        r"\'(https?:\/\/download\d+\.mediafire\.com\/\S+\/\S+\/\S+)\'", page
+    ):
+        return final_link[0]
+    else:
         raise DDLException("No links found in this page")
-    return final_link[0]
 
 
 async def shrdsk(url: str) -> str:
@@ -289,8 +292,8 @@ async def appurl(url: str):
     
     
 async def surl(url: str):
-    cget = create_scraper().request 
-    resp = cget("GET", url + "+")
+    cget = create_scraper().request
+    resp = cget("GET", f"{url}+")
     soup = BeautifulSoup(resp.text, 'html.parser')
     return soup.select('p[class="long-url"]')[0].string.split()[1]
 
