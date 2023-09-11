@@ -135,7 +135,7 @@ async def toonworld4all(url: str):
     atasks = []
     for sl in links:
         nsl = ""
-        while not any(x in nsl for x in ['rocklinks', 'link1s']):
+        while all(x not in nsl for x in ['rocklinks', 'link1s']):
             nsl = rget(sl["href"], allow_redirects=False).headers['location']
         if "rocklinks" in nsl:
             atasks.append(create_task(transcript(nsl, "https://insurance.techymedies.com/", "https://highkeyfinance.com/", 5)))
@@ -144,7 +144,7 @@ async def toonworld4all(url: str):
 
     com_tasks = await gather(*atasks, return_exceptions=True)
     lstd = [com_tasks[i:i+slicer] for i in range(0, len(com_tasks), slicer)]
-    
+
     for no, tl in enumerate(titles):
         prsd += f"\n\n<b>{tl.string}</b>\n┃\n┖ <b>Links :</b> "
         for tl, sl in zip(links, lstd[no]):
