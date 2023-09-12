@@ -33,7 +33,7 @@
 | __Shortener Sites__ | __Status__ |
 |:--------------------:|:----------:|
 |`tinyfy.in`|✅️|
-|`xpshort.com` + `push.bdnewsx.com` + `techymozo.com`|✅️|
+|`xpshort.com` + `push.bdnewsx.com` + `techymozo.com`|❌|
 |`gtlinks.me` + `gyanilinks.com`|✅️|
 |`droplink.co`|✅️|
 |`earn.moneykamalo.com`|✅️|
@@ -133,13 +133,13 @@
 | __Websites__ | __Status__ |
 |:--------------------:|:----------:|
 |`new9.gdtot.cfd`|✅️|
-|`new.filepress.store` + `filebee.xyz` + `onlystream.xyz`|✅️|
+|`new.filepress.store` + `filebee.xyz` + `onlystream.xyz` + `pressbee.xyz`|✅️|
 |`appdrive.club` **(File + Pack)**|✅️|
-|`gdflix.cc`**(File + Pack)**|❌️|
+|`gdflix.cc`**(File + Pack)**|✅|
 |`hubdrive.co` **(Instant Link)**|✅️|
 |`katdrive.org` **(Direct Download)**|✅️|
 |`drivefire.co`|✅️|
-|`sharer.pw`|✅️|
+|`sharer.pw`|❌|
 
 ---
 

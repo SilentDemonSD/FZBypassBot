@@ -87,7 +87,7 @@ async def direct_link_checker(link, onlylink=False):
     elif bool(match(r"https?:\/\/mdisk\.\S+", link)):
         blink = await transcript(link, "https://mdisk.pro", "https://m.meclipstudy.in/", 8)
     elif bool(match(r"https?:\/\/(pkin|go.paisakamalo)\.\S+", link)):
-        blink = await transcript(link, "https://go.paisakamalo.in", "https://weightloss.techkeshri.com/", 9)
+        blink = await transcript(link, "https://go.paisakamalo.in", "https://techkeshri.com/", 9)
     elif bool(match(r"https?:\/\/linkpays\.\S+", link)):
         blink = await transcript(link, "https://tech.smallinfo.in/Gadget/", "https://finance.filmypoints.in/", 6)
     elif bool(match(r"https?:\/\/sklinks\.\S+", link)):
@@ -112,7 +112,7 @@ async def direct_link_checker(link, onlylink=False):
         blink = await transcript(link, "https://go.linksly.co/", "https://en.themezon.net/", 5)
     elif bool(match(r"https?:\/\/.+\.mdiskshortner\.\S+", link)):
         blink = await transcript(link, "https://loans.yosite.net/", "https://yosite.net/", 10)
-    elif bool(match(r"https?:\/\/.+\.rocklinks\.\S+", link)):
+    elif bool(match(r"https?://(?:\w+\.)?rocklinks\.\S+", link)):
         blink = await transcript(link, "https://insurance.techymedies.com/", "https://highkeyfinance.com/", 5)
     elif bool(match(r"https?:\/\/mplaylink\.\S+", link)):
         blink = await transcript(link, "https://tera-box.cloud/", "https://zisnews.com/", 5)
@@ -155,7 +155,7 @@ async def direct_link_checker(link, onlylink=False):
     elif bool(match(r"https?:\/\/sheralinks\.\S+", link)):
         blink = await transcript(link, "https://link.blogyindia.com/", "https://blogyindia.com/", 5)
     elif bool(match(r"https?:\/\/bindaaslinks\.\S+", link)):
-        blink = await transcript(link, "https://thebindaas.com/blog/", "https://finance.appsinsta.com/", 5)
+        blink = await transcript(link, "https://thebindaas.com/blog/", "https://blog.appsinsta.com/", 5)
     elif bool(match(r"https?:\/\/viplinks\.\S+", link)):
         blink = await transcript(link, "https://m.vip-link.net/", "https://m.leadcricket.com/", 5)
     elif bool(match(r"https?:\/\/.+\.short2url\.\S+", link)):
