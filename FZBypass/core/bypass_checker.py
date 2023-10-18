@@ -34,7 +34,7 @@ async def direct_link_checker(link, onlylink=False):
         return await shrdsk(link)
     elif any(x in domain for x in anonSites):
         return await anonsites(link)
-    elif any(x in domain for x in ['terabox', 'nephobox', '4funbox', 'mirrobox', 'momerybox', 'teraboxapp']):
+    elif any(x in domain for x in ['1024tera', 'terabox', 'nephobox', '4funbox', 'mirrobox', 'momerybox', 'teraboxapp']):
         return await terabox(link)
     elif "drive.google.com" in link:
         return get_dl(link)
@@ -87,7 +87,7 @@ async def direct_link_checker(link, onlylink=False):
     elif bool(match(r"https?:\/\/mdisk\.\S+", link)):
         blink = await transcript(link, "https://mdisk.pro", "https://m.meclipstudy.in/", 8)
     elif bool(match(r"https?:\/\/(pkin|go.paisakamalo)\.\S+", link)):
-        blink = await transcript(link, "https://go.paisakamalo.in", "https://techkeshri.com/", 9)
+        blink = await transcript(link, "https://go.paisakamalo.in", "https://weightloss.techkeshri.com/", 9)
     elif bool(match(r"https?:\/\/linkpays\.\S+", link)):
         blink = await transcript(link, "https://tech.smallinfo.in/Gadget/", "https://finance.filmypoints.in/", 6)
     elif bool(match(r"https?:\/\/sklinks\.\S+", link)):
