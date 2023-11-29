@@ -35,7 +35,6 @@
 |`tinyfy.in`|✅️|
 |`xpshort.com` + `push.bdnewsx.com` + `techymozo.com`|❌|
 |`gtlinks.me` + `gyanilinks.com`|✅️|
-|`droplink.co`|✅️|
 |`earn.moneykamalo.com`|✅️|
 |`adrinolinks.com`|❌️|
 |`krownlinks.me`|✅️|
@@ -48,27 +47,22 @@
 |`m.easysky.in`|❌️|
 |`linkbnao.com`|✅️|
 |`go.indiurl.in.net`|⚠️|
-|`go.earnl.xyz`|⚠️|
 |`linkvertise.com`|✅️|
 |`link.tnlink.in`|️✅️|
 |`link4earn.com` + `link4earn.in`|✅️|
 |`shortingly.com`|️✅️|️
-|`go.flashlink.in`|⚠️|
 |`short2url.in`|✅️|
 |`urlsopen.com`|✅️|
 |`mdisk.pro`|✅️|
 |`ouo.io` + `ouo.press`|✅️|
-|`shareus.in` + `shareus.io` + `shrs.link`|️❌️|
-|`dropbox.in`|✅️|
+|`www.dropbox.com`|✅️|
 |`disk.yandex.ru` + `yandex.com`|✅️|
 |`try2link.com`|✅️|
-|`shrdsk.me`|✅️|
 |`linkpays.in`|✅️|
 |`pkin.me` + `go.paisakamalo.in`|✅️|
 |`sklinks.in` + `sklinks.tech`|✅️|
 |`link1s.com`|✅️|
 |`tulinks.one` + `go.tulinks.online` + `tulinks.online`|✅️|
-|`powerlinks.site`|✅️|
 |`link.vipurl.in` + `vipurl.in` + `count.vipurl.in`|✅️|
 |`v2links.com`|✅️|
 |`indyshare.net`|✅️|
@@ -80,7 +74,6 @@
 |`shrdsk.me`|️️✅️|
 |`mediafire.com`|✅️|
 |`terabox.*` + `terabox.*` + `nephobox.*` + `4funbox.*` + `mirrobox.*` + `momerybox.*` + `teraboxapp.*`|✅️|
-|`hotfile.io` + `bayfiles.com` + `megaupload.nz` + `letsupload.cc` + `filechan.org` + `myfile.is` + `vshare.is` + `rapidshare.nu` + `lolabits.se` + `openload.cc` + `share-online.is` + `upvid.cc`️|⚠️|
 |`rocklinks.net`|✅️|
 |`mplaylink.com`|✅️|
 |`shrinke.me`|✅️|
@@ -132,10 +125,10 @@
 
 | __Websites__ | __Status__ |
 |:--------------------:|:----------:|
-|`new9.gdtot.cfd`|✅️|
-|`new.filepress.store` + `filebee.xyz` + `onlystream.xyz` + `pressbee.xyz`|✅️|
-|`appdrive.club` **(File + Pack)**|✅️|
-|`gdflix.cc`**(File + Pack)**|✅|
+|`*.gdtot.cfd`|✅️|
+|`new*.filepress.store` + `filebee.xyz` + `onlystream.xyz` + `pressbee.xyz`|✅️|
+|`appdrive.*` **(File + Pack)**|✅️|
+|`gdflix.*`**(File + Pack)**|✅|
 |`hubdrive.co` **(Instant Link)**|✅️|
 |`katdrive.org` **(Direct Download)**|✅️|
 |`drivefire.co`|✅️|
@@ -190,6 +183,7 @@
 - `API_HASH`: This is to authenticate your Telegram account for downloading Telegram files. You can get this from https://my.telegram.org.
 - `AUTH_CHATS`: Group ID (with Topic ID), Separated by space.
   > **Format:** chat_id:topic_id chat_id chat_id:topic_id
+- `AUTO_BYPASS`: Change between Command Mode or Auto Bypass Mode. Default is False.
 - `GDTOT_CRYPT`: GdToT Crypt (Optional). It works with & without Crypt!
 - `HUBDRIVE_CRYPT`: HubDrive Crypt (Optional), It works with or without Cookie, Get from Cookie Editor Extension.
 - `KATDRIVE_CRYPT`: KatDrive Crypt (Optional), It works with or without Cookie, Get from Cookie Editor Extension.
@@ -207,4 +201,5 @@
 
 ## ***Credits***
 - `SilentDemonSD` (Developer)
+- `Other Contributors` (Those who commited and Helped Internally)
 - `Link-Bypasser-Bot` (Many Scripts are Taken & Totally Modified)

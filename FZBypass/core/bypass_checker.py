@@ -12,10 +12,6 @@ from FZBypass.core.exceptions import DDLException
 fmed_list = ['fembed.net', 'fembed.com', 'femax20.com', 'fcdn.stream', 'feurl.com', 'layarkacaxxi.icu',
              'naniplay.nanime.in', 'naniplay.nanime.biz', 'naniplay.com', 'mm9842.com']
 
-anonSites = ['hotfile.io', 'bayfiles.com', 'megaupload.nz', 'letsupload.cc',
-            'filechan.org', 'myfile.is', 'vshare.is', 'rapidshare.nu', 'lolabits.se',
-            'openload.cc', 'share-online.is', 'upvid.cc']
-
 def is_share_link(url):
     return bool(match(r'https?:\/\/.+\.(gdtot|filepress|pressbee|gdflix)\.\S+|https?:\/\/(gdflix|filepress|pressbee|onlystream|filebee|appdrive)\.\S+', url))
 
@@ -32,8 +28,6 @@ async def direct_link_checker(link, onlylink=False):
         return await mediafire(link)
     elif bool(match(r"https?:\/\/shrdsk\.\S+", link)):
         return await shrdsk(link)
-    elif any(x in domain for x in anonSites):
-        return await anonsites(link)
     elif any(x in domain for x in ['1024tera', 'terabox', 'nephobox', '4funbox', 'mirrobox', 'momerybox', 'teraboxapp']):
         return await terabox(link)
     elif "drive.google.com" in link:
@@ -72,16 +66,12 @@ async def direct_link_checker(link, onlylink=False):
         blink = await transcript(link, "https://vip.linkbnao.com", "https://ffworld.xyz/", 2)
     elif bool(match(r"https?:\/\/go.indiurl\.\S+", link)):
         blink = await transcript(link, "https://file.earnash.com/", "https://indiurl.cordtpoint.co.in/", 10)
-    elif bool(match(r"https?:\/\/go.earnl\.\S+", link)):
-        blink = await transcript(link, "https://v.earnl.xyz", "https://link.modmakers.xyz/", 5)
     elif bool(match(r"https?:\/\/.+\.tnlink\.\S+", link)):
         blink = await transcript(link, "https://news.speedynews.xyz/", "https://market.finclub.in/", 5)
     elif bool(match(r"https?:\/\/link4earn\.\S+", link)):
         blink = await transcript(link, "https://link4earn.com", "https://studyis.xyz/", 6)
     elif bool(match(r"https?:\/\/shortingly\.\S+", link)):
         blink = await transcript(link, "https://go.blogytube.com/", "https://blogytube.com/", 5)
-    elif bool(match(r"https?:\/\/go.flashlink\.\S+", link)):
-        blink = await transcript(link, "https://files.earnash.com/", "https://flash1.cordtpoint.co.in", 15)
     elif bool(match(r"https?:\/\/short2url\.\S+", link)):
         blink = await transcript(link, "https://techyuth.xyz/blog", "https://blog.coin2pay.xyz/", 10)
     elif bool(match(r"https?:\/\/urlsopen\.\S+", link)):
@@ -100,8 +90,6 @@ async def direct_link_checker(link, onlylink=False):
         blink = await transcript(link, "https://tulinks.one", "https://www.blogger.com/", 8)
     elif bool(match(r"https?:\/\/.+\.tulinks\.\S+", link)):
         blink = await transcript(link, "https://go.tulinks.online", "https://tutelugu.co/", 8)
-    elif bool(match(r"https?:\/\/powerlinks\.\S+", link)):
-        blink = await transcript(link, "http://powerlinks.site", "http://powerlinks.site", 5)
     elif bool(match(r"https?:\/\/(.+\.)?vipurl\.\S+", link)):
         blink = await transcript(link, "https://count.vipurl.in/", "https://kiss6kartu.in/", 5)
     elif bool(match(r"https?:\/\/indyshare\.\S+", link)):
@@ -183,7 +171,7 @@ async def direct_link_checker(link, onlylink=False):
         blink = await ouo(link)
     elif bool(match(r"https?:\/\/(shareus|shrs)\.\S+", link)):
         blink = await shareus(link)
-    elif bool(match(r"https?:\/\/dropbox\.\S+", link)):
+    elif bool(match(r"https?:\/\/(.+\.)?dropbox\.\S+", link)):
         blink = await dropbox(link)
     elif bool(match(r"https?:\/\/uptobox\.\S+", link)):
         blink = await uptobox(link)

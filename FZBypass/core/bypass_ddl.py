@@ -110,17 +110,6 @@ async def shrdsk(url: str) -> str:
     raise DDLException("No Direct Link Found")
 
 
-async def anonsites(url: str):  # Depreciated ( Code Preserved )
-    cget = create_scraper().request
-    try:
-        soup = BeautifulSoup(cget('get', url).content, 'lxml')
-    except Exception as e:
-        raise DDLException(f"{e.__class__.__name__}")
-    if (sp := soup.find(id="download-url")):
-        return sp['href']
-    raise DDLException("File not found!")
-
-
 async def terabox(url: str) -> str:
     sess = Session()
     def retryme(url):

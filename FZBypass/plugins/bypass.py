@@ -1,7 +1,7 @@
 from time import time
 from re import match
 from asyncio import create_task, gather, sleep as asleep, create_subprocess_exec
-from pyrogram.filters import command, private, user
+from pyrogram.filters import create, command, private, user
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultArticle, InputTextMessageContent
 from pyrogram.enums import MessageEntityType
 from pyrogram.errors import QueryIdInvalid
@@ -10,6 +10,16 @@ from FZBypass import Config, Bypass, BOT_START, LOGGER
 from FZBypass.core.bypass_checker import direct_link_checker, is_excep_link
 from FZBypass.core.bot_utils import chat_and_topics, convert_time
 from FZBypass.core.exceptions import DDLException
+
+
+async def auto_bypass(_, c, message):
+    if Config.AUTO_BYPASS and message.entities and any((enty.type == MessageEntityType.TEXT_LINK) or (enty == MessageEntityType.URL) for enty in message.entities):
+        return True
+    elif (txt := message.text) and match(fr'^/(bypass|bp)(@{(await c.get_me()).username})?$', txt):
+        return True
+    return False
+
+BypassFilter = create(auto_bypass)
 
 
 @Bypass.on_message(command('start'))
@@ -28,7 +38,7 @@ async def start_msg(client, message):
     )
 
 
-@Bypass.on_message(command(['bypass', 'bp']) & (user(Config.OWNER_ID) | chat_and_topics))
+@Bypass.on_message(BypassFilter & (user(Config.OWNER_ID) | chat_and_topics))
 async def bypass_check(client, message):
     uid = message.from_user.id
     if (reply_to := message.reply_to_message) and (reply_to.text is not None or reply_to.caption is not None):
@@ -110,7 +120,7 @@ async def inline_query(client, query):
         link = string.strip('!bp ')
         start = time()
         try:
-            bp_link = await direct_link_checker(link)
+            bp_link = await direct_link_checker(link, True)
             end = time()
             
             if not is_excep_link(link):
