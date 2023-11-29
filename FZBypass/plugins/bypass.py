@@ -44,7 +44,7 @@ async def bypass_check(client, message):
     if (reply_to := message.reply_to_message) and (reply_to.text is not None or reply_to.caption is not None):
         txt = reply_to.text or reply_to.caption
         entities = reply_to.entities or reply_to.caption_entities
-    elif len(message.text.split()) > 1:
+    elif Config.AUTO_BYPASS or len(message.text.split()) > 1:
         txt = message.text
         entities = message.entities
     else:
