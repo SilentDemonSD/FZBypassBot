@@ -13,9 +13,9 @@ from FZBypass.core.exceptions import DDLException
 
 
 async def auto_bypass(_, c, message):
-    if Config.AUTO_BYPASS and message.entities and any((enty.type == MessageEntityType.TEXT_LINK) or (enty == MessageEntityType.URL) for enty in message.entities):
+    if Config.AUTO_BYPASS and message.entities and any(enty.type in [MessageEntityType.TEXT_LINK, MessageEntityType.URL] for enty in message.entities):
         return True
-    elif (txt := message.text) and match(fr'^\/(bypass|bp)(@{(await c.get_me()).username})?($| )', txt):
+    elif not Config.AUTO_BYPASS and (txt := message.text) and match(fr'^\/(bypass|bp)(@{(await c.get_me()).username})?($| )', txt):
         return True
     return False
 
