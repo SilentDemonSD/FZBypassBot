@@ -15,7 +15,7 @@ from FZBypass.core.exceptions import DDLException
 async def auto_bypass(_, c, message):
     if Config.AUTO_BYPASS and message.entities and any((enty.type == MessageEntityType.TEXT_LINK) or (enty == MessageEntityType.URL) for enty in message.entities):
         return True
-    elif (txt := message.text) and match(fr'^/(bypass|bp)(@{(await c.get_me()).username})?$', txt):
+    elif (txt := message.text) and match(fr'^\/(bypass|bp)(@{(await c.get_me()).username})?($| )', txt):
         return True
     return False
 
@@ -41,7 +41,6 @@ async def start_msg(client, message):
 @Bypass.on_message(BypassFilter & (user(Config.OWNER_ID) | chat_and_topics))
 async def bypass_check(client, message):
     uid = message.from_user.id
-    LOGGER.info(message)
     if (reply_to := message.reply_to_message) and (reply_to.text is not None or reply_to.caption is not None):
         txt = reply_to.text or reply_to.caption
         entities = reply_to.entities or reply_to.caption_entities
