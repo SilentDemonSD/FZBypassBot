@@ -32,22 +32,23 @@
 ### ***Shorten Sites***
 | __Shortener Sites__ | __Status__ |
 |:--------------------:|:----------:|
+|`ronylink.com`|✅️|
 |`tinyfy.in`|✅️|
 |`xpshort.com` + `push.bdnewsx.com` + `techymozo.com`|❌|
-|`gtlinks.me` + `gyanilinks.com`|✅️|
+|`gtlinks.me` + `gyanilinks.com`|❌️|
 |`earn.moneykamalo.com`|✅️|
-|`adrinolinks.com`|❌️|
+|`droplink.co`|✅️|
+|`adrinolinks.com`|✅️|
 |`krownlinks.me`|✅️|
 |`du-link.in` + `dulink.in`|✅️|
 |`onepagelink.in`|✅️|
 |`link.tnshort.net`|✅️|
-|`go.lolshort.tech`|✅️|
+|`go.lolshort.tech`|❌️|
 |`indianshortner.in`|✅️|
 |`rslinks.net`|❌️|
 |`m.easysky.in`|❌️|
-|`linkbnao.com`|✅️|
-|`go.indiurl.in.net`|⚠️|
-|`linkvertise.com`|✅️|
+|`linkbanao.com`|❌️|
+|`linkvertise.com`|️❌️|
 |`link.tnlink.in`|️✅️|
 |`link4earn.com` + `link4earn.in`|✅️|
 |`shortingly.com`|️✅️|️
@@ -64,10 +65,10 @@
 |`link1s.com`|✅️|
 |`tulinks.one` + `go.tulinks.online` + `tulinks.online`|✅️|
 |`link.vipurl.in` + `vipurl.in` + `count.vipurl.in`|✅️|
-|`v2links.com`|✅️|
+|`v2links.com`|️❌️|
 |`indyshare.net`|✅️|
 |`bit.ly` + `tinyurl.com` + `*.short.gy` + `shorturl.ac`|✅️|
-|`linkyearn.com`|✅️|
+|`linkyearn.com`|❌️|
 |`earn4link.in`|✅️|
 |`linksly.co`|✅️|
 |`download.mdiskshortner.link`|✅️|
@@ -75,7 +76,7 @@
 |`mediafire.com`|✅️|
 |`terabox.*` + `terabox.*` + `nephobox.*` + `4funbox.*` + `mirrobox.*` + `momerybox.*` + `teraboxapp.*`|✅️|
 |`rocklinks.net`|✅️|
-|`mplaylink.com`|✅️|
+|`mplaylink.com`|️❌️|
 |`shrinke.me`|✅️|
 |`urlspay.in`|✅️|
 |`short.tnvalue.in`|✅️|
@@ -84,10 +85,9 @@
 |`moneycase.link`|✅️|
 |`urllinkshort.in`|✅️|
 |`dtglinks.in`|✅️|
-|`shrtco.de` + `9qr.de` + `shiny.link`|✅️|
 |`kpslink.in`|✅️|
 |`v2.kpslink.in`|✅️|
-|`tamizhmasters.com`|✅️|
+|`tamizhmasters.com`|⚠️|
 |`tglink.in`|✅️|
 |`pandaznetwork.com`|✅️|
 |`url4earn.in`|✅️|
@@ -96,19 +96,18 @@
 |`omnifly.in.net`|✅️|
 |`sheralinks.com`|✅️|
 |`bindaaslinks.com`|✅️|
-|`viplinks.io`|✅️|
+|`viplinks.io`|️⚠️|
 |`short2url.in`|✅️|
-|`shrinkforearn.xyz`|✅️|
-|`bringlifes.com`|️❌️|
+|`shrinkforearn.xyz`|️❌️|
+|`bringlifes.com`|️️✅️|
 |`linkfly.me`|✅️|
-|`anlinks.in`|✅️|
+|`anlinks.in`|️❌️|
 |`vplinks.in`|✅️|
 |`earn2me.com`|✅️|
 |`adsfly.in`|✅️|
 |`m.narzolinks.click`|✅️|
 |`appurl.io`|✅️|
 |`surl.li`|✅️|
-|`More Sites...Updating`|️♻️|
 
 ### ***Scrape Sites***
 | __Websites__ | __Status__ |
@@ -125,11 +124,11 @@
 
 | __Websites__ | __Status__ |
 |:--------------------:|:----------:|
-|`*.gdtot.cfd`|✅️|
+|`new*.gdtot.zip`|️❌️|
 |`new*.filepress.store` + `filebee.xyz` + `onlystream.xyz` + `pressbee.xyz`|✅️|
 |`appdrive.*` **(File + Pack)**|✅️|
-|`gdflix.*`**(File + Pack)**|✅|
-|`hubdrive.co` **(Instant Link)**|✅️|
+|`gdflix.*`**(File + Pack)**|❌️|
+|`hubdrive.lat` **(Instant Link)**|✅️|
 |`katdrive.org` **(Direct Download)**|✅️|
 |`drivefire.co`|✅️|
 |`sharer.pw`|❌|

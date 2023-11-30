@@ -1,4 +1,3 @@
-import asyncio, aiohttp, re
 from base64 import b64decode
 from http.cookiejar import MozillaCookieJar
 from json import loads
@@ -14,10 +13,12 @@ from cloudscraper import create_scraper
 from curl_cffi.requests import Session as cSession
 from lxml import etree
 from requests import Session, get as rget
+from aiohttp import ClientSession
 
 from FZBypass import Config, LOGGER
 from FZBypass.core.exceptions import DDLException
 from FZBypass.core.recaptcha import recaptchaV3
+
 
 async def get_readable_time(seconds):
     minutes, seconds = divmod(seconds, 60)
@@ -26,15 +27,15 @@ async def get_readable_time(seconds):
 
 async def uptobox(url):
     try:
-        link = re.findall(r'\bhttps?://.*uptobox\.com\S+', url)[0]
+        link = findall(r'\bhttps?://.*uptobox\.com\S+', url)[0]
     except IndexError:
         raise DDLException("No Uptobox links found")
 
-    if link := re.findall(r'\bhttps?://.*\.uptobox\.com/dl\S+', url):
+    if link := findall(r'\bhttps?://.*\.uptobox\.com/dl\S+', url):
         return link[0]
 
     try:
-        file_id = re.findall(r'\bhttps?://.*uptobox\.com/(\w+)', url)[0]
+        file_id = findall(r'\bhttps?://.*uptobox\.com/(\w+)', url)[0]
         if UPTOBOX_TOKEN := Config.UPTOBOX_TOKEN:
             file_link = f'https://uptobox.com/api/link?token={UPTOBOX_TOKEN}&file_code={file_id}'
         else:
@@ -42,7 +43,7 @@ async def uptobox(url):
     except Exception as e:
         raise DDLException(f"{e.__class__.__name__}")
 
-    async with aiohttp.ClientSession() as session:
+    async with ClientSession() as session:
         try:
             async with session.get(file_link) as response:
                 res = await response.json()
@@ -54,7 +55,7 @@ async def uptobox(url):
         elif res['statusCode'] == 16:
             sleep(1)
             waiting_token = res["data"]["waitingToken"]
-            await asyncio.sleep(res["data"]["waiting"])
+            await asleep(res["data"]["waiting"])
         elif res['statusCode'] == 39:
             readable_time = await get_readable_time(res['data']['waiting'])
             raise DDLException(f"Uptobox is being Limited. Please wait {readable_time}")
@@ -67,6 +68,7 @@ async def uptobox(url):
             return res['data']['dlLink']
         except Exception as e:
             raise DDLException(f"ERROR: {e.__class__.__name__}")
+
 
 async def yandex_disk(url: str) -> str:
     cget = create_scraper().request
@@ -153,7 +155,7 @@ async def terabox(url: str) -> str:
 async def try2link(url: str) -> str:
     cget = create_scraper(allow_brotli=False).request
     url = url.rstrip("/")
-    res = cget("GET", url, params=('d', int(time()) + (60 * 4)), headers={'Referer': 'https://newforex.online/'})
+    res = cget("GET", url, params=(('d', int(time()) + (60 * 4)),), headers={'Referer': 'https://fx-gd.net/'})
     soup = BeautifulSoup(res.text, 'html.parser')
     inputs = soup.find(id="go-link").find_all(name="input")
     data = { inp.get('name'): inp.get('value') for inp in inputs }    
@@ -184,10 +186,10 @@ async def gyanilinks(url: str) -> str:
 
 
 async def ouo(url: str): 
-    tempurl = url.replace("ouo.press", "ouo.io") 
+    tempurl = url.replace("ouo.io", "ouo.press") 
     p = urlparse(tempurl)
     id = tempurl.split('/')[-1]
-    client = cSession(headers={'authority': 'ouo.io', 'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7', 'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8', 'cache-control': 'max-age=0', 'referer': 'http://www.google.com/ig/adde?moduleurl=', 'upgrade-insecure-requests': '1'}) 
+    client = cSession(headers={'authority': 'ouo.press', 'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7', 'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8', 'cache-control': 'max-age=0', 'referer': 'http://www.google.com/ig/adde?moduleurl=', 'upgrade-insecure-requests': '1'}) 
     res = client.get(tempurl, impersonate="chrome110") 
     next_url = f"{p.scheme}://{p.hostname}/go/{id}" 
   
@@ -286,14 +288,6 @@ async def surl(url: str):
     soup = BeautifulSoup(resp.text, 'html.parser')
     return soup.select('p[class="long-url"]')[0].string.split()[1]
 
-
-async def shrtco(url: str) -> str:
-    try:
-        code = url.rstrip("/").split("/")[-1]
-        return rget(f'https://api.shrtco.de/v2/info?code={code}').json()['result']['url']
-    except: 
-        raise DDLException("Link Extraction Failed")
-    
 
 async def thinfi(url: str) -> str:
     try: 
