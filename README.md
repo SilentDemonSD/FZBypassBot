@@ -108,12 +108,14 @@
 |`m.narzolinks.click`|✅️|
 |`appurl.io`|✅️|
 |`surl.li`|✅️|
+|`earn2short.in`|✅️|
+|`instantearn.in`|✅️|
 
 ### ***Scrape Sites***
 | __Websites__ | __Status__ |
 |:--------------------:|:----------:|
 |`cinevood.*` **(Page)** |✅️|
-|`toonworld4all.*` **(Page + Episode)** |✅️|
+|`toonworld4all.*` **(Page + Episode)** |️❌️|
 |`kayoanime.com` **(Page)**|✅️|
 |`skymovieshd.*`|✅️|
 |`ww1.sharespark.cfd`|✅️|
@@ -125,7 +127,7 @@
 | __Websites__ | __Status__ |
 |:--------------------:|:----------:|
 |`new*.gdtot.zip`|️❌️|
-|`new*.filepress.store` + `filebee.xyz` + `onlystream.xyz` + `pressbee.xyz`|✅️|
+|`new*.filepress.store` + `filebee.xyz` + `onlystream.xyz` + `pressbee.xyz`**( Only Tg Links )**|✅️|
 |`appdrive.*` **(File + Pack)**|✅️|
 |`gdflix.*`**(File + Pack)**|❌️|
 |`hubdrive.lat` **(Instant Link)**|✅️|
