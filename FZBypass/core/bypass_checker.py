@@ -169,6 +169,10 @@ async def direct_link_checker(link, onlylink=False):
         blink = await transcript(link, "https://go.earn2short.in/", "https://tech.insuranceinfos.in/", 0.8)
     elif bool(match(r"https?:\/\/instantearn\.\S+", link)):
         blink = await transcript(link, "https://get.instantearn.in/", "https://love.petrainer.in/", 5)
+    elif bool(match(r"https?:\/\/linkjust\.\S+", link)):
+        blink = await transcript(link, "https://linkjust.com/", "https://forexrw7.com/", 3.1)
+    elif bool(match(r"https?:\/\/pdiskshortener\.\S+", link)):
+        blink = await transcript(link, "https://pdiskshortener.com/", "", 10)
     
     elif bool(match(r"https?:\/\/ouo\.\S+", link)):
         blink = await ouo(link)

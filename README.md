@@ -110,6 +110,8 @@
 |`surl.li`|✅️|
 |`earn2short.in`|✅️|
 |`instantearn.in`|✅️|
+|`linkjust.com`|✅️|
+|`pdiskshortener.com`|✅️|
 
 ### ***Scrape Sites***
 | __Websites__ | __Status__ |
