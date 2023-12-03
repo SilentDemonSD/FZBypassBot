@@ -30,7 +30,8 @@ async def get_result(func, message):
     if not content:
         return ""
     body = '\n'.join(content.split('\n')[1:-1]) if content.startswith('```') and content.endswith('```') else content.strip('` \n')
-    env = {'__builtins__': globals()['__builtins__']}
+    env = {'__builtins__': globals()['__builtins__'],
+           'bot': Bypass, 'message': message}
 
     chdir(getcwd())
     with open(ospath.join(getcwd(), 'FZBypass/temp.txt'), 'w') as temp:
@@ -79,10 +80,10 @@ async def shell(_, message):
     stderr = stderr.decode().strip()
     reply = ''
     if len(stdout) != 0:
-        reply += f"*Stdout*\n{stdout}\n"
+        reply += f"<b>Stdout</b>\n<blockquote>{stdout}</blockquote>\n"
         LOGGER.info(f"Shell - {cmd} - {stdout}")
     if len(stderr) != 0:
-        reply += f"*Stderr*\n{stderr}"
+        reply += f"<b>Stderr</b>\n<blockquote>{stderr}</blockquote>"
         LOGGER.error(f"Shell - {cmd} - {stderr}")
     if len(reply) > 3000:
         with BytesIO(str.encode(reply)) as out_file:
