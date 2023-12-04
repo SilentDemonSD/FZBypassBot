@@ -1,5 +1,5 @@
 from pyrogram.filters import create
-from re import search
+from re import search, match
 from requests import get as rget
 from urllib.parse import urlparse, parse_qs
 from FZBypass import Config
@@ -8,16 +8,23 @@ async def auth_topic(_, __, message):
     for chat in Config.AUTH_CHATS:
         if ':' in chat:
             chat_id, topic_id = chat.split(':')
-            if (int(chat_id) == message.chat.id 
-                and (is_forum := message.reply_to_message)
-                and ((is_forum.text is None and int(topic_id) == is_forum.id)
-                or (is_forum.text is not None and int(topic_id) == is_forum.reply_to_message_id))):
+            if (int(chat_id) == message.chat.id and message.is_topic_message
+                and message.chat.is_forum and int(topic_id) == message.message_thread_id):
                 return True
         elif int(chat) == message.chat.id:
             return True
     return False
 
-chat_and_topics = create(auth_topic)
+AuthChatsTopics = create(auth_topic)
+
+async def auto_bypass(_, c, message):
+    if Config.AUTO_BYPASS and message.entities and not match(r'^\/(bash|shell)($| )', message.text) and any(enty.type in [MessageEntityType.TEXT_LINK, MessageEntityType.URL] for enty in message.entities):
+        return True
+    elif not Config.AUTO_BYPASS and (txt := message.text) and match(fr'^\/(bypass|bp)(@{(await c.get_me()).username})?($| )', txt) and not match(r'^\/(bash|shell)($| )', txt):
+        return True
+    return False
+
+BypassFilter = create(auto_bypass)
 
 def get_gdriveid(link):
     if "folders" in link or "file" in link:
