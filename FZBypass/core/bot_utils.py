@@ -1,4 +1,5 @@
 from pyrogram.filters import create
+from pyrogram.enums import MessageEntityType
 from re import search, match
 from requests import get as rget
 from urllib.parse import urlparse, parse_qs
