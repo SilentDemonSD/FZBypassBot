@@ -56,12 +56,8 @@ async def filepress(url: str):
     else:
         tg_link_text = f'<a href="{tg_link}">Click Here</a>'
 
-    parse_txt = f'''┏<b>FilePress:</b> <a href="{url}">Click Here</a>
+    return f'''┏<b>FilePress:</b> <a href="{url}">Click Here</a>
 ┗<b>Telegram:</b> {tg_link_text}'''
-    #if "drive.google.com" in dl_link and Config.DIRECT_INDEX:
-    #    parse_txt += f"┠<b>Temp Index:</b> <a href='{get_dl(dl_link)}'>Click Here</a>\n"
-    #parse_txt += f"┗<b>GDrive:</b> <a href='{dl_link}'>Click Here</a>"
-    return parse_txt
 
 
 async def gdtot(url):
@@ -104,7 +100,7 @@ async def drivescript(url, crypt, dtype):
     title = findall(r'>(.*?)<\/h4>', resp.text)[0]
     size = findall(r'>(.*?)<\/td>', resp.text)[1]
     p_url = urlparse(url)
-    
+
     dlink = ''
     if dtype != "DriveFire":
         try:
@@ -113,7 +109,7 @@ async def drivescript(url, crypt, dtype):
                 dlink = f"{p_url.scheme}://{p_url.hostname}{js_query['file']}"
         except Exception as e:
             LOGGER.error(e)
-        
+
     if not dlink and crypt:
         rs.get(url, cookies={'crypt': crypt})
         try:
@@ -122,7 +118,7 @@ async def drivescript(url, crypt, dtype):
             raise DDLException(f'{e.__class__.__name__}')
         if str(js_query['code']) == '200':
             dlink = f"{p_url.scheme}://{p_url.hostname}{js_query['file']}"
-    
+
     if dlink:    
         res = rs.get(dlink)
         soup = BeautifulSoup(res.text, 'html.parser')
@@ -136,7 +132,7 @@ async def drivescript(url, crypt, dtype):
             parse_txt += f"\n┠<b>Temp Index:</b> <a href='{get_dl(d_link)}'>Click Here</a>"
         parse_txt += f"\n┗<b>GDrive:</b> <a href='{d_link}'>Click Here</a>"
         return parse_txt
-    elif not dlink and not crypt:
+    elif not crypt:
         raise DDLException(f'{dtype} Crypt Not Provided and Direct Link Generate Failed')
     else:
         raise DDLException(f'{js_query["file"]}')
@@ -202,7 +198,7 @@ async def sharerpw(url: str, force=False):
         'x-requested-with': 'XMLHttpRequest'
     }
     try:
-        res = cget("POST", url+'/dl', headers=headers, data=data).json()
+        res = cget("POST", f'{url}/dl', headers=headers, data=data).json()
     except Exception as e:
         raise DDLException(str(e))
     parse_data = f'''┏<b>Name:</b> <code>{parse_txt[2]}</code>
@@ -212,10 +208,10 @@ async def sharerpw(url: str, force=False):
     if res['status'] == 0:
         if Config.DIRECT_INDEX:
             parse_data +=  f"\n┠<b>Temp Index:</b> <a href='{get_dl(res['url'])}'>Click Here</a>"
-        return parse_data + f"\n┗<b>GDrive:</b> <a href='{res['url']}'>Click Here</a>"
+        return f"{parse_data}\n┗<b>GDrive:</b> <a href='{res['url']}'>Click Here</a>"
     elif res['status'] == 2:
         msg = res['message'].replace('<br/>', '\n')
-        return parse_data + f"\n┗<b>Error:</b> {msg}"
+        return f"{parse_data}\n┗<b>Error:</b> {msg}"
     if len(ddl_btn) and not force:
         return await sharerpw(url, force=True)
 
