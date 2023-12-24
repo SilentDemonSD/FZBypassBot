@@ -229,39 +229,48 @@ async def sharer_scraper(url):
         res = cget('GET', url, headers=header)
     except Exception as e:
         raise DDLException(f'{e.__class__.__name__}')
+
     key = findall('"key",\s+"(.*?)"', res.text)
     if not key:
         raise DDLException("Download Link Key not found!")
+
     key = key[0]
-    if not etree.HTML(res.content).xpath("//button[@id='drc']"):
-        raise DDLException("Link don't have direct download button")
-    boundary = uuid4()
+    if not etree.HTML(res.content):
+        raise DDLException("Link doesn't have a direct download button")
+
+    boundary = str(uuid4())
+
     headers = {
-        'Content-Type': f'multipart/form-data; boundary=----WebKitFormBoundary{boundary}',
+        'Content-Type': f'multipart/form-data; boundary={boundary}',
         'x-token': raw.hostname,
         'useragent': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/534.10 (KHTML, like Gecko) Chrome/7.0.548.0 Safari/534.10'
     }
 
-    data = f'------WebKitFormBoundary{boundary}\r\nContent-Disposition: form-data; name="action"\r\n\r\ndirect\r\n' \
-           f'------WebKitFormBoundary{boundary}\r\nContent-Disposition: form-data; name="key"\r\n\r\n{key}\r\n' \
-           f'------WebKitFormBoundary{boundary}\r\nContent-Disposition: form-data; name="action_token"\r\n\r\n\r\n' \
-           f'------WebKitFormBoundary{boundary}--\r\n'
+    data = (
+        f'--{boundary}\r\n'
+        'Content-Disposition: form-data; name="action"\r\n\r\ndirect\r\n'
+        f'--{boundary}\r\n'
+        f'Content-Disposition: form-data; name="key"\r\n\r\n{key}\r\n'
+        f'--{boundary}\r\n'
+        'Content-Disposition: form-data; name="action_token"\r\n\r\n\r\n'
+        f'--{boundary}--\r\n'
+    )
+
     try:
         res = cget("POST", url, cookies=res.cookies, headers=headers, data=data).json()
     except Exception as e:
         raise DDLException(f'{e.__class__.__name__}')
+
     if "url" not in res:
         raise DDLException('Drive Link not found, Try in your browser')
-    if "drive.google.com" in res["url"]:
-        return res["url"]
+
     try:
         res = cget('GET', res["url"])
     except Exception as e:
         raise DDLException(f'ERROR: {e.__class__.__name__}')
-    if (drive_link := etree.HTML(res.content).xpath("//a[contains(@class,'btn')]/@href")) and "drive.google.com" in drive_link[0]:
-        return drive_link[0]
+
+    drive_links = etree.HTML(res.content).xpath("//a[contains(@class,'btn')]/@href")
+    if drive_links and "drive.google.com" in drive_links[0]:
+        return drive_links[0]
     else:
         raise DDLException('Drive Link not found, Try in your browser')
-
-
-
