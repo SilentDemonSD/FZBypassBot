@@ -39,7 +39,7 @@ async def bypass_check(client, message):
         entities = message.entities
     else:
         return await message.reply('<i>No Link Provided!</i>')
-    
+
     wait_msg = await message.reply("<i>Bypassing...</i>")
     start = time()
 
@@ -50,7 +50,7 @@ async def bypass_check(client, message):
             link = txt[enty.offset:(enty.offset+enty.length)]
         elif enty.type == MessageEntityType.TEXT_LINK:
             link = enty.url
-            
+
         if link:
             no += 1
             tlinks.append(link)
@@ -58,7 +58,7 @@ async def bypass_check(client, message):
             link = ''
 
     completed_tasks = await gather(*atasks, return_exceptions=True)
-    
+
     parse_data = []
     for result, link in zip(completed_tasks, tlinks):
         if isinstance(result, Exception):
@@ -68,20 +68,22 @@ async def bypass_check(client, message):
         elif isinstance(result, list):
             bp_link, ui = "", "┖"
             for ind, lplink in reversed(list(enumerate(result, start=1))):
-                bp_link = f"\n{ui} <b>{ind}x Bypass Link:</b> {lplink}" + bp_link
+                bp_link = f"\n{ui} <b>{ind}x Bypass Link:</b> {lplink}{bp_link}"
                 ui = "┠"
         else:
             bp_link = f"\n┖ <b>Bypass Link:</b> {result}"
-    
+
         if is_excep_link(link):
             parse_data.append(f"{bp_link}\n\n━━━━━━━✦✗✦━━━━━━━\n\n")
         else:
             parse_data.append(f'┎ <b>Source Link:</b> {link}{bp_link}\n\n━━━━━━━✦✗✦━━━━━━━\n\n')
-            
+
     end = time()
 
-    if len(parse_data) != 0:
-        parse_data[-1] = parse_data[-1] + f"┎ <b>Total Links : {no}</b>\n┠ <b>Results In <code>{convert_time(end - start)}</code></b> !\n┖ <b>By </b>{message.from_user.mention} ( #ID{message.from_user.id} )"
+    if parse_data:
+        parse_data[
+            -1
+        ] = f"{parse_data[-1]}┎ <b>Total Links : {no}</b>\n┠ <b>Results In <code>{convert_time(end - start)}</code></b> !\n┖ <b>By </b>{message.from_user.mention} ( #ID{message.from_user.id} )"
     tg_txt = "━━━━━━━✦✗✦━━━━━━━\n\n"
     for tg_data in parse_data:
         tg_txt += tg_data
@@ -90,7 +92,7 @@ async def bypass_check(client, message):
             wait_msg = await message.reply("<i>Fetching...</i>", reply_to_message_id=wait_msg.id)
             tg_txt = ""
             await asleep(2.5)
-    
+
     if tg_txt != "":
         await wait_msg.edit(tg_txt, disable_web_page_preview=True)
     else:
