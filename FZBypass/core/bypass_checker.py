@@ -41,7 +41,7 @@ async def direct_link_checker(link, onlylink=False):
     elif bool(match(r"https?:\/\/(gyanilinks|gtlinks)\.\S+", link)):
         blink = await gyanilinks(link)
     elif bool(match(r"https?:\/\/.+\.tnshort\.\S+", link)):
-        blink = await transcript(link, "https://go.tnshort.net/", "https://market.finclub.in/", 8)
+        blink = await transcript(link, "https://go.tnshort.net/", "https://jrlinks.in/", 4)
     elif bool(match(r"https?:\/\/(xpshort|push.bdnewsx|techymozo)\.\S+", link)):
         blink = await transcript(link, "https://techymozo.com/", "https://portgyaan.in/", 8)
     elif bool(match(r"https?:\/\/go.lolshort\.\S+", link)):
