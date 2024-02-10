@@ -31,7 +31,7 @@ async def direct_link_checker(link, onlylink=False):
     elif any(x in domain for x in ['1024tera', 'terabox', 'nephobox', '4funbox', 'mirrobox', 'momerybox', 'teraboxapp']):
         return await terabox(link)
     elif "drive.google.com" in link:
-        return get_dl(link)
+        return get_dl(link, True)
 
     # DDL Links
     elif bool(match(r"https?:\/\/try2link\.\S+", link)):

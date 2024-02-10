@@ -34,7 +34,9 @@ def get_gdriveid(link):
     parsed = urlparse(link)
     return parse_qs(parsed.query)['id'][0]
 
-def get_dl(link):
+def get_dl(link, direct_mode=False):
+    if direct_mode and not Config.DIRECT_INDEX:
+        return "No Direct Index Added !"
     try:
         return rget(f"{Config.DIRECT_INDEX}/generate.aspx?id={get_gdriveid(link)}").json()["link"]
     except:
