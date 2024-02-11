@@ -10,7 +10,7 @@ async def auth_topic(_, __, message):
         if ':' in chat:
             chat_id, topic_id = chat.split(':')
             if (int(chat_id) == message.chat.id and message.is_topic_message
-                and message.chat.is_forum and int(topic_id) == message.message_thread_id):
+                and message.topics and message.topics.id == int(topic_id)):
                 return True
         elif int(chat) == message.chat.id:
             return True
