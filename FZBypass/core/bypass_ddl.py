@@ -155,7 +155,7 @@ async def terabox(url: str) -> str:
 async def try2link(url: str) -> str:
     cget = create_scraper(allow_brotli=False).request
     url = url.rstrip("/")
-    res = cget("GET", url, params=(('d', int(time()) + (60 * 4)),), headers={'Referer': 'https://fx-gd.net/'})
+    res = cget("GET", url, params=(('d', int(time()) + (60 * 4)),), headers={'Referer': 'https://to-travel.net/'})
     soup = BeautifulSoup(res.text, 'html.parser')
     inputs = soup.find(id="go-link").find_all(name="input")
     data = { inp.get('name'): inp.get('value') for inp in inputs }    
