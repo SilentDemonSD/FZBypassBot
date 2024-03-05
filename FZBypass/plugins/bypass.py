@@ -20,10 +20,10 @@ async def start_msg(client, message):
     
     <i><b>Bot Started {convert_time(time() - BOT_START)} ago...</b></i>
 
-🛃 <b>Use Me Here :</b> @AJxMirror_Leech_bot_01 <i>(Bypass Topic)</i>''',
+ <b> AJXBOTz :</b> @AJxMirror_Leech_bot_01 <i>(Bypass)</i>''',
         quote=True,
         reply_markup=InlineKeyboardMarkup([
-            [InlineKeyboardButton('🎓 Dev', url='https://t.me/Sam_dude2'), InlineKeyboardButton('🔍 Deploy Own', url="https://github.com")]
+            [InlineKeyboardButton('🎓 Dev', url='https://t.me/Sam_dude2'), InlineKeyboardButton('AJXbotz', url="https://github.com")]
             ])
     )
 
