@@ -22,7 +22,7 @@ jobs:
         run: pip install ruff
 
       - name: Check and Format Python Code
-        run: ruff check --fix
+        run: ruff check
 
       - name: Commit Changes
         run: |
