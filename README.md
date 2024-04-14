@@ -15,6 +15,16 @@
 
 ---
 
+### ***Try Now for Free !***
+- _Use in Google Collab for Demo_
+  > **Downside:** Multi Thread Bypass Not Supported
+
+<a target="_blank" href="https://github.com/SilentDemonSD/FZBypassBot/blob/main/FZNotebook/fzbypasser.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
+
+---
+
 ## ***Features***
 - _Fastest written in Async_
 - _LoopBypass V1 (Auto Bypass Nested Shorteners)_
@@ -30,6 +40,12 @@
 - All these are Collected from the Internet / Web
 
 ### ***Shorten Sites***
+
+- <b>Last Updated</b> : <kbd>Unknown</kbd>
+
+<details>
+    <summary>Shortening Sites<sup><kbd>Click Here to Expand</kbd></sup></summary>
+
 | __Shortener Sites__ | __Status__ |
 |:--------------------:|:----------:|
 |`ronylink.com`|✅️|
@@ -123,6 +139,8 @@
 |`ww1.sharespark.cfd`|✅️|
 |`www.1tamilmv.*` **(Page)**|✅️|
 
+</details>
+
 ### ***GDrive Sites***
 > _Fast Index Link is Supported for all GD Sites_
 
@@ -199,6 +217,15 @@
 - `XSRF_TOKEN`: Get from `sharer.pw` Cookie for Login base.
 - `UPSTREAM_REPO`: Put Upstream Repo to Update. Defaults to `https://github.com/SilentDemonSD/FZBypassBot`
 - `UPSTREAM_BRANCH`: Put Branch Name. Defaults to `main`
+
+---
+
+## ***Contributions***
+- Open-source Project needs you to fill in the gaps for long term Usage
+- Try forking and Push your Codes and open a Pull Request !
+- If you want to help by providing Snippets or Scripts, Send to Me at Telegram [@MysterySD](t.me/MysterySD)
+
+**Thanks for Reading, yeh !!**
 
 ---
 
