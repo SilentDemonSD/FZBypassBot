@@ -10,7 +10,7 @@ from pyrogram.filters import command, user
 from FZBypass import Config, Bypass, LOGGER
 
 
-@Bypass.on_message(command('bash') & user(Config.OWNER_ID))
+@Bypass.on_message(command("bash") & user(Config.OWNER_ID))
 async def bash(_, message):
     msg = await get_result(eval, message)
     if len(str(msg)) > 2000:
@@ -19,22 +19,26 @@ async def bash(_, message):
             await message.reply_document(out_file)
     else:
         LOGGER.info(f"OUTPUT: '{msg}'")
-        if not msg or msg == '\n':
+        if not msg or msg == "\n":
             msg = "MessageEmpty"
-        elif not bool(match(r'<(blockquote|spoiler|b|i|code|s|u|/a)>', msg)):
+        elif not bool(match(r"<(blockquote|spoiler|b|i|code|s|u|/a)>", msg)):
             msg = f"<blockquote>{msg}</blockquote>"
         await message.reply(msg)
+
 
 async def get_result(func, message):
     content = message.text.split(maxsplit=1)[-1]
     if not content:
         return ""
-    body = '\n'.join(content.split('\n')[1:-1]) if content.startswith('```') and content.endswith('```') else content.strip('` \n')
-    env = {'__builtins__': globals()['__builtins__'],
-           'bot': Bypass, 'message': message}
+    body = (
+        "\n".join(content.split("\n")[1:-1])
+        if content.startswith("```") and content.endswith("```")
+        else content.strip("` \n")
+    )
+    env = {"__builtins__": globals()["__builtins__"], "bot": Bypass, "message": message}
 
     chdir(getcwd())
-    with open(ospath.join(getcwd(), 'FZBypass/temp.txt'), 'w') as temp:
+    with open(ospath.join(getcwd(), "FZBypass/temp.txt"), "w") as temp:
         temp.write(body)
 
     stdout = StringIO()
@@ -43,42 +47,42 @@ async def get_result(func, message):
     try:
         exec(to_compile, env)
     except Exception as e:
-        return f'{e.__class__.__name__}: {e}'
+        return f"{e.__class__.__name__}: {e}"
 
-    func = env['func']
+    func = env["func"]
     try:
         with redirect_stdout(stdout):
             func_return = await func()
     except Exception as e:
         value = stdout.getvalue()
-        return f'{value}{format_exc()}'
+        return f"{value}{format_exc()}"
     else:
         value = stdout.getvalue()
         result = None
         if func_return is None:
             if value:
-                result = f'{value}'
+                result = f"{value}"
             else:
                 with suppress(Exception):
-                    result = f'{repr(eval(body, env))}'
+                    result = f"{repr(eval(body, env))}"
         else:
-            result = f'{value}{func_return}'
+            result = f"{value}{func_return}"
         if result:
             return result
 
 
-@Bypass.on_message(command('shell') & user(Config.OWNER_ID))
+@Bypass.on_message(command("shell") & user(Config.OWNER_ID))
 async def shell(_, message):
     cmd = message.text.split(maxsplit=1)
     if len(cmd) == 1:
-        await message.reply('No command to execute was given.')
+        await message.reply("No command to execute was given.")
         return
     cmd = cmd[1]
     proc = await create_subprocess_shell(cmd, stdout=PIPE, stderr=PIPE)
     stdout, stderr = await proc.communicate()
     stdout = stdout.decode().strip()
     stderr = stderr.decode().strip()
-    reply = ''
+    reply = ""
     if len(stdout) != 0:
         reply += f"<b>Stdout</b>\n<blockquote>{stdout}</blockquote>\n"
         LOGGER.info(f"Shell - {cmd} - {stdout}")
@@ -92,4 +96,4 @@ async def shell(_, message):
     elif len(reply) != 0:
         await message.reply(reply)
     else:
-        await message.reply('No Reply')
+        await message.reply("No Reply")
