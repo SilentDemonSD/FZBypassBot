@@ -1,8 +1,6 @@
 from re import match
-from traceback import format_exc
 from urllib.parse import urlparse
 
-from FZBypass import LOGGER
 from FZBypass.core.bypass_dlinks import *
 from FZBypass.core.bypass_ddl import *
 from FZBypass.core.bypass_scrape import *
@@ -413,6 +411,6 @@ async def direct_link_checker(link, onlylink=False):
             if is_excep_link(links[-1]):
                 links.append("\n\n" + blink)
                 break
-        except Exception as e:
+        except Exception:
             break
     return links

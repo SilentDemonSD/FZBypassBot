@@ -1,21 +1,15 @@
-from base64 import b64decode
-from http.cookiejar import MozillaCookieJar
-from json import loads
-from os import path
-from re import findall, match, search, sub, compile
+from re import findall, compile
 from time import sleep, time
 from asyncio import sleep as asleep
-from urllib.parse import parse_qs, quote, unquote, urlparse
-from uuid import uuid4
+from urllib.parse import quote, urlparse
 
 from bs4 import BeautifulSoup
 from cloudscraper import create_scraper
 from curl_cffi.requests import Session as cSession
-from lxml import etree
 from requests import Session, get as rget
 from aiohttp import ClientSession
 
-from FZBypass import Config, LOGGER
+from FZBypass import Config
 from FZBypass.core.exceptions import DDLException
 from FZBypass.core.recaptcha import recaptchaV3
 

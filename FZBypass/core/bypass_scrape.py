@@ -1,11 +1,10 @@
 from asyncio import gather, create_task
-from re import search, match, findall, sub
+from re import search, match, sub
 from requests import get as rget
 from cloudscraper import create_scraper
 from urllib.parse import urlparse
 from bs4 import BeautifulSoup, NavigableString, Tag
 
-from FZBypass import Config, LOGGER
 from FZBypass.core.bypass_ddl import transcript
 
 

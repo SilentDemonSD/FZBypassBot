@@ -1,12 +1,7 @@
 from base64 import b64decode
-from traceback import format_exc
 from asyncio import create_task, gather
-from http.cookiejar import MozillaCookieJar
-from json import loads
-from os import path
-from re import findall, match, search, sub, DOTALL
-from time import sleep
-from urllib.parse import parse_qs, quote, unquote, urlparse
+from re import findall, DOTALL
+from urllib.parse import urlparse
 from uuid import uuid4
 
 from bs4 import BeautifulSoup

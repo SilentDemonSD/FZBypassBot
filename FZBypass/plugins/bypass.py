@@ -1,7 +1,6 @@
 from time import time
-from re import match
-from asyncio import create_task, gather, sleep as asleep, create_subprocess_exec
-from pyrogram.filters import create, command, private, user
+from asyncio import create_task, gather, sleep as asleep
+from pyrogram.filters import command, user
 from pyrogram.types import (
     InlineKeyboardButton,
     InlineKeyboardMarkup,
@@ -11,10 +10,9 @@ from pyrogram.types import (
 from pyrogram.enums import MessageEntityType
 from pyrogram.errors import QueryIdInvalid
 
-from FZBypass import Config, Bypass, BOT_START, LOGGER
+from FZBypass import Config, Bypass, BOT_START
 from FZBypass.core.bypass_checker import direct_link_checker, is_excep_link
 from FZBypass.core.bot_utils import AuthChatsTopics, convert_time, BypassFilter
-from FZBypass.core.exceptions import DDLException
 
 
 @Bypass.on_message(command("start"))

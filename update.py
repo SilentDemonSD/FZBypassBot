@@ -1,6 +1,5 @@
 from os import path as opath, getenv
 from logging import (
-    FileHandler,
     StreamHandler,
     INFO,
     basicConfig,
