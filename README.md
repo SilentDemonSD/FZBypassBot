@@ -51,7 +51,7 @@
 |`ronylink.com`|✅️|
 |`tinyfy.in`|✅️|
 |`xpshort.com` + `push.bdnewsx.com` + `techymozo.com`|❌|
-|`gtlinks.me` + `gyanilinks.com`|❌️|
+|`gtlinks.me` + `gyanilinks.com`|✅|
 |`earn.moneykamalo.com`|✅️|
 |`droplink.co`|✅️|
 |`adrinolinks.com`|✅️|
