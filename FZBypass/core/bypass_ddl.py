@@ -288,6 +288,25 @@ async def shareus(url: str) -> str:
     except:
         raise DDLException("Link Extraction Failed")
 
+async def shareus(url: str) -> str:
+    DOMAIN = f"https://api.shrslink.xyz"
+    code = url.split('/')[-1]
+    headers = {
+        'User-Agent':'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36',
+        'Origin':'https://shareus.io',
+    }
+    api = f"{DOMAIN}/v?shortid={code}&initial=true&referrer="
+    id = rget(api, headers=headers).json()['sid']
+    if id:
+        api_2 = f"{DOMAIN}/get_link?sid={id}"
+        res = rget(api_2, headers=headers)
+        if res:
+            final = res.json()['link_info']['destination']
+            return final
+        else:
+            raise DDLException("Link Extraction Failed")
+    else:
+        raise DDLException( "ID Error")     
 
 async def dropbox(url: str) -> str:
     return (
