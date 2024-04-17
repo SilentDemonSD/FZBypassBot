@@ -1,3 +1,4 @@
+from requests import post as rpost ,get as rget
 from re import findall, compile
 from time import sleep, time
 from asyncio import sleep as asleep
@@ -12,7 +13,6 @@ from aiohttp import ClientSession
 from FZBypass import Config
 from FZBypass.core.exceptions import DDLException
 from FZBypass.core.recaptcha import recaptchaV3
-
 
 async def get_readable_time(seconds):
     minutes, seconds = divmod(seconds, 60)
@@ -184,28 +184,20 @@ async def try2link(url: str) -> str:
     except:
         raise DDLException("Link Extraction Failed")
 
-
 async def gyanilinks(url: str) -> str:
-    DOMAIN = "https://go.hipsonyc.com/"
-    cget = create_scraper(allow_brotli=False).request
-    code = url.rstrip("/").split("/")[-1]
-    soup = BeautifulSoup(cget("GET", f"{DOMAIN}/{code}").content, "html.parser")
+    DOMAIN = "https://go.bloggingaro.com"
+    code = url.split('/')[-1]
+    useragent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
+    res = rget(f"{DOMAIN}/{code}", headers={'Referer':'https://tech.hipsonyc.com/','User-Agent': useragent})
+    resp = rget(f"{DOMAIN}/{code}", headers={'Referer':'https://hipsonyc.com/','User-Agent': useragent}, cookies=res.cookies)
+    soup = BeautifulSoup(resp.text,'html.parser')
+    data = { inp.get('name'): inp.get('value') for inp in soup.find_all('input')}
+    await sleep(5)
+    links = rpost(f"{DOMAIN}/links/go", data=data, headers={'X-Requested-With':'XMLHttpRequest','User-Agent': useragent, 'Referer': f"{DOMAIN}/{code}"}, cookies=res.cookies)
     try:
-        inputs = soup.find(id="go-link").find_all(name="input")
-    except:
-        raise DDLException("Incorrect Link Provided")
-    await asleep(5)
-    resp = cget(
-        "POST",
-        f"{DOMAIN}/links/go",
-        data={input.get("name"): input.get("value") for input in inputs},
-        headers={"x-requested-with": "XMLHttpRequest"},
-    )
-    try:
-        return resp.json()["url"]
+        return links.json()["url"]
     except:
         raise DDLException("Link Extraction Failed")
-
 
 async def ouo(url: str):
     tempurl = url.replace("ouo.io", "ouo.press")
