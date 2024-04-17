@@ -192,7 +192,7 @@ async def gyanilinks(url: str) -> str:
     resp = rget(f"{DOMAIN}/{code}", headers={'Referer':'https://hipsonyc.com/','User-Agent': useragent}, cookies=res.cookies)
     soup = BeautifulSoup(resp.text,'html.parser')
     data = { inp.get('name'): inp.get('value') for inp in soup.find_all('input')}
-    await sleep(5)
+    await asleep(5)
     links = rpost(f"{DOMAIN}/links/go", data=data, headers={'X-Requested-With':'XMLHttpRequest','User-Agent': useragent, 'Referer': f"{DOMAIN}/{code}"}, cookies=res.cookies)
     try:
         return links.json()["url"]
