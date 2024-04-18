@@ -120,7 +120,7 @@ async def direct_link_checker(link, onlylink=False):
         )
     elif bool(match(r"https?:\/\/m.easysky\.\S+", link)):
         blink = await transcript(
-            link, "https://techy.veganab.co/", "https://veganab.co/", 8
+            link, "https://techy.veganab.co/", "https://camdigest.com/", 8
         )
         blink = await transcript(
             link, "https://vip.linkbnao.com", "https://ffworld.xyz/", 2
@@ -222,7 +222,7 @@ async def direct_link_checker(link, onlylink=False):
         )
     elif bool(match(r"https?:\/\/ziplinker\.\S+", link)):
         blink = await transcript(
-            link, "https://ziplinker.net/web/", "https://ontechhindi.com/", 5
+            link, "https://ziplinker.net/web/", "https://fintech.techweeky.com", 1
         )
     elif bool(match(r"https?:\/\/moneycase\.\S+", link)):
         blink = await transcript(
