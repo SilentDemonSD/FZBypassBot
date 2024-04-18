@@ -266,28 +266,6 @@ async def transcript(url: str, DOMAIN: str, ref: str, sltime) -> str:
     except:
         raise DDLException("Link Extraction Failed")
 
-
-async def shareus(url: str) -> str:
-    DOMAIN = "https://us-central1-my-apps-server.cloudfunctions.net"
-    cget = create_scraper().request
-    params = {
-        "shortid": url.rstrip("/").split("/")[-1],
-        "initial": "true",
-        "referrer": "https://shareus.io/",
-    }
-    headers = {
-        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
-    }
-    resp = cget("GET", f"{DOMAIN}/v", params=params, headers=headers)
-    for page in range(1, 4):
-        resp = cget("POST", f"{DOMAIN}/v", headers=headers, json={"current_page": page})
-    try:
-        return (cget("GET", f"{DOMAIN}/get_link", headers=headers).json())["link_info"][
-            "destination"
-        ]
-    except:
-        raise DDLException("Link Extraction Failed")
-
 async def shareus(url: str) -> str:
     DOMAIN = f"https://api.shrslink.xyz"
     code = url.split('/')[-1]
@@ -301,12 +279,12 @@ async def shareus(url: str) -> str:
         api_2 = f"{DOMAIN}/get_link?sid={id}"
         res = rget(api_2, headers=headers)
         if res:
-            final = res.json()['link_info']['destination']
-            return final
+            return res.json()['link_info']['destination']
         else:
             raise DDLException("Link Extraction Failed")
     else:
-        raise DDLException( "ID Error")     
+        raise DDLException("ID Error")     
+
 
 async def dropbox(url: str) -> str:
     return (
