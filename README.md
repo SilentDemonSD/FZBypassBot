@@ -59,10 +59,11 @@
 |`du-link.in` + `dulink.in`|✅️|
 |`onepagelink.in`|✅️|
 |`link.tnshort.net`|✅️|
+|`evolinks.in`|✅|
 |`go.lolshort.tech`|❌️|
 |`indianshortner.in`|✅️|
 |`rslinks.net`|❌️|
-|`m.easysky.in`|❌️|
+|`m.easysky.in`|✅|
 |`linkbanao.com`|❌️|
 |`linkvertise.com`|️❌️|
 |`link.tnlink.in`|️✅️|
