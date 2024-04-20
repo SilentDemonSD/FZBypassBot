@@ -158,46 +158,54 @@ async def terabox(url: str) -> str:
     except:
         raise DDLException("Link Extraction Failed")
 
-
 async def try2link(url: str) -> str:
-    cget = create_scraper(allow_brotli=False).request
-    url = url.rstrip("/")
-    res = cget(
-        "GET",
-        url,
-        params=(("d", int(time()) + (60 * 4)),),
-        headers={"Referer": "https://to-travel.net/"},
-    )
-    soup = BeautifulSoup(res.text, "html.parser")
-    inputs = soup.find(id="go-link").find_all(name="input")
-    data = {inp.get("name"): inp.get("value") for inp in inputs}
-    await asleep(7)
-    headers = {
-        "Host": "try2link.com",
-        "X-Requested-With": "XMLHttpRequest",
-        "Origin": "https://try2link.com",
-        "Referer": url,
-    }
-    resp = cget("POST", "https://try2link.com/links/go", headers=headers, data=data)
-    try:
-        return resp.json()["url"]
-    except:
-        raise DDLException("Link Extraction Failed")
+    DOMAIN = 'https://try2link.com'
+    code = url.split('/')[-1]
+
+    async with ClientSession() as session:
+        async with session.get(f'{DOMAIN}/{code}', headers={"Referer": 'https://hightrip.net/'}) as res:
+             if res.status == 200:
+                 html = await res.text()
+             else:
+                 async with session.get(f'{DOMAIN}/{code}', headers={"Referer": 'https://to-travel.netl'}) as res:
+                      if res.status == 200:
+                          html = await res.text()
+                      else:
+                          async with session.get(f'{DOMAIN}/{code}', headers={"Referer": 'https://world2our.com/'}) as res:
+                              html = await res.text()
+        soup = BeautifulSoup(html, "html.parser")
+        inputs = soup.find(id="go-link").find_all(name="input")
+        data = { input.get('name'): input.get('value') for input in inputs }
+        await asleep(6)
+        async with session.post(f"{DOMAIN}/links/go", data=data, headers={ "X-Requested-With": "XMLHttpRequest" }) as resp:
+            if 'application/json' in resp.headers.get('Content-Type'):
+                json_data = await resp.json()  
+                try:
+                    return json_data['url']
+                except:        
+                    raise DDLException("Link Extraction Failed")
 
 async def gyanilinks(url: str) -> str:
-    DOMAIN = "https://go.bloggingaro.com"
     code = url.split('/')[-1]
     useragent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
-    res = rget(f"{DOMAIN}/{code}", headers={'Referer':'https://tech.hipsonyc.com/','User-Agent': useragent})
-    resp = rget(f"{DOMAIN}/{code}", headers={'Referer':'https://hipsonyc.com/','User-Agent': useragent}, cookies=res.cookies)
-    soup = BeautifulSoup(resp.text,'html.parser')
-    data = { inp.get('name'): inp.get('value') for inp in soup.find_all('input')}
-    await asleep(5)
-    links = rpost(f"{DOMAIN}/links/go", data=data, headers={'X-Requested-With':'XMLHttpRequest','User-Agent': useragent, 'Referer': f"{DOMAIN}/{code}"}, cookies=res.cookies)
-    try:
-        return links.json()["url"]
-    except:
-        raise DDLException("Link Extraction Failed")
+    DOMAIN = "https://go.bloggingaro.com"
+    
+    async with ClientSession() as session:
+        async with session.get(f"{DOMAIN}/{code}", headers={'Referer':'https://tech.hipsonyc.com/','User-Agent': useragent}) as res:
+            cookies = res.cookies
+            html = await res.text()
+        async with session.get(f"{DOMAIN}/{code}", headers={'Referer':'https://hipsonyc.com/','User-Agent': useragent}, cookies=cookies) as resp:
+            html = await resp.text()
+        soup = BeautifulSoup(html, 'html.parser')
+        data = {inp.get('name'): inp.get('value') for inp in soup.find_all('input')}
+        await asleep(5)
+        async with session.post(f"{DOMAIN}/links/go", data=data, headers={'X-Requested-With':'XMLHttpRequest','User-Agent': useragent, 'Referer': f"{DOMAIN}/{code}"}, cookies=cookies) as links:
+            if 'application/json' in links.headers.get('Content-Type'):
+                json_data = await links.json()
+                try:
+                    json_data['url']
+                except:
+                      raise DDLException("Link Extraction Failed")
 
 async def ouo(url: str):
     tempurl = url.replace("ouo.io", "ouo.press")
