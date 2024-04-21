@@ -12,7 +12,10 @@ async def restart(client, message):
     await (await create_subprocess_exec("python3", "update.py")).wait()
     with open(".restartmsg", "w") as f:
         f.write(f"{restart_message.chat.id}\n{restart_message.id}\n")
-    execl(executable, executable, "-m", "FZBypass")
+    try:
+        execl(executable, executable, "-m", "FZBypass")
+    except Exception:
+        execl(executable, executable, "-m", "FZBypassBot/FZBypass")
 
 
 async def restart():

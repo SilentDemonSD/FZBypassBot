@@ -19,14 +19,14 @@
 - _Use in Google Collab for Demo_
   > **Downside:** Multi Thread Bypass Not Supported
 
-<a target="_blank" href="https://github.com/SilentDemonSD/FZBypassBot/blob/main/FZNotebook/fzbypasser.ipynb">
+<a target="_blank" href="https://colab.research.google.com/github/SilentDemonSD/FZBypassBot/blob/main/FZNotebook/fzbypasser.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
 ---
 
 ## ***Features***
-- _Fastest written in Async_
+- _Fastest written in Async with Speed Enhancers_
 - _LoopBypass V1 (Auto Bypass Nested Shorteners)_
 - _Build with Simultaneously Bypass Method_
 - _Supported for Authorized Chats & Topics_
@@ -145,23 +145,27 @@
 ### ***GDrive Sites***
 > _Fast Index Link is Supported for all GD Sites_
 
-| __Websites__ | __Status__ |
-|:--------------------:|:----------:|
-|`new*.gdtot.zip`|️❌️|
-|`new*.filepress.store` + `filebee.xyz` + `onlystream.xyz` + `pressbee.xyz`**( Only Tg Links )**|✅️|
-|`appdrive.*` **(File + Pack)**|✅️|
-|`gdflix.*`**(File + Pack)**|❌️|
-|`hubdrive.lat` **(Instant Link)**|✅️|
-|`katdrive.org` **(Direct Download)**|✅️|
-|`drivefire.co`|✅️|
-|`sharer.pw`|❌|
+<details>
+    <summary>GDrive Sites<sup><kbd>Click Here to Expand</kbd></sup></summary>
+
+| __Websites__ | __Status__ | __Last Updated__ |
+|:------------:|:----------:|:----------------:|
+|`new*.gdtot.zip`|️❌️| **Unknown**|
+|`new*.filepress.store` + `filebee.xyz` + `onlystream.xyz` + `pressbee.xyz`**( Only Tg Links )**|✅️|**Unknown**|
+|`appdrive.*` **(File + Pack)**|✅️|**Unknown**|
+|`gdflix.*`**(File + Pack)**|❌️|**Unknown**|
+|`hubdrive.lat` **(Instant Link)**|✅️|**Unknown**|
+|`katdrive.org` **(Direct Download)**|✅️|**Unknown**|
+|`drivefire.co`|✅️|**Unknown**|
+|`sharer.pw`|❌|**Unknown**|
+
+</details>
 
 ---
 
 ## ***Deploy Guide***
-1. `Heroku` _(Recommended)_
-    - Use [HK-Loader](https://github.com/SilentDemonSD/HK-Loader) and Follow further Steps.
-    - Use Process Type `worker` to run without any Stop.
+1. `Heroku` or `Koyeb` or `Render` or `Scalingo` or _**More**_ _(Recommended)_
+    - Use [pyTele-Loader](https://github.com/SilentDemonSD/pyTele-Loader) and Follow further Steps.
     - **Variables Values:**
       - `REPO_URL`: https://github.com/SilentDemonSD/FZBypassBot
       - `REPO_BRANCH`: main
