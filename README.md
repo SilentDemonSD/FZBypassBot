@@ -46,99 +46,99 @@
 <details>
     <summary>Shortening Sites<sup><kbd>Click Here to Expand</kbd></sup></summary>
 
-| __Shortener Sites__ | __Status__ |
-|:--------------------:|:----------:|
-|`ronylink.com`|✅️|
-|`tinyfy.in`|✅️|
-|`xpshort.com` + `push.bdnewsx.com` + `techymozo.com`|❌|
-|`gtlinks.me` + `gyanilinks.com`|✅|
-|`earn.moneykamalo.com`|✅️|
-|`droplink.co`|✅️|
-|`adrinolinks.com`|✅️|
-|`krownlinks.me`|✅️|
-|`du-link.in` + `dulink.in`|✅️|
-|`onepagelink.in`|✅️|
-|`link.tnshort.net`|✅️|
-|`evolinks.in`|✅|
-|`go.lolshort.tech`|❌️|
-|`indianshortner.in`|✅️|
-|`rslinks.net`|❌️|
-|`m.easysky.in`|✅|
-|`linkbanao.com`|❌️|
-|`linkvertise.com`|️❌️|
-|`link.tnlink.in`|️✅️|
-|`link4earn.com` + `link4earn.in`|✅️|
-|`shortingly.com`|️✅️|️
-|`short2url.in`|✅️|
-|`urlsopen.com`|✅️|
-|`mdisk.pro`|✅️|
-|`ouo.io` + `ouo.press`|✅️|
-|`www.dropbox.com`|✅️|
-|`disk.yandex.ru` + `yandex.com`|✅️|
-|`try2link.com`|✅️|
-|`linkpays.in`|✅️|
-|`pkin.me` + `go.paisakamalo.in`|✅️|
-|`sklinks.in` + `sklinks.tech`|✅️|
-|`link1s.com`|✅️|
-|`tulinks.one` + `go.tulinks.online` + `tulinks.online`|✅️|
-|`link.vipurl.in` + `vipurl.in` + `count.vipurl.in`|✅️|
-|`v2links.com`|️❌️|
-|`indyshare.net`|✅️|
-|`bit.ly` + `tinyurl.com` + `*.short.gy` + `shorturl.ac`|✅️|
-|`linkyearn.com`|❌️|
-|`earn4link.in`|✅️|
-|`linksly.co`|✅️|
-|`download.mdiskshortner.link`|✅️|
-|`shrdsk.me`|️️✅️|
-|`mediafire.com`|✅️|
-|`terabox.*` + `terabox.*` + `nephobox.*` + `4funbox.*` + `mirrobox.*` + `momerybox.*` + `teraboxapp.*`|✅️|
-|`rocklinks.net`|✅️|
-|`mplaylink.com`|️❌️|
-|`shrinke.me`|✅️|
-|`urlspay.in`|✅️|
-|`short.tnvalue.in`|✅️|
-|`sxslink.com`|✅️|
-|`ziplinker.net`|✅️|
-|`moneycase.link`|✅️|
-|`urllinkshort.in`|✅️|
-|`dtglinks.in`|✅️|
-|`kpslink.in`|✅️|
-|`v2.kpslink.in`|✅️|
-|`tamizhmasters.com`|⚠️|
-|`tglink.in`|✅️|
-|`pandaznetwork.com`|✅️|
-|`url4earn.in`|✅️|
-|`ez4short.com`|✅️|
-|`dalink.in`|✅️|
-|`omnifly.in.net`|✅️|
-|`sheralinks.com`|✅️|
-|`bindaaslinks.com`|✅️|
-|`viplinks.io`|️⚠️|
-|`short2url.in`|✅️|
-|`shrinkforearn.xyz`|️❌️|
-|`bringlifes.com`|️️✅️|
-|`linkfly.me`|✅️|
-|`anlinks.in`|️❌️|
-|`vplinks.in`|✅️|
-|`earn2me.com`|✅️|
-|`adsfly.in`|✅️|
-|`m.narzolinks.click`|✅️|
-|`appurl.io`|✅️|
-|`surl.li`|✅️|
-|`earn2short.in`|✅️|
-|`instantearn.in`|✅️|
-|`linkjust.com`|✅️|
-|`pdiskshortener.com`|✅️|
+| __Shortener Sites__ | __Status__ |__Last Updated__ |
+|:------------------:|:----------:|:----------------:|
+|`ronylink.com`|✅️| **Unknown**|
+|`tinyfy.in`|✅️| **Unknown**|
+|`xpshort.com` + `push.bdnewsx.com` + `techymozo.com`|❌| **Unknown**|
+|`gtlinks.me` + `gyanilinks.com`|✅| **Unknown**|
+|`earn.moneykamalo.com`|✅️| **Unknown**|
+|`droplink.co`|✅️| **Unknown**|
+|`adrinolinks.com`|✅️| **Unknown**|
+|`krownlinks.me`|✅️| **Unknown**|
+|`du-link.in` + `dulink.in`|✅️| **Unknown**|
+|`onepagelink.in`|✅️| **Unknown**|
+|`link.tnshort.net`|✅️| **Unknown**|
+|`evolinks.in`|✅| **Unknown**|
+|`go.lolshort.tech`|❌️| **Unknown**|
+|`indianshortner.in`|✅️| **Unknown**|
+|`rslinks.net`|❌️| **Unknown**|
+|`m.easysky.in`|✅| **Unknown**|
+|`linkbanao.com`|❌️| **Unknown**|
+|`linkvertise.com`|️❌️| **Unknown**|
+|`link.tnlink.in`|️✅️| **Unknown**|
+|`link4earn.com` + `link4earn.in`|✅️| **Unknown**|
+|`shortingly.com`|️✅️|️ **Unknown**|
+|`short2url.in`|✅️| **Unknown**|
+|`urlsopen.com`|✅️| **Unknown**|
+|`mdisk.pro`|✅️| **Unknown**|
+|`ouo.io` + `ouo.press`|✅️| **Unknown**|
+|`www.dropbox.com`|✅️| **Unknown**|
+|`disk.yandex.ru` + `yandex.com`|✅️| **Unknown**|
+|`try2link.com`|✅️| **Unknown**|
+|`linkpays.in`|✅️| **Unknown**|
+|`pkin.me` + `go.paisakamalo.in`|✅️| **Unknown**|
+|`sklinks.in` + `sklinks.tech`|✅️| **Unknown**|
+|`link1s.com`|✅️| **Unknown**|
+|`tulinks.one` + `go.tulinks.online` + `tulinks.online`|✅️| **Unknown**|
+|`link.vipurl.in` + `vipurl.in` + `count.vipurl.in`|✅️| **Unknown**|
+|`v2links.com`|️❌️| **Unknown**|
+|`indyshare.net`|✅️| **Unknown**|
+|`bit.ly` + `tinyurl.com` + `*.short.gy` + `shorturl.ac`|✅️| **Unknown**|
+|`linkyearn.com`|❌️| **Unknown**|
+|`earn4link.in`|✅️|**Unknown**|
+|`linksly.co`|✅️| **Unknown**|
+|`download.mdiskshortner.link`|✅️| **Unknown**|
+|`shrdsk.me`|️️✅️| **Unknown**|
+|`mediafire.com`|✅️| **Unknown**|
+|`terabox.*` + `terabox.*` + `nephobox.*` + `4funbox.*` + `mirrobox.*` + `momerybox.*` + `teraboxapp.*`|✅️| **Unknown**|
+|`rocklinks.net`|✅️| **Unknown**|
+|`mplaylink.com`|️❌️| **Unknown**|
+|`shrinke.me`|✅️| **Unknown**|
+|`urlspay.in`|✅️| **Unknown**|
+|`short.tnvalue.in`|✅️| **Unknown**|
+|`sxslink.com`|✅️| **Unknown**|
+|`ziplinker.net`|✅️| **Unknown**|
+|`moneycase.link`|✅️| **Unknown**|
+|`urllinkshort.in`|✅️| **Unknown**|
+|`dtglinks.in`|✅️| **Unknown**|
+|`kpslink.in`|✅️| **Unknown**|
+|`v2.kpslink.in`|✅️| **Unknown**|
+|`tamizhmasters.com`|⚠️| **Unknown**|
+|`tglink.in`|✅️| **Unknown**|
+|`pandaznetwork.com`|✅️| **Unknown**|
+|`url4earn.in`|✅️| **Unknown**|
+|`ez4short.com`|✅️| **Unknown**|
+|`dalink.in`|✅️| **Unknown**|
+|`omnifly.in.net`|✅️| **Unknown**|
+|`sheralinks.com`|✅️| **Unknown**|
+|`bindaaslinks.com`|✅️| **Unknown**|
+|`viplinks.io`|️⚠️| **Unknown**|
+|`short2url.in`|✅️| **Unknown**|
+|`shrinkforearn.xyz`|️❌️| **Unknown**|
+|`bringlifes.com`|️️✅️| **Unknown**|
+|`linkfly.me`|✅️| **Unknown**|
+|`anlinks.in`|️❌️| **Unknown**|
+|`vplinks.in`|✅️| **Unknown**|
+|`earn2me.com`|✅️| **Unknown**|
+|`adsfly.in`|✅️| **Unknown**|
+|`m.narzolinks.click`|✅️| **Unknown**|
+|`appurl.io`|✅️| **Unknown**|
+|`surl.li`|✅️| **Unknown**|
+|`earn2short.in`|✅️| **Unknown**|
+|`instantearn.in`|✅️| **Unknown**|
+|`linkjust.com`|✅️| **Unknown**|
+|`pdiskshortener.com`|✅️| **Unknown**|
 
 ### ***Scrape Sites***
-| __Websites__ | __Status__ |
-|:--------------------:|:----------:|
-|`cinevood.*` **(Page)** |✅️|
-|`toonworld4all.*` **(Page + Episode)** |️❌️|
-|`kayoanime.com` **(Page)**|✅️|
-|`skymovieshd.*`|✅️|
-|`ww1.sharespark.cfd`|✅️|
-|`www.1tamilmv.*` **(Page)**|✅️|
+| __Websites__ | __Status__ |__Last Updated__ |
+|:------------:|:----------:|:----------------:|
+|`cinevood.*` **(Page)** |✅️| **Unknown**|
+|`toonworld4all.*` **(Page + Episode)** |️❌️| **Unknown**|
+|`kayoanime.com` **(Page)**|✅️| **Unknown**|
+|`skymovieshd.*`|✅️| **Unknown**|
+|`ww1.sharespark.cfd`|✅️| **Unknown**|
+|`www.1tamilmv.*` **(Page)**|✅️| **Unknown**|
 
 </details>
 
