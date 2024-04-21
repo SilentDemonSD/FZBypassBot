@@ -38,7 +38,6 @@ class Config:
     DRIVEFIRE_CRYPT = getenv("DRIVEFIRE_CRYPT", "")
     HUBDRIVE_CRYPT = getenv("HUBDRIVE_CRYPT", "")
     KATDRIVE_CRYPT = getenv("KATDRIVE_CRYPT", "")
-    UPTOBOX_TOKEN = getenv("UPTOBOX_TOKEN", "")
     TERA_COOKIE = getenv("TERA_COOKIE", "")
 
 

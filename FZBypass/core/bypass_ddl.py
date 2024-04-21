@@ -20,53 +20,6 @@ async def get_readable_time(seconds):
     return f"{hours}h{minutes}m{seconds}s"
 
 
-async def uptobox(url):
-    try:
-        link = findall(r"\bhttps?://.*uptobox\.com\S+", url)[0]
-    except IndexError:
-        raise DDLException("No Uptobox links found")
-
-    if link := findall(r"\bhttps?://.*\.uptobox\.com/dl\S+", url):
-        return link[0]
-
-    try:
-        file_id = findall(r"\bhttps?://.*uptobox\.com/(\w+)", url)[0]
-        if UPTOBOX_TOKEN := Config.UPTOBOX_TOKEN:
-            file_link = f"https://uptobox.com/api/link?token={UPTOBOX_TOKEN}&file_code={file_id}"
-        else:
-            file_link = f"https://uptobox.com/api/link?file_code={file_id}"
-    except Exception as e:
-        raise DDLException(f"{e.__class__.__name__}")
-
-    async with ClientSession() as session:
-        try:
-            async with session.get(file_link) as response:
-                res = await response.json()
-        except Exception as e:
-            raise DDLException(f"{e.__class__.__name__}")
-
-        if res["statusCode"] == 0:
-            return res["data"]["dlLink"]
-        elif res["statusCode"] == 16:
-            sleep(1)
-            waiting_token = res["data"]["waitingToken"]
-            await asleep(res["data"]["waiting"])
-        elif res["statusCode"] == 39:
-            readable_time = await get_readable_time(res["data"]["waiting"])
-            raise DDLException(f"Uptobox is being Limited. Please wait {readable_time}")
-        else:
-            raise DDLException(f"{res['message']}")
-
-        try:
-            async with session.get(
-                f"{file_link}&waitingToken={waiting_token}"
-            ) as response:
-                res = await response.json()
-            return res["data"]["dlLink"]
-        except Exception as e:
-            raise DDLException(f"ERROR: {e.__class__.__name__}")
-
-
 async def yandex_disk(url: str) -> str:
     cget = create_scraper().request
     try:
@@ -163,16 +116,12 @@ async def try2link(url: str) -> str:
     code = url.split('/')[-1]
 
     async with ClientSession() as session:
-        async with session.get(f'{DOMAIN}/{code}', headers={"Referer": 'https://hightrip.net/'}) as res:
-             if res.status == 200:
-                 html = await res.text()
-             else:
-                 async with session.get(f'{DOMAIN}/{code}', headers={"Referer": 'https://to-travel.netl'}) as res:
-                      if res.status == 200:
-                          html = await res.text()
-                      else:
-                          async with session.get(f'{DOMAIN}/{code}', headers={"Referer": 'https://world2our.com/'}) as res:
-                              html = await res.text()
+        referers = ['https://hightrip.net/', 'https://to-travel.netl', 'https://world2our.com/']
+        for referer in referers:
+            async with session.get(f'{DOMAIN}/{code}', headers={"Referer": referer}) as res:
+                if res.status == 200:
+                    html = await res.text()
+                    break
         soup = BeautifulSoup(html, "html.parser")
         inputs = soup.find(id="go-link").find_all(name="input")
         data = { input.get('name'): input.get('value') for input in inputs }
@@ -243,7 +192,10 @@ async def ouo(url: str):
     return res.headers.get("Location")
 
 
-async def mdisk(url: str) -> str:  # Depreciated ( Code Preserved )
+async def mdisk(url: str) -> str:
+    """
+    Depreciated ( Code Preserved )
+    """
     header = {
         "Accept": "*/*",
         "Accept-Language": "en-US,en;q=0.5",
@@ -275,6 +227,9 @@ async def transcript(url: str, DOMAIN: str, ref: str, sltime) -> str:
         raise DDLException("Link Extraction Failed")
 
 async def shareus(url: str) -> str:
+    """
+    Restricted Use !
+    """
     DOMAIN = f"https://api.shrslink.xyz"
     code = url.split('/')[-1]
     headers = {
