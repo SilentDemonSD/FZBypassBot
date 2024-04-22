@@ -59,7 +59,7 @@
 |`du-link.in` + `dulink.in`|✅️| **Unknown**|
 |`onepagelink.in`|✅️| **Unknown**|
 |`link.tnshort.net`|✅️| **Unknown**|
-|`evolinks.in`|✅| **Unknown**|
+|`evolinks.in`|✅| **22-04-2024**|
 |`go.lolshort.tech`|❌️| **Unknown**|
 |`indianshortner.in`|✅️| **Unknown**|
 |`rslinks.net`|❌️| **Unknown**|
@@ -118,7 +118,7 @@
 |`shrinkforearn.xyz`|️❌️| **Unknown**|
 |`bringlifes.com`|️️✅️| **Unknown**|
 |`linkfly.me`|✅️| **Unknown**|
-|`anlinks.in`|️❌️| **Unknown**|
+|`anlinks.in`|️✅️| **22-04-2024**|
 |`vplinks.in`|✅️| **Unknown**|
 |`earn2me.com`|✅️| **Unknown**|
 |`adsfly.in`|✅️| **Unknown**|
