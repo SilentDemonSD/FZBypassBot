@@ -51,7 +51,7 @@
 |`ronylink.com`|✅️| **Unknown**|
 |`tinyfy.in`|✅️| **Unknown**|
 |`xpshort.com` + `push.bdnewsx.com` + `techymozo.com`|❌| **Unknown**|
-|`gtlinks.me` + `gyanilinks.com`|✅| **Unknown**|
+|`gtlinks.me` + `gyanilinks.com`|✅| **18-04-2024**|
 |`earn.moneykamalo.com`|✅️| **Unknown**|
 |`droplink.co`|✅️| **Unknown**|
 |`adrinolinks.com`|✅️| **Unknown**|
@@ -75,7 +75,7 @@
 |`ouo.io` + `ouo.press`|✅️| **Unknown**|
 |`www.dropbox.com`|✅️| **Unknown**|
 |`disk.yandex.ru` + `yandex.com`|✅️| **Unknown**|
-|`try2link.com`|✅️| **Unknown**|
+|`try2link.com`|✅️| **18-04-2024**|
 |`linkpays.in`|✅️| **Unknown**|
 |`pkin.me` + `go.paisakamalo.in`|✅️| **Unknown**|
 |`sklinks.in` + `sklinks.tech`|✅️| **Unknown**|
