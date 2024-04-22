@@ -310,7 +310,7 @@ async def direct_link_checker(link, onlylink=False):
             link, "https://insurance.yosite.net/", "https://yosite.net/", 10
         )
     elif bool(match(r"https?:\/\/.+\.anlinks\.\S+", link)):
-        blink = await transcript(link, "https://anlinks.in/", "https://dsblogs.fun/", 5)
+        blink = await transcript(link, "https://anlinks.in/", "https://dsblogs.fun/", 8)
     elif bool(match(r"https?:\/\/.+\.earn2me\.\S+", link)):
         blink = await transcript(
             link, "https://blog.filepresident.com/", "https://easyworldbusiness.com/", 5
