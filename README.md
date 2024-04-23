@@ -63,7 +63,7 @@
 |`go.lolshort.tech`|❌️| **Unknown**|
 |`indianshortner.in`|✅️| **Unknown**|
 |`rslinks.net`|❌️| **Unknown**|
-|`m.easysky.in`|✅| **Unknown**|
+|`m.easysky.in`|✅| **23-04-2024**|
 |`linkbanao.com`|❌️| **Unknown**|
 |`linkvertise.com`|️❌️| **Unknown**|
 |`link.tnlink.in`|️✅️| **23-04-2024**|
