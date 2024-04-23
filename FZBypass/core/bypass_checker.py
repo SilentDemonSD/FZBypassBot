@@ -124,7 +124,7 @@ async def direct_link_checker(link, onlylink=False):
         )
     elif bool(match(r"https?:\/\/m.easysky\.\S+", link)):
         blink = await transcript(
-            link, "https://techy.veganab.co/", "https://camdigest.com/", 8
+            link, "https://techy.veganab.co/", "https://camdigest.com/", 5
         )
         blink = await transcript(
             link, "https://vip.linkbnao.com", "https://ffworld.xyz/", 2
