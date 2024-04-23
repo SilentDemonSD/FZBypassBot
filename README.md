@@ -66,7 +66,7 @@
 |`m.easysky.in`|✅| **Unknown**|
 |`linkbanao.com`|❌️| **Unknown**|
 |`linkvertise.com`|️❌️| **Unknown**|
-|`link.tnlink.in`|️✅️| **Unknown**|
+|`link.tnlink.in`|️✅️| **23-04-2024**|
 |`link4earn.com` + `link4earn.in`|✅️| **Unknown**|
 |`shortingly.com`|️✅️|️ **Unknown**|
 |`short2url.in`|✅️| **Unknown**|
