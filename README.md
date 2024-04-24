@@ -48,7 +48,7 @@
 
 | __Shortener Sites__ | __Status__ |__Last Updated__ |
 |:------------------:|:----------:|:----------------:|
-|`ronylink.com`|✅️| **Unknown**|
+|`ronylink.com`|✅️| **24-04-2024**|
 |`tinyfy.in`|✅️| **Unknown**|
 |`xpshort.com` + `push.bdnewsx.com` + `techymozo.com`|❌| **Unknown**|
 |`gtlinks.me` + `gyanilinks.com`|✅| **18-04-2024**|
