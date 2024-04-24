@@ -213,7 +213,7 @@ async def transcript(url: str, DOMAIN: str, ref: str, sltime) -> str:
     cget = create_scraper(allow_brotli=False).request
     resp = cget("GET", f"{DOMAIN}/{code}", headers={"referer": ref})
     soup = BeautifulSoup(resp.content, "html.parser")
-    data = {inp.get("name"): inp.get("value") for inp in soup.find_all("input")}
+    data = {inp.get('name'): inp.get('value') for inp in soup.find_all('input') if inp.get('name') and inp.get('value')}
     await asleep(sltime)
     resp = cget(
         "POST",
