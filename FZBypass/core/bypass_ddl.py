@@ -210,21 +210,26 @@ async def mdisk(url: str) -> str:
 
 async def transcript(url: str, DOMAIN: str, ref: str, sltime) -> str:
     code = url.rstrip("/").split("/")[-1]
-    cget = create_scraper(allow_brotli=False).request
-    resp = cget("GET", f"{DOMAIN}/{code}", headers={"referer": ref})
-    soup = BeautifulSoup(resp.content, "html.parser")
-    data = {inp.get('name'): inp.get('value') for inp in soup.find_all('input') if inp.get('name') and inp.get('value')}
-    await asleep(sltime)
-    resp = cget(
-        "POST",
-        f"{DOMAIN}/links/go",
-        data=data,
-        headers={"x-requested-with": "XMLHttpRequest"},
-    )
-    try:
-        return resp.json()["url"]
-    except:
-        raise DDLException("Link Extraction Failed")
+    useragent = 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36'
+
+    async with ClientSession() as session:
+         async with session.get(f"{DOMAIN}/{code}", headers={'Referer': ref, 'User-Agent': useragent}) as res:
+             html = await res.text()
+             cookies = res.cookies
+         soup = BeautifulSoup(html, "html.parser")
+         title_tag = soup.find('title')
+         if title_tag and title_tag.text == 'Just a moment...':
+             return "Unable To Bypass Due To Cloudflare Protected"
+         else:
+             data = {inp.get('name'): inp.get('value') for inp in soup.find_all('input') if inp.get('name') and inp.get('value')}
+             await asleep(t)
+             async with session.post(f"{DOMAIN}/links/go",data=data,headers={'Referer': f"{DOMAIN}/{code}", 'X-Requested-With':'XMLHttpRequest', 'User-Agent': useragent},cookies=cookies) as resp:
+                  try:
+                      if 'application/json' in resp.headers.get('Content-Type'):
+                          json_data = await resp.json()
+                          return json_data['url']
+                  except:
+                      raise DDLException("Link Extraction Failed")
 
 async def shareus(url: str) -> str:
     """
