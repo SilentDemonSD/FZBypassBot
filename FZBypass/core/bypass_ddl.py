@@ -135,6 +135,11 @@ async def try2link(url: str) -> str:
                     raise DDLException("Link Extraction Failed")
 
 async def gyanilinks(url: str) -> str:
+    '''
+    Based on https://github.com/Diffusion123/Bypass-Scripts
+    '''
+
+
     code = url.split('/')[-1]
     useragent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
     DOMAIN = "https://go.bloggingaro.com"
