@@ -122,13 +122,13 @@
 |`urllinkshort.in`|✅️| **Unknown**|
 |`urlsopen.com`|✅️| **Unknown**|
 |`urlspay.in`|✅️| **Unknown**|
-|`v2.kpslink.in`|✅️| **Unknown**|
+|`v2.kpslink.in`|✅️| **29-04-2024**|
 |`v2links.com`|️❌️| **Unknown**|
 |`viplinks.io`|️⚠️| **Unknown**|
 |`vplinks.in`|✅️| **Unknown**|
 |`www.dropbox.com`|✅️| **Unknown**|
 |`xpshort.com` + `push.bdnewsx.com` + `techymozo.com`|❌| **Unknown**|
-|`ziplinker.net`|✅️| **Unknown**|
+|`ziplinker.net`|✅️| **29-04-2024**|
 
 
 ### ***Scrape Sites***
