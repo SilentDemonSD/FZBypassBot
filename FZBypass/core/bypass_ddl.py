@@ -225,7 +225,7 @@ async def transcript(url: str, DOMAIN: str, ref: str, sltime) -> str:
              return "Unable To Bypass Due To Cloudflare Protected"
          else:
              data = {inp.get('name'): inp.get('value') for inp in soup.find_all('input') if inp.get('name') and inp.get('value')}
-             await asleep(t)
+             await asleep(sltime)
              async with session.post(f"{DOMAIN}/links/go",data=data,headers={'Referer': f"{DOMAIN}/{code}", 'X-Requested-With':'XMLHttpRequest', 'User-Agent': useragent},cookies=cookies) as resp:
                   try:
                       if 'application/json' in resp.headers.get('Content-Type'):
