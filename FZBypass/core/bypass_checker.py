@@ -228,7 +228,7 @@ async def direct_link_checker(link, onlylink=False):
         )
     elif bool(match(r"https?:\/\/ziplinker\.\S+", link)):
         blink = await transcript(
-            link, "https://ziplinker.net/web/", "https://fintech.techweeky.com", 1
+            link, "https://ziplinker.net", "https://fintech.techweeky.com/", 1
         )
     elif bool(match(r"https?:\/\/moneycase\.\S+", link)):
         blink = await transcript(
