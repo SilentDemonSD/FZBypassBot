@@ -187,7 +187,9 @@ async def direct_link_checker(link, onlylink=False):
             link, "https://indyshare.net", "https://insurancewolrd.in/", 3.1
         )
     elif bool(match(r"https?:\/\/linkyearn\.\S+", link)):
-        blink = await transcript(link, "https://linkyearn.com", "https://gktech.uk/", 5)
+        blink = await transcript(
+            link, "https://linkyearn.com", "https://gktech.uk/", 5
+        )
     elif bool(match(r"https?:\/\/earn4link\.\S+", link)):
         blink = await transcript(
             link, "https://m.open2get.in/", "https://ezeviral.com/", 8
@@ -287,7 +289,7 @@ async def direct_link_checker(link, onlylink=False):
         )
     elif bool(match(r"https?:\/\/bindaaslinks\.\S+", link)):
         blink = await transcript(
-            link, "https://thebindaas.com/blog/", "https://blog.appsinsta.com/", 5
+            link, "https://appsinsta.com/blog", "https://pracagov.com/", 3
         )
     elif bool(match(r"https?:\/\/viplinks\.\S+", link)):
         blink = await transcript(
