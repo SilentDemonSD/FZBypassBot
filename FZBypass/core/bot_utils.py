@@ -39,7 +39,7 @@ async def auto_bypass(_, c, message):
     elif (
         not Config.AUTO_BYPASS
         and (txt := message.text)
-        and match(rf"^\/(bypass|bp)(@{(await c.get_me()).username})?($| )", txt)
+        and match(rf"^\/(bypass|bp)(@{c.me.username})?($| )", txt)
         and not match(r"^\/(bash|shell)($| )", txt)
     ):
         return True
