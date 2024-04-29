@@ -319,7 +319,7 @@ async def direct_link_checker(link, onlylink=False):
         )
     elif bool(match(r"https?:\/\/.+\.vplinks\.\S+", link)):
         blink = await transcript(
-            link, "https://get.vplinks.in/", "https://infotamizhan.xyz/", 5
+            link, "https://vplink.in", "https://insurance.findgptprompts.com/", 5
         )
     elif bool(match(r"https?:\/\/.+\.narzolinks\.\S+", link)):
         blink = await transcript(
