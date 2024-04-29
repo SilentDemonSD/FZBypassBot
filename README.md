@@ -52,7 +52,7 @@
 |`adsfly.in`|✅️| **Unknown**|
 |`anlinks.in`|️✅️| **22-04-2024**|
 |`appurl.io`|✅️| **Unknown**|
-|`bindaaslinks.com`|✅️| **Unknown**|
+|`bindaaslinks.com`|✅️| **29-04-2024**|
 |`bit.ly` + `tinyurl.com` + `*.short.gy` + `shorturl.ac`|✅️| **Unknown**|
 |`bringlifes.com`|️️✅️| **Unknown**|
 |`dalink.in`|✅️| **Unknown**|
