@@ -198,7 +198,7 @@ async def direct_link_checker(link, onlylink=False):
         blink = await transcript(
             link, "https://go.linksly.co/", "https://en.themezon.net/", 5
         )
-    elif bool(match(r"https?:\/\/.+\.mdiskshortner\.\S+", link)):
+    elif bool(match(r"https?:\/\/(.+\.)?mdiskshortner\.\S+", link)):
         blink = await transcript(
             link, "https://mdiskshortner.link", "https://yosite.net/", 0
         )
@@ -244,7 +244,7 @@ async def direct_link_checker(link, onlylink=False):
         )
     elif bool(match(r"https?:\/\/v2links\.\S+", link)):
         blink = await transcript(link, "https://vzu.us/", "https://newsbawa.com/", 5)
-    elif bool(match(r"https?:\/\/kpslink\.\S+", link)):
+    elif bool(match(r"https?:\/\/(.+\.)?kpslink\.\S+", link)):
         blink = await transcript(
             link, "https://kpslink.in/", "https://infotamizhan.xyz/", 3.1
         )
