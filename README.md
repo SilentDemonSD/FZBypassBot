@@ -89,6 +89,7 @@
 |`m.easysky.in`|✅| **23-04-2024**|
 |`m.narzolinks.click`|✅️| **Unknown**|
 |`mdisk.pro`|✅️| **Unknown**|
+|`mdiskshortner`|✅| **30-04-2024**|
 |`mediafire.com`|✅️| **Unknown**|
 |`moneycase.link`|✅️| **Unknown**|
 |`mplaylink.com`|️❌️| **Unknown**|
