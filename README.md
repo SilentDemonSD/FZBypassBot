@@ -72,7 +72,7 @@
 |`indianshortner.in`|✅️| **Unknown**|
 |`indyshare.net`|✅️| **Unknown**|
 |`instantearn.in`|✅️| **Unknown**|
-|`kpslink.in`|✅️| **Unknown**|
+|`kpslink.in`|✅️| **30-04-2024**|
 |`krownlinks.me`|✅️| **Unknown**|
 |`link.tnlink.in`|️✅️| **23-04-2024**|
 |`link.tnshort.net`|✅️| **Unknown**|
@@ -107,7 +107,7 @@
 |`short2url.in`|✅️| **Unknown**|
 |`shortingly.com`|️✅️|️ **Unknown**|
 |`shrdsk.me`|️️✅️| **Unknown**|
-|`shrinke.me`|✅️| **Unknown**|
+|`shrinke.me`|✅️| **30-04-2024**|
 |`shrinkforearn.xyz`|️❌️| **Unknown**|
 |`sklinks.in` + `sklinks.tech`|✅️| **Unknown**|
 |`surl.li`|✅️| **Unknown**|
