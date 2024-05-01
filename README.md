@@ -49,14 +49,14 @@
 | __Shortener Sites__ | __Status__ |__Last Updated__ |
 |:------------------:|:----------:|:----------------:|
 |`adrinolinks.com`|✅️| **01-05-2024**|
-|`adsfly.in`|✅️| **Unknown**|
+|`adsfly.in`|✅️| **01-05-2024**|
 |`anlinks.in`|️✅️| **22-04-2024**|
-|`appurl.io`|✅️| **Unknown**|
+|`appurl.io`|✅️| **01-05-2024**|
 |`bindaaslinks.com`|✅️| **29-04-2024**|
-|`bit.ly` + `tinyurl.com` + `*.short.gy` + `shorturl.ac`|✅️| **Unknown**|
-|`bringlifes.com`|️️✅️| **Unknown**|
-|`dalink.in`|✅️| **Unknown**|
-|`disk.yandex.ru` + `yandex.com`|✅️| **Unknown**|
+|`bit.ly` + `tinyurl.com` + `*.short.gy` + `shorturl.ac` + `t.ly`|✅️| **01-05-2024**|
+|`bringlifes.com`|️️⚠️| **01-05-2024**|
+|`dalink.in`|️⚠️| **01-05-2024**|
+|`disk.yandex.ru` + `yandex.com`|✅️| **01-05-2024**|
 |`download.mdiskshortner.link`|✅️| **Unknown**|
 |`droplink.co`|✅️| **Unknown**|
 |`dtglinks.in`|✅️| **Unknown**|
@@ -154,7 +154,7 @@
 |:------------:|:----------:|:----------------:|
 |`appdrive.*` **(File + Pack)**|✅️|**Unknown**|
 |`drivefire.co`|✅️|**Unknown**|
-|`gdflix.*`**(File + Pack)**|❌️|**Unknown**|
+|`*.gdflix.*`**(File + Pack)**|❌️|**Unknown**|
 ✅️|**Unknown**|
 |`hubdrive.lat` **(Instant Link)**|
 |`katdrive.org` **(Direct Download)**|✅️|**Unknown**|

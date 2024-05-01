@@ -327,7 +327,7 @@ async def direct_link_checker(link, onlylink=False):
         )
     elif bool(match(r"https?:\/\/adsfly\.\S+", link)):
         blink = await transcript(
-            link, "https://go.adsfly.in/", "https://loans.quick91.com/", 5
+            link, "https://go.adsfly.in/", "https://letest25.co/", 3
         )
     elif bool(match(r"https?:\/\/earn2short\.\S+", link)):
         blink = await transcript(
@@ -354,7 +354,7 @@ async def direct_link_checker(link, onlylink=False):
         blink = await linkvertise(link)
     elif bool(match(r"https?:\/\/rslinks\.\S+", link)):
         blink = await rslinks(link)
-    elif bool(match(r"https?:\/\/(bit|tinyurl|(.+\.)short|shorturl)\.\S+", link)):
+    elif bool(match(r"https?:\/\/(bit|tinyurl|(.+\.)short|shorturl|t)\.\S+", link)):
         blink = await shorter(link)
     elif bool(match(r"https?:\/\/appurl\.\S+", link)):
         blink = await appurl(link)
