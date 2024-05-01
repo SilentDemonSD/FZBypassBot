@@ -88,7 +88,7 @@
 |`linkyearn.com`|❌️| **Unknown**|
 |`m.easysky.in`|✅| **23-04-2024**|
 |`m.narzolinks.click`|✅️| **Unknown**|
-|`mdisk.pro`|✅️| **Unknown**|
+|`mdisk.pro`|✅️| **01-05-2024**|
 |`mdiskshortner`|✅| **30-04-2024**|
 |`mediafire.com`|✅️| **Unknown**|
 |`modijiurl.com`|️❌️| **01-05-2024**|
