@@ -151,7 +151,7 @@ async def direct_link_checker(link, onlylink=False):
         )
     elif bool(match(r"https?:\/\/mdisk\.\S+", link)):
         blink = await transcript(
-            link, "https://mdisk.pro", "https://m.meclipstudy.in/", 8
+            link, "https://mdisk.pro", "https://www.meclipstudy.in/", 5
         )
     elif bool(match(r"https?:\/\/(pkin|go.paisakamalo)\.\S+", link)):
         blink = await transcript(
