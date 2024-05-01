@@ -48,7 +48,7 @@
 
 | __Shortener Sites__ | __Status__ |__Last Updated__ |
 |:------------------:|:----------:|:----------------:|
-|`adrinolinks.com`|✅️| **Unknown**|
+|`adrinolinks.com`|✅️| **01-05-2024**|
 |`adsfly.in`|✅️| **Unknown**|
 |`anlinks.in`|️✅️| **22-04-2024**|
 |`appurl.io`|✅️| **Unknown**|
@@ -75,7 +75,7 @@
 |`kpslink.in`|✅️| **30-04-2024**|
 |`krownlinks.me`|✅️| **Unknown**|
 |`link.tnlink.in`|️✅️| **23-04-2024**|
-|`link.tnshort.net`|✅️| **Unknown**|
+|`link.tnshort.net`|✅️| **01-05-2024**|
 |`link.vipurl.in` + `vipurl.in` + `count.vipurl.in`|✅️| **Unknown**|
 |`link1s.com`|✅️| **Unknown**|
 |`link4earn.com` + `link4earn.in`|✅️| **Unknown**|
@@ -99,7 +99,7 @@
 |`pandaznetwork.com`|✅️| **Unknown**|
 |`pdiskshortener.com`|✅️| **Unknown**|
 |`pkin.me` + `go.paisakamalo.in`|✅️| **Unknown**|
-|`rocklinks.net`|✅️| **Unknown**|
+|`rocklinks.net`|✅️| **01-05-2024**|
 |`ronylink.com`|✅️| **24-04-2024**|
 |`rslinks.net`|❌️| **Unknown**|
 |`sheralinks.com`|✅️| **Unknown**|

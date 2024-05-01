@@ -80,7 +80,7 @@ async def direct_link_checker(link, onlylink=False):
         )
     elif bool(match(r"https?:\/\/.+\.tnshort\.\S+", link)):
         blink = await transcript(
-            link, "https://go.tnshort.net/", "https://jrlinks.in/", 4
+            link, "https://news.sagenews.in/", "https://knowstuff.in/", 4.9
         )
     elif bool(match(r"https?:\/\/(xpshort|push.bdnewsx|techymozo)\.\S+", link)):
         blink = await transcript(
@@ -204,7 +204,7 @@ async def direct_link_checker(link, onlylink=False):
         )
     elif bool(match(r"https?://(?:\w+\.)?rocklinks\.\S+", link)):
         blink = await transcript(
-            link, "https://insurance.techymedies.com/", "https://blog.disheye.com/", 5
+            link, "https://land.povathemes.com/", "https://blog.disheye.com/", 4.9
         )
     elif bool(match(r"https?:\/\/mplaylink\.\S+", link)):
         blink = await transcript(
