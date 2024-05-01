@@ -91,6 +91,7 @@
 |`mdisk.pro`|✅️| **Unknown**|
 |`mdiskshortner`|✅| **30-04-2024**|
 |`mediafire.com`|✅️| **Unknown**|
+|`modijiurl.com`|️❌️| **01-05-2024**|
 |`moneycase.link`|✅️| **Unknown**|
 |`mplaylink.com`|️❌️| **Unknown**|
 |`omnifly.in.net`|✅️| **Unknown**|
@@ -99,6 +100,7 @@
 |`pandaznetwork.com`|✅️| **Unknown**|
 |`pdiskshortener.com`|✅️| **Unknown**|
 |`pkin.me` + `go.paisakamalo.in`|✅️| **Unknown**|
+|`publicearn.com`|❌️| **01-05-2024**|
 |`rocklinks.net`|✅️| **01-05-2024**|
 |`ronylink.com`|✅️| **24-04-2024**|
 |`rslinks.net`|❌️| **Unknown**|

@@ -342,8 +342,17 @@ async def direct_link_checker(link, onlylink=False):
             link, "https://linkjust.com/", "https://forexrw7.com/", 3.1
         )
     elif bool(match(r"https?:\/\/pdiskshortener\.\S+", link)):
-        blink = await transcript(link, "https://pdiskshortener.com/", "", 10)
-
+        blink = await transcript(
+            link, "https://pdiskshortener.com/", "", 10
+        )
+    elif bool(match(r"https?:\/\/publicearn\.\S+", link)):
+        blink = await transcript(
+            link, "https://publicearn.com/", "https://careersides.com/", 4.9
+        )
+    elif bool(match(r"https?:\/\/modijiurl\.\S+", link)):
+        blink = await transcript(
+            link, "https://modijiurl.com/", "https://loanoffering.in/", 8
+        )
     elif bool(match(r"https?:\/\/ouo\.\S+", link)):
         blink = await ouo(link)
     elif bool(match(r"https?:\/\/(shareus|shrs)\.\S+", link)):
