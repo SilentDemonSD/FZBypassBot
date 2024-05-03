@@ -68,12 +68,13 @@
 |`evolinks.in`|✅| **22-04-2024**|
 |`ez4short.com`|✅️| **Unknown**|
 |`go.lolshort.tech`|❌️| **Unknown**|
-|`gtlinks.me` + `gyanilinks.com`|✅| **18-04-2024**|
+|`gtlinks.me` + `gyanilinks.com`|✅| **03-05-2024**|
 |`indianshortner.in`|✅️| **Unknown**|
 |`indyshare.net`|✅️| **Unknown**|
 |`instantearn.in`|✅️| **Unknown**|
 |`kpslink.in`|✅️| **30-04-2024**|
 |`krownlinks.me`|✅️| **Unknown**|
+|`link.shorito.com`|❌️| **03-05-2024**|
 |`link.tnlink.in`|️✅️| **23-04-2024**|
 |`link.tnshort.net`|✅️| **01-05-2024**|
 |`link.vipurl.in` + `vipurl.in` + `count.vipurl.in`|✅️| **Unknown**|
@@ -99,6 +100,7 @@
 |`onepagelink.in`|✅️| **Unknown**|
 |`ouo.io` + `ouo.press`|✅️| **Unknown**|
 |`pandaznetwork.com`|✅️| **Unknown**|
+|`pdisk.site`|✅️| **03-05-2024**|
 |`pdiskshortener.com`|✅️| **Unknown**|
 |`pkin.me` + `go.paisakamalo.in`|✅️| **Unknown**|
 |`publicearn.com`|❌️| **01-05-2024**|

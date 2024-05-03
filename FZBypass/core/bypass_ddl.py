@@ -153,10 +153,9 @@ async def gyanilinks(url: str) -> str:
         await asleep(5)
         async with session.post(f"{DOMAIN}/links/go", data=data, headers={'X-Requested-With':'XMLHttpRequest','User-Agent': useragent, 'Referer': f"{DOMAIN}/{code}"}, cookies=cookies) as links:
             if 'application/json' in links.headers.get('Content-Type'):
-                json_data = await links.json()
                 try:
-                    json_data['url']
-                except:
+                    return (await links.json())['url']
+                except Exception:
                       raise DDLException("Link Extraction Failed")
 
 async def ouo(url: str):
@@ -226,12 +225,11 @@ async def transcript(url: str, DOMAIN: str, ref: str, sltime) -> str:
          else:
              data = {inp.get('name'): inp.get('value') for inp in soup.find_all('input') if inp.get('name') and inp.get('value')}
              await asleep(sltime)
-             async with session.post(f"{DOMAIN}/links/go",data=data,headers={'Referer': f"{DOMAIN}/{code}", 'X-Requested-With':'XMLHttpRequest', 'User-Agent': useragent},cookies=cookies) as resp:
+             async with session.post(f"{DOMAIN}/links/go", data=data, headers={'Referer': f"{DOMAIN}/{code}", 'X-Requested-With':'XMLHttpRequest', 'User-Agent': useragent}, cookies=cookies) as resp:
                   try:
                       if 'application/json' in resp.headers.get('Content-Type'):
-                          json_data = await resp.json()
-                          return json_data['url']
-                  except:
+                          return (await resp.json())['url']
+                  except Exception:
                       raise DDLException("Link Extraction Failed")
 
 async def shareus(url: str) -> str:
