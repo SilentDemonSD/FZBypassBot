@@ -83,6 +83,7 @@
 |`linkfly.me`|✅️| **Unknown**|
 |`linkjust.com`|✅️| **Unknown**|
 |`linkpays.in`|✅️| **Unknown**|
+|`linkshortx.in`|✅️| **03-05-2024**|
 |`linksly.co`|✅️| **Unknown**|
 |`linkvertise.com`|️❌️| **Unknown**|
 |`linkyearn.com`|❌️| **Unknown**|
@@ -106,7 +107,6 @@
 |`rslinks.net`|❌️| **Unknown**|
 |`sheralinks.com`|✅️| **Unknown**|
 |`short.tnvalue.in`|✅️| **Unknown**|
-|`short2url.in`|✅️| **Unknown**|
 |`short2url.in`|✅️| **Unknown**|
 |`shortingly.com`|️✅️|️ **Unknown**|
 |`shrdsk.me`|️️✅️| **Unknown**|
