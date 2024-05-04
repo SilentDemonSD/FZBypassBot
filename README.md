@@ -76,7 +76,7 @@
 |`krownlinks.me`|✅️| **Unknown**|
 |`link.shorito.com`|❌️| **03-05-2024**|
 |`link.tnlink.in`|️✅️| **23-04-2024**|
-|`link.tnshort.net`|✅️| **01-05-2024**|
+|`link.tnshort.net`|✅️| **04-05-2024**|
 |`link.vipurl.in` + `vipurl.in` + `count.vipurl.in`|✅️| **Unknown**|
 |`link1s.com`|✅️| **Unknown**|
 |`link4earn.com` + `link4earn.in`|✅️| **Unknown**|
