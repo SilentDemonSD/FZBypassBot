@@ -31,7 +31,7 @@ async def yandex_disk(url: str) -> str:
         raise DDLException("File not Found / Download Limit Exceeded")
 
 
-async def mediafire(url: str) -> str:
+async def mediafire(url: str):
     if final_link := findall(
         r"https?:\/\/download\d+\.mediafire\.com\/\S+\/\S+\/\S+", url
     ):
@@ -46,6 +46,10 @@ async def mediafire(url: str) -> str:
         r"\'(https?:\/\/download\d+\.mediafire\.com\/\S+\/\S+\/\S+)\'", page
     ):
         return final_link[0]
+    elif temp_link := findall(
+        r'\/\/(www\.mediafire\.com\/file\/\S+\/\S+\/file\?\S+)', page
+    ):
+        return await mediafire("https://"+temp_link[0].strip('"'))
     else:
         raise DDLException("No links found in this page")
 
@@ -134,6 +138,7 @@ async def try2link(url: str) -> str:
                 except:        
                     raise DDLException("Link Extraction Failed")
 
+
 async def gyanilinks(url: str) -> str:
     '''
     Based on https://github.com/whitedemon938/Bypass-Scripts
@@ -157,6 +162,7 @@ async def gyanilinks(url: str) -> str:
                     return (await links.json())['url']
                 except Exception:
                       raise DDLException("Link Extraction Failed")
+
 
 async def ouo(url: str):
     tempurl = url.replace("ouo.io", "ouo.press")
@@ -232,10 +238,22 @@ async def transcript(url: str, DOMAIN: str, ref: str, sltime) -> str:
                   except Exception:
                       raise DDLException("Link Extraction Failed")
 
+
+async def justpaste(url: str):
+    resp = rget(url, verify=False)
+    soup = BeautifulSoup(resp.text, "html.parser")
+    inps = soup.select('div[id="articleContent"] > p')
+    return ", ".join(inps)
+    
+
+async def linksxyz(url: str):
+    resp = rget(url)
+    soup = BeautifulSoup(resp.text, "html.parser")
+    inps = soup.select('div[id="redirect-info"] > a')
+    return inps[0]["href"]
+
+
 async def shareus(url: str) -> str:
-    """
-    Restricted Use !
-    """
     DOMAIN = f"https://api.shrslink.xyz"
     code = url.split('/')[-1]
     headers = {

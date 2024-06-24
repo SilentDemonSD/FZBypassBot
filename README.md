@@ -72,6 +72,7 @@
 |`indianshortner.in`|✅️| **Unknown**|
 |`indyshare.net`|✅️| **Unknown**|
 |`instantearn.in`|✅️| **Unknown**|
+|`justpaste.it`|✅️| **24-06-2024**|
 |`kpslink.in`|✅️| **30-04-2024**|
 |`krownlinks.me`|✅️| **Unknown**|
 |`link.shorito.com`|❌️| **03-05-2024**|
@@ -87,12 +88,13 @@
 |`linkshortx.in`|✅️| **03-05-2024**|
 |`linksly.co`|✅️| **Unknown**|
 |`linkvertise.com`|️❌️| **Unknown**|
+|`linksxyz.in`|️️✅️| **24-06-2024**|
 |`linkyearn.com`|❌️| **Unknown**|
 |`m.easysky.in`|✅| **23-04-2024**|
 |`m.narzolinks.click`|✅️| **Unknown**|
 |`mdisk.pro`|✅️| **01-05-2024**|
 |`mdiskshortner`|✅| **30-04-2024**|
-|`mediafire.com`|✅️| **Unknown**|
+|`mediafire.com`|✅️| **24-06-2024**|
 |`modijiurl.com`|️❌️| **01-05-2024**|
 |`moneycase.link`|✅️| **Unknown**|
 |`mplaylink.com`|️❌️| **Unknown**|
