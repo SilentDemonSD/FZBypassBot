@@ -243,7 +243,7 @@ async def justpaste(url: str):
     resp = rget(url, verify=False)
     soup = BeautifulSoup(resp.text, "html.parser")
     inps = soup.select('div[id="articleContent"] > p')
-    return ", ".join(inps)
+    return ", ".join(elem.string for elem in inps)
     
 
 async def linksxyz(url: str):
